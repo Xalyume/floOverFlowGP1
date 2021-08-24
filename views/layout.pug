@@ -1,8 +1,22 @@
 doctype html
 html
-  head
-      block head
-        title="Express Starter App"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
-  body
-    block content
+	head
+			block head
+				title="Express Starter App"
+				link(rel='stylesheet' href='/stylesheets/reset.css')
+				nav
+					a(href='/') flo-Overflow
+
+					if locals.authenticated
+						form(action='/questions/new' method='post')
+							button(type='submit') Ask a Question
+						form(action='/logout' method='post')
+							button(type='submit') Logout
+					else
+						span
+							a(href='/login') Login
+							a(href='/signup') Sign Up
+
+
+	body
+		block content
