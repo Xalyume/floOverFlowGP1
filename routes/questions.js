@@ -15,11 +15,23 @@ router.get("/", asyncHandler(async (req, res) => {
 
     const questions = await Question.findAll({
         //include: [{ model: User,  attributes: ["username"] }],
-        include: [Answer, User],
+        include: [Answer, User,QuestionLike],
         order: [["updatedAt", "DESC"]],
     });
-
-    res.json(questions)
+    let upVote = 0;
+    let downVote = 0;
+    questions.forEach(q=>{
+        q.QuestionLikes.forEach(vote=>{
+            if(vote){
+                upVote++;
+            }else{
+                downVote--;
+            }
+        })
+    })
+ 
+    //res.json(questions[0])
+    res.render('questions', { questions, upVote, downVote})
     
 
 }));
@@ -54,5 +66,11 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
     }
 
 }));
+
+///////// to do specific question page
+router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
+    res.send('You are at specific question page.')
+
+}))
 
 module.exports = router;
