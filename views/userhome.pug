@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+    div
+        a(href='/questions/new') Ask A Question
+        a(href='/questions') Go to Questions
+    div
+        h2 Welcome Back #{user.username}!
+    div
+        h3 My Questions:
+            a(href='/') This is a placehold question
