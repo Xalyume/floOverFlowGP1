@@ -22,8 +22,8 @@ router.get("/", asyncHandler(async (req, res) => {
     // let upVote = 0;
     // let downVote = 0;
     // questions.forEach(q=>{
-    //     q.QuestionLikes.forEach(vote=>{
-    //         if(vote){
+    //     q.QuestionLikes.forEach(v=>{
+    //         if(v.vote){
     //             upVote++;
     //         }else{
     //             downVote++;
@@ -32,7 +32,7 @@ router.get("/", asyncHandler(async (req, res) => {
     // })
  
     //res.json(questions[0])
-    res.render('questions', { questions})
+    res.render('questions-list', { questions})
     
 
 }));
@@ -70,11 +70,40 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
 
 }));
 
-///////// to do specific question page
+
 router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
-    res.send('You are at specific question page.')
-    /// go back button to go back to all the /questions. 
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { 
+        include: [User, QuestionLike,{model:Answer,include:[User,AnswerLike]}]
+    });
+    //To Test: question votes
+    let qUpVote =0;
+    let qDownVote=0;
+   
+    question.QuestionLikes.forEach(v=>{
+            if(v.vote){
+                qUpVote++;
+            }else{
+                qDownVote++;
+            }
+        })
+
+    // To Do: answer votes => especially associate with each answer 
+   
+   
+    //res.json(question);
+    
+    res.render('question', { question, qUpVote, qDownVote})
+    
 
 }))
+
+
+router.get("/delete/:id(\\d+)", asyncHandler(async (req, res, next) => {
+    res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
+
+
+})
+);
 
 module.exports = router;
