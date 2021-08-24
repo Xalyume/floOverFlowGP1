@@ -3,11 +3,11 @@ h1 {
 }
 
 .nav-bar {
-  height: 5em;
+  min-height: 5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.33);
+  background-color: #3DB2FF
   /* z-index: 0; */
 }
 
@@ -18,26 +18,26 @@ h1 {
   display: flex;
   padding: 0px 0px 0px 1.25em;
   border-radius: 0.5em;
-  color: rgba(0, 0, 0, 0.75);
+  color: #FFB830;
   align-items: center;
   margin-left: 5em;
   /* position: relative; */
 }
 
 .search-input {
-  border: 1px solid grey;
+  border: 1px solid #3DB2FF;
   border-radius: 0.5em 0 0 0.5em;
   height: 2.5em;
   font-size: 1.25em;
   width: 100%;
   padding-left: 1.5em;
   outline: 0;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: #FFEDDA;
 }
 
 .search-btn {
-  border: 1px solid #00b4cc;
-  background: #00b4cc;
+  border: 1px solid #FF2442;
+  background: #FF2442;
   text-align: center;
   color: #fff;
   border-radius: 0 0.5em 0.5em 0;
@@ -54,7 +54,7 @@ h1 {
 }
 
 .btn {
-  opacity: 68%;
+  opacity: 100%;
   height: 2.5em;
   width: 5em;
   display: flex;
@@ -69,9 +69,9 @@ h1 {
 
 .main-page {
   margin-left: 1.5em;
-  font-size: 1.5em;
+  font-size: 1.75em;
   text-decoration: none;
-  font-style: italic;
+  color: #FFEDDA;
 }
 
 /* .btn {
@@ -88,16 +88,16 @@ h1 {
 }
 
 .sign-up-btn {
-  background-color: white;
+  background-color: #FFB830;
   border-radius: 0.5em;
   color: black;
 }
 
 .footer {
-  background-color: black;
+  background-color: #3DB2FF;
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   /* justify-content: center; */
   align-items: center;
   left: 0;
@@ -115,12 +115,12 @@ h1 {
 .foot-link {
   padding: 0px 1.25em 0px 1.25em;
   text-decoration: none;
-  color: white;
+  color: #FFEDDA;
   opacity: 68%;
 }
 
 .social-media {
-  color: white;
+  color: #FFEDDA;
   opacity: 68%;
   font-size: 1.125em;
   width: 10em;
@@ -142,11 +142,12 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .log-in-btn {
   background-color: transparent;
-  color: white;
+  color: #FFEDDA;
 }
 
 .main {
@@ -209,9 +210,11 @@ body {
 .log-in-submit {
   padding: 1.5em 5em;
   width: auto;
-  background: #1abc9c;
+  background: #FFB830;
+  font-size: 1em;
   border: none;
-  color: white;
+  border-radius: .5em;
+  color: black;
   cursor: pointer;
   float: right;
   transition: 0.2s ease all;
@@ -240,22 +243,22 @@ input[type="submit"]:active {
   float: left;
   clear: left;
   display: inline-block;
-  color: cornflowerblue;
+  color: #3DB2FF;
   text-decoration: none;
 }
 
 .forgot:hover,
 .register:hover {
-  color: darkgray;
+  color: #FFB830;
 }
 
 #logo {
   margin: 0 auto;
   width: 100%;
-  font-size: 3.75em;
-  font-weight: bold;
+  font-size: 2.5em;
+  font-weight: bolder;
   text-align: center;
-  color: cornflowerblue;
+  color: #3DB2FF;
 }
 
 /* #logo:hover {
@@ -266,9 +269,9 @@ input[type="submit"]:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: cornflowerblue;
-  max-height: 10em;
-  overflow: auto;
+  color: #FF2442;
+  /* max-height: 10em;
+  overflow: auto; */
 }
 
 .errors * {
