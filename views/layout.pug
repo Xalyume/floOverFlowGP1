@@ -8,7 +8,7 @@ html
 					a(href='/') flo-Overflow
 
 					if locals.authenticated
-						form(action='/questions/new' method='post')
+						form(action='/questions/new' method='get')
 							button(type='submit') Ask a Question
 						form(action='/logout' method='post')
 							button(type='submit') Logout

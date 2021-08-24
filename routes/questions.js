@@ -19,20 +19,20 @@ router.get("/", asyncHandler(async (req, res) => {
         include: [Answer, User,QuestionLike],
         order: [["updatedAt", "DESC"]],
     });
-    let upVote = 0;
-    let downVote = 0;
-    questions.forEach(q=>{
-        q.QuestionLikes.forEach(vote=>{
-            if(vote){
-                upVote++;
-            }else{
-                downVote--;
-            }
-        })
-    })
+    // let upVote = 0;
+    // let downVote = 0;
+    // questions.forEach(q=>{
+    //     q.QuestionLikes.forEach(vote=>{
+    //         if(vote){
+    //             upVote++;
+    //         }else{
+    //             downVote++;
+    //         }
+    //     })
+    // })
  
     //res.json(questions[0])
-    res.render('questions', { questions, upVote, downVote})
+    res.render('questions', { questions})
     
 
 }));
@@ -73,6 +73,7 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
 ///////// to do specific question page
 router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     res.send('You are at specific question page.')
+    /// go back button to go back to all the /questions. 
 
 }))
 
