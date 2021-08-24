@@ -22,7 +22,8 @@ html
 					if locals.authenticated
 						<div class="links">
 							<a href="/questions/new" class="btn log-in-btn">Ask a flo-Question!</a>
-							<a href="/logout" class="btn sign-up-btn">Log Out</a>
+							form(class='form-inline pr-4' action='/logout' method='post')
+								button(class='btn log-in-btn' type='submit') Logout
 						</div>
 					else
 						<div class="links">
@@ -35,13 +36,13 @@ html
 		block content
 
 	<footer class="footer">
-		//- <div class="menu">
-		//- 	<a href="#" class="foot-link">abc</a>
+		<div class="menu">
+			<a href="#" class="foot-link">abc</a>
 
-		//- 	<a href="#" class="foot-link">123</a>
+			<a href="#" class="foot-link">123</a>
 
-		//- 	<a href="#" class="foot-link">xyz</a>
-		//- </div>
+			<a href="#" class="foot-link">xyz</a>
+		</div>
 
 		<div class="social-media">
 			<img src="../public/logo.png" class="logo" />

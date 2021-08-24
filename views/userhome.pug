@@ -1,11 +1,18 @@
 extends layout.pug
 
+append head
+	//- add page specific styles by appending to the head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	//- add page specific js
+	script(src="/javascripts/index.js" type="module" defer)
+
 block content
-    div
-        a(href='/questions/new') Ask A Question
-        a(href='/questions') Go to Questions
-    div
-        h2 Welcome Back #{user.username}!
-    div
-        h3 My Questions:
-            a(href='/') This is a placehold question
+	div
+		a(href='/questions/new') Ask A Question
+		a(href='/questions') Go to Questions
+	div
+		h2 Welcome Back #{user.username}!
+	div
+		h3 My Questions:
+			each q in questions
+				a(href=`/questions/${q.id}`) #{q.content}
