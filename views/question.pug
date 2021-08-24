@@ -1,0 +1,38 @@
+extends layout.pug
+
+include utils.pug
+
+append head
+	//- add page specific styles by appending to the head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	//- add page specific js
+	script(src="/javascripts/index.js" type="module" defer)
+
+block content
+	div
+		a(href=`/questions`) All Quesitons
+
+	div(class='questionContainer')
+		div(class='vote') #{qUpVote|0} upVotes
+		div(class='vote') #{qDownVote|0} downVotes
+		div(class='question') #{question.content}
+		div by #{question.User.username}
+		//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
+
+		if locals.authenticated
+			if locals.user.id === question.User.id
+				div
+					a(href=`/questions/delete/${question.id}`) Delete
+				//- need to do dynamic edit post
+				div
+					button Edit
+
+
+	div #{question.Answers.length|0} Answers
+
+	//- div(class='answersContainer')
+	//-     each answer in question.Answers
+	//-         //- div(class='vote') #{answerUpVote|0} upVotes
+	//-         //- div(class='vote') #{answerDownVote|0} downVotes
+	//-         div(class='answer') #{answer.content}
+	//-         div by #{answer.User.username}
