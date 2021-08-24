@@ -11,6 +11,7 @@ const questionValidators = [
         .withMessage('Please provide a value for your flo question.')
 ]
 
+// get /questions => Not require login
 router.get("/", asyncHandler(async (req, res) => {
 
     const questions = await Question.findAll({
@@ -36,12 +37,14 @@ router.get("/", asyncHandler(async (req, res) => {
 
 }));
 
-router.get("/new", requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+// get /questions/new => Not require login, will show the form to create question, but will not show the button to submit queston. Instead it will have a link to login saying ' please login to ask a quesiton'
+router.get("/new",  csrfProtection, asyncHandler(async (req, res) => {
     
     res.render('new-question', { title:'Ask a flo question!', csrfToken: req.csrfToken()})
 
 }));
 
+//post question require login
 router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(async (req, res, next) => {
 
     const {content}=req.body;
