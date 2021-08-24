@@ -3,7 +3,7 @@ html
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
-	
+
 			block head
 				title="Express Starter App"
 				link(rel='stylesheet' href='/stylesheets/reset.css')
@@ -22,7 +22,8 @@ html
 					if locals.authenticated
 						<div class="links">
 							<a href="/questions/new" class="btn log-in-btn">Ask a flo-Question!</a>
-							<a href="/logout" class="btn sign-up-btn">Log Out</a>
+							form(class='form-inline pr-4' action='/logout' method='post')
+								button(class='btn log-in-btn' type='submit') Logout
 						</div>
 					else
 						<div class="links">
@@ -47,4 +48,3 @@ html
 			<img src="../public/logo.png" class="logo" />
 		</div>
 	</footer>
-
