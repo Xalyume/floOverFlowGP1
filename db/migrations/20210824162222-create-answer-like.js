@@ -20,15 +20,18 @@ module.exports = {
       answerId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Ansers' }
+        references: { model: 'Answers' }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        default: new Date()
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        default: new Date()
+       
       }
     });
   },
