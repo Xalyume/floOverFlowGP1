@@ -36,14 +36,14 @@ const signupValidators = [
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for Password')
         .isLength({ min: 6, max: 25 })
-        .withMessage('Password must be more 5 characters and less than 25')
+        .withMessage('Password must be more than 5 characters and less than 25 characters long')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
         .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
     check('confirmPassword')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for Confirm Password')
-        .isLength({ max: 50 })
-        .withMessage('Confirm Password must not be more than 50 characters long')
+        .isLength({ min: 6, max: 25 })
+        .withMessage('Confirm Password must be more than 5 characters and less than 25 characters long')
         .custom((value, { req }) => {
             if (value !== req.body.password) {
                 throw new Error('Confirm Password does not match Password');
@@ -72,7 +72,6 @@ router.post('/', csrfProtection, signupValidators, asyncHandler(async (req, res)
         user.hashedPassword = hashedPassword;
         await user.save();
         loginUser(req, res, user);
-        console.log("we made it to this point")
         res.redirect('/');
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
