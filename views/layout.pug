@@ -1,22 +1,50 @@
 doctype html
 html
-	head
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+	
 			block head
 				title="Express Starter App"
 				link(rel='stylesheet' href='/stylesheets/reset.css')
-				nav
-					a(href='/') flo-Overflow
+				nav(class='nav-bar')
+					a(class='main-page' href='/') flo-Overflow
+					//- <img src="../public/logo.png" class="logo" />
+
+					<div class="wrap">
+						<form action="/search" method="post" class='search-bar'>
+							<input class='search-input' placeholder='Search flo-Questions!' type="text" name="search_str" value=""/>
+							<input type="submit" class="btn search-btn" value="Go!"/>
+						</form>
+					</div>
+
 
 					if locals.authenticated
-						form(action='/questions/new' method='get')
-							button(type='submit') Ask a Question
-						form(action='/logout' method='post')
-							button(type='submit') Logout
+						<div class="links">
+							<a href="/questions/new" class="btn log-in-btn">Ask a flo-Question!</a>
+							<a href="/logout" class="btn sign-up-btn">Log Out</a>
+						</div>
 					else
-						span
-							a(href='/login') Login
-							a(href='/signup') Sign Up
+						<div class="links">
+							<a href="/login" class="btn log-in-btn">Log In</a>
+							<a href="/signup" class="btn sign-up-btn">Sign Up</a>
+						</div>
 
 
 	body
 		block content
+
+	<footer class="footer">
+		<div class="menu">
+			<a href="#" class="foot-link">abc</a>
+
+			<a href="#" class="foot-link">123</a>
+
+			<a href="#" class="foot-link">xyz</a>
+		</div>
+
+		<div class="social-media">
+			<img src="../public/logo.png" class="logo" />
+		</div>
+	</footer>
+
