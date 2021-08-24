@@ -1,0 +1,13 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    each q in questions
+        div(class='questionContainer')
+            //- div(class='vote') #{upVote|0} upVotes
+            //- div(class='vote') #{downVote|0} downVotes
+            div(class='question')
+                a(href=`/questions/${q.id}`) question: #{q.content}
+            div by #{q.User.username}
+            div(class='answer') #{q.Answers.length|0} answers
