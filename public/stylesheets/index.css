@@ -1,3 +1,281 @@
 h1 {
-    color: #555555;
+  color: #555555;
+}
+
+.nav-bar {
+  height: 5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.33);
+  /* z-index: 0; */
+}
+
+.search-bar {
+  /* background-color: rgba(0, 0, 0, 0.33); */
+  opacity: 75%;
+  height: 2.5em;
+  display: flex;
+  padding: 0px 0px 0px 1.25em;
+  border-radius: 0.5em;
+  color: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  margin-left: 5em;
+  /* position: relative; */
+}
+
+.search-input {
+  border: 1px solid grey;
+  border-radius: 0.5em 0 0 0.5em;
+  height: 2.5em;
+  font-size: 1.25em;
+  width: 100%;
+  padding-left: 1.5em;
+  outline: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.search-btn {
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 0.5em 0.5em 0;
+  cursor: pointer;
+}
+
+.wrap {
+  width: 50%;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  opacity: 68%;
+  height: 2.5em;
+  width: 5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 1.5em;
+  font-weight: 500;
+  font-size: 1.25em;
+  letter-spacing: 0.0625em;
+}
+
+.main-page {
+  margin-left: 1.5em;
+  font-size: 1.5em;
+  text-decoration: none;
+  font-style: italic;
+}
+
+/* .btn {
+  transition: 0.2s ease all;
+}
+
+.btn:hover {
+  opacity: 0.8;
+} */
+
+.log-in-btn {
+  background-color: transparent;
+  color: white;
+}
+
+.sign-up-btn {
+  background-color: white;
+  border-radius: 0.5em;
+  color: black;
+}
+
+.footer {
+  background-color: black;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: center; */
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.menu {
+  font-size: 0.5em;
+  display: flex;
+  align-items: center;
+  margin-left: 2.5em;
+}
+
+.foot-link {
+  padding: 0px 1.25em 0px 1.25em;
+  text-decoration: none;
+  color: white;
+  opacity: 68%;
+}
+
+.social-media {
+  color: white;
+  opacity: 68%;
+  font-size: 1.125em;
+  width: 10em;
+  height: 2.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-right: 2.5em;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  font-family: "Roboto", Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.log-in-btn {
+  background-color: transparent;
+  color: white;
+}
+
+.main {
+  display: flex;
+  /* flex-flow: column; */
+}
+
+/* .text-container {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  opacity: 85%;
+  text-shadow: -0.0625em -0.0625em 1em black;
+} */
+
+/* .start-btn {
+  background-color: white;
+  border-radius: 0.5em;
+  color: black;
+  width: fit-content;
+  padding: 0.5em 1em 0.5em 1em;
+  align-self: center;
+  font-size: 1.33em;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+} */
+
+.log-in-form {
+  margin: 5em auto 0 auto;
+  width: 50%;
+  height: auto;
+  /* overflow: hidden;
+  background: transparent;
+  border-radius: 10px; */
+}
+
+.log-in-label,
+.log-in-input {
+  float: left;
+  /* clear: both; */
+}
+
+.log-in-input {
+  margin: 1.5em 0;
+  padding: 1.5em 1.5em;
+  width: 100%;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 0.5em;
+  /* display: inline-block; */
+  /* box-sizing: border-box; */
+}
+
+/* .log-in-input[type="text"]:focus,
+.log-in-input[type="password"]:focus {
+  border-color: cornflowerblue;
+} */
+
+.log-in-submit {
+  padding: 1.5em 5em;
+  width: auto;
+  background: #1abc9c;
+  border: none;
+  color: white;
+  cursor: pointer;
+  float: right;
+  transition: 0.2s ease all;
+}
+
+input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+.btn {
+  transition: 0.2s ease all;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+input[type="submit"]:active {
+  opacity: 0.4;
+}
+
+.forgot,
+.register {
+  margin: 0.75em;
+  margin-left: 0;
+  float: left;
+  clear: left;
+  display: inline-block;
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+.forgot:hover,
+.register:hover {
+  color: darkgray;
+}
+
+#logo {
+  margin: 0 auto;
+  width: 100%;
+  font-size: 3.75em;
+  font-weight: bold;
+  text-align: center;
+  color: cornflowerblue;
+}
+
+/* #logo:hover {
+  color: lightgrey;
+} */
+
+.errors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: cornflowerblue;
+  max-height: 10em;
+  overflow: auto;
+}
+
+.errors * {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
 }

@@ -2,20 +2,54 @@ extends layout.pug
 
 include utils.pug
 
+append head
+	//- add page specific styles by appending to the head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	//- add page specific js
+	script(src="/javascripts/index.js" type="module" defer)
+
+
 block content
 	div
-		h2 Sign-Up for flo-Overflow!
-		+validationErrorSummary(errors)
-		form(action='/signup' method='post')
+		//- h2 Sign-Up for flo-Overflow!
+		//- +validationErrorSummary(errors)
+		//- form(action='/signup' method='post')
+		//- 	input(type='hidden' name='_csrf' value=csrfToken)
+		//- 	+field('User Name', 'username', user.username)
+		//- 	+field('Email Address', 'email', user.email)
+		//- 	+field('Password', 'password', user.password, 'password')
+		//- 	+field('Confirm Password', 'confirmPassword', '', 'password')
+		//- 	div
+		//- 		button(type='submit') Register
+		//- 		a(href='/') Cancel
+		//- div
+		//- 	p: a(href='/login') Already have an account?
+		//- div
+		//- 	p: a(href='/') Go Back to Homepage
+
+		<form method="post" action="" class='log-in-form'>
+
+			<h3 id="logo">Sign-up for flo-Overflow!</h3>
+
+			div(class='errors')
+				+validationErrorSummary(errors)
+
 			input(type='hidden' name='_csrf' value=csrfToken)
-			+field('User Name', 'username', user.username)
-			+field('Email Address', 'email', user.email)
-			+field('Password', 'password', user.password, 'password')
-			+field('Confirm Password', 'confirmPassword', '', 'password')
-			div
-				button(type='submit') Register
-				a(href='/') Cancel
-		div
-			p: a(href='/login') Already have an account?
-		div
-			p: a(href='/') Go Back to Homepage
+
+			<label class='log-in-label' for="username">Username</label>
+			<input class='log-in-input' type="username" id="username" name="username" placeholder="Type in a username.." autocomplete="off" />
+
+			<label class='log-in-label' for="email">Email</label>
+			<input class='log-in-input' type="email" id="email" name="email" placeholder="Enter your email.." autocomplete="off" />
+
+			<label class='log-in-label' for="password">Password</label>
+			<input class='log-in-input' type="password" id="password" name="password" placeholder="Enter a password.." autocomplete="off"  />
+
+			<label class='log-in-label' for="confirmPassword">Confirm Password</label>
+			<input class='log-in-input' type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password.." autocomplete="off" />
+
+			<a class="forgot" href="/login">Already have an account?</a>
+			<a class="register" href="/">Go Back to the Homepage</a>
+
+			<input class='log-in-submit' type="submit" name="submit" value="Register" />
+		</form>
