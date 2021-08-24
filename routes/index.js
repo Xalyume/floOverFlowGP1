@@ -4,7 +4,11 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'a/A Express Skeleton Home' });
+  if (req.session.auth) {
+    res.render('userhome', { title: 'Welcome Back!' })
+  } else {
+    res.render('index', { title: 'Welcome to flo Overflow!' });
+  }
 });
 
 module.exports = router;

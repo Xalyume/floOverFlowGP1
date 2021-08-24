@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     Question.hasMany(models.Answer, { foreignKey: 'questionId', onDelete: 'CASCADE', hooks: true });
     //question hasmany likes with cascade deleting, to keep db clean,  but no cascade deleting  on questionlike;
     Question.hasMany(models.QuestionLike, { foreignKey: 'questionId', onDelete: 'CASCADE', hooks: true });
-    
+
     const columnMapping = {
-      through: 'QuestionLike', 
+      through: 'QuestionLike',
       otherKey: 'userId',
       foreignKey: 'questionId',
-      as: 'QuestionLikes',
-  
+      as: 'QuestionsLikes',
+
     }
     Question.belongsToMany(models.User, columnMapping);
   };
