@@ -17,34 +17,34 @@ block content
 			div by #{question.User.username}
 			div(class='vote') #{qUpVote|0} upVotes
 			div(class='vote') #{qDownVote|0} downVotes
-			
+
 			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
-			div(class='question' id='questionContent') #{question.content}						
+			div(class='question' id='questionContent') #{question.content}
 			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
-			
+
 			if locals.authenticated
 				if locals.user.id === question.User.id
-					
+
 					div
-						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file 
+						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file
 						div(id='errorUpdateQuestion')
 
-						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none') 
+						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
 							button Submit Update
-							
+
 						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Eit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
 						button(id='cancelUpdateQuestionButton' style='display:none') Cancel Update
 						button(id='updateQuestionButton' ) Edit Question
 
 					div
-						form(action=`/questions/delete/${question.id}`,method='get') 
+						form(action=`/questions/delete/${question.id}`,method='get')
 							Button Delete
 					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 			div #{question.Answers.length|0} Answers
 
-		else 
+		else
 			div This question does not exist.
 
 	//- div(class='answersContainer')
