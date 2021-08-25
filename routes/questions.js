@@ -3,7 +3,8 @@ const router = express.Router();
 const { csrfProtection, asyncHandler, bcrypt } = require('./utils');
 const { User,Question,QuestionLike,Answer,AnswerLike } = require('../db/models');
 const { check, validationResult } = require('express-validator');
-const { loginUser, requireAuth } = require('../auth.js')
+const { loginUser, requireAuth } = require('../auth.js');
+const e = require('express');
 
 const questionValidators = [
     check('content')
@@ -79,31 +80,77 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     //To Test: question votes
     let qUpVote =0;
     let qDownVote=0;
-   
-    question.QuestionLikes.forEach(v=>{
-            if(v.vote){
+    if (question){
+        question.QuestionLikes.forEach(v => {
+            if (v.vote) {
                 qUpVote++;
-            }else{
+            } else {
                 qDownVote++;
             }
         })
 
+    }
+    
     // To Do: answer votes => especially associate with each answer 
-   
-   
+    
     //res.json(question);
-    
+  
     res.render('question', { question, qUpVote, qDownVote})
-    
-
+   
 }))
 
 
-router.get("/delete/:id(\\d+)", asyncHandler(async (req, res, next) => {
-    res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
+// require log-in to render the page to delete user's own question
+router.get("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { include: User });
+
+    res.render('delete-question', { title: 'Delete your flo question', question, csrfToken: req.csrfToken() })
+  
+}));
 
 
-})
-);
+// require log-in to delete user's own question
+router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { include: User });
+    if(res.locals.user.id === question.User.id){
+        await question.destroy();
+    }
+    res.redirect('/');
+
+
+}));
+
+
+// require log-in to dynamically edit user's own question - JSON
+
+router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { include: User });
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        if (res.locals.user.id === question.User.id && question) {
+            await question.update({ ...req.body })
+
+            res.json({ question })
+
+        } else {
+            const err = new Error(`You have no authorization to edit the question`);
+            err.title = 'No authorization';
+            err.status = 401;
+            res.json({ err })
+        }        
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.json({errors})
+    }
+
+
+}));
+
+
 
 module.exports = router;
