@@ -1,0 +1,28 @@
+extends layout.pug
+
+include utils.pug
+
+
+append head
+	//- add page specific styles by appending to the head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	//- add page specific js
+	script(src="/javascripts/index.js" type="module" defer)
+
+block content
+	div
+		
+		if locals.user.id === question.User.id
+			h2 Are you sure you want to delete the following question?
+			form(action='/questions/delete/:id(\\d+)' method='post')
+				input(type='hidden' name='_csrf' value=csrfToken)
+				p your question:#{question.content}
+				div
+					button(type='submit') Delete
+					a(href='/') Cancel
+		else 	
+			div
+				p You do not have the authorization to delete other user's question.
+				a(href = '/') Home page
+			
+					

@@ -99,11 +99,30 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
 }))
 
 
-router.get("/delete/:id(\\d+)", asyncHandler(async (req, res, next) => {
-    res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
+// require log-in to render the page to delete user's own question
+router.get("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { include: User });
+
+    res.render('delete-question', { title: 'Delete your flo question', question, csrfToken: req.csrfToken() })
+    // res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
 
 
-})
-);
+}));
+
+
+// require log-in to delete user's own question
+
+router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+    const questionId = req.params.id;
+    const question = await Question.findByPk(questionId, { include: User });
+
+    res.render('delete-question', { title: 'Delete your flo question', question, csrfToken: req.csrfToken() })
+    // res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
+
+
+}));
+
+
 
 module.exports = router;
