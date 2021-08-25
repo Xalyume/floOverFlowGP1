@@ -12,7 +12,10 @@ block content
 		a(href='/questions') Go to Questions
 	div
 		h2 Welcome Back #{user.username}!
+		p Member Since:
 	div
 		h3 My Questions:
 			each q in questions
 				a(href=`/questions/${q.id}`) #{q.content}
+
+
