@@ -18,7 +18,7 @@ const submitUpdate = async(event)=>{
     try {
         // question in pug file is accessible here in this script js ?
         const res = await fetch(`/questions/${questionId}`, {
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(body),
             headers: {"Content-Type": "application/json"},
         })

@@ -125,7 +125,7 @@ router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async
 
 // require log-in to dynamically edit user's own question - JSON
 
-router.post("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
+router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { include: User });
 
