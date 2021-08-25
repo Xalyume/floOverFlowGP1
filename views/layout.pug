@@ -8,13 +8,13 @@ html
 				title="Express Starter App"
 				link(rel='stylesheet' href='/stylesheets/reset.css')
 				nav(class='nav-bar')
-					a(class='main-page' href='/') flo-Overflow
+					a(class='main-page' href='/') flo-Overflow 🎤
 					//- <img src="../public/logo.png" class="logo" />
 
 					<div class="wrap">
 						<form action="/search" method="post" class='search-bar'>
-							<input class='search-input' placeholder='Search flo-Questions!' type="text" name="search_str" value=""/>
-							<input type="submit" class="btn search-btn" value="Go!"/>
+							<input class='search-input' placeholder='Search flo-Questions' type="text" name="search_str" value=""/>
+							<input type="submit" class="btn search-btn" value="Go"/>
 						</form>
 					</div>
 
@@ -22,8 +22,8 @@ html
 					if locals.authenticated
 						<div class="links">
 							<a href="/questions/new" class="btn log-in-btn">Ask a flo-Question!</a>
-							form(class='form-inline pr-4' action='/logout' method='post')
-								button(class='btn log-in-btn' type='submit') Logout
+							form(action='/logout' method='post')
+								button(class='btn sign-up-btn' type='submit') Logout
 						</div>
 					else
 						<div class="links">
@@ -36,15 +36,20 @@ html
 		block content
 
 	<footer class="footer">
-		<div class="menu">
-			<a href="#" class="foot-link">abc</a>
+		//- <div class="menu">
+		//- 	<a href="#" class="foot-link">Questions</a>
 
-			<a href="#" class="foot-link">123</a>
+		//- 	<a href="#" class="foot-link"></a>
 
-			<a href="#" class="foot-link">xyz</a>
-		</div>
+		//- 	<a href="#" class="foot-link">xyz</a>
+		//- </div>
 
-		<div class="social-media">
-			<img src="../public/logo.png" class="logo" />
+		//- <div class="social-media">
+		//- 	div(class='william-logo')
+		//- 	<img src="../public/logo.png" class="logo" />
+		//- </div>
+
+		<div class="content">
+			<img class='test-logo' src="http://i.imgur.com/nuRmQJX.png">
 		</div>
 	</footer>
