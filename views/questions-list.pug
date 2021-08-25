@@ -10,10 +10,38 @@ append head
 
 block content
 	each q in questions
-		div(class='questionContainer')
-			//- div(class='vote') #{upVote|0} upVotes
-			//- div(class='vote') #{downVote|0} downVotes
-			div(class='question')
-				a(href=`/questions/${q.id}`) question: #{q.content}
-			div by #{q.User.username}
-			div(class='answer') #{q.Answers.length|0} answers
+		//- div(class='question-container')
+		//- 	div(class='tab-item')
+		//- 		div(class='darker')
+		//- 			a(href=`/questions/${q.id}`) Question: #{q.content}
+		//- 		div(class='lighter')
+		//- 			div By: #{q.User.username}
+		//- 			div #{q.Answers.length} answers
+
+		<div class="question-container">
+			<div class="question-stats-container">
+				<div class="question-stats-votes">
+					<span>?</span>
+					<p>votes</p>
+				</div>
+				<div class="question-stats-answers">
+					<span>#{q.Answers.length}</span>
+					<p>answers</p>
+				</div>
+			</div>
+
+			<div class="question-summary-container">
+				<a class="question-summary-link" href="/">Question #{q.id}</a>
+				<div class="question-summary">
+					p(class='content') #{q.content}
+				</div>
+				<div class="question-summary-footer">
+					<div class="question-summary-user">
+						<div class="question-summary-info">
+							<span>asked <span class='time'>?</span> months ago by:</span>
+							<a href="/"> #{q.User.username}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
