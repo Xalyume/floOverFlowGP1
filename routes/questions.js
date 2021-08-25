@@ -80,23 +80,23 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     //To Test: question votes
     let qUpVote =0;
     let qDownVote=0;
-   
-    question.QuestionLikes.forEach(v=>{
-            if(v.vote){
+    if (question){
+        question.QuestionLikes.forEach(v => {
+            if (v.vote) {
                 qUpVote++;
-            }else{
+            } else {
                 qDownVote++;
             }
         })
 
+    }
+    
     // To Do: answer votes => especially associate with each answer 
-   
-   
+    
     //res.json(question);
-    
+  
     res.render('question', { question, qUpVote, qDownVote})
-    
-
+   
 }))
 
 
@@ -106,15 +106,11 @@ router.get("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async 
     const question = await Question.findByPk(questionId, { include: User });
 
     res.render('delete-question', { title: 'Delete your flo question', question, csrfToken: req.csrfToken() })
-    // res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
-
-
+  
 }));
 
 
 // require log-in to delete user's own question
-
-
 router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { include: User });
@@ -122,8 +118,6 @@ router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async
         await question.destroy();
     }
     res.redirect('/');
-    alert('Your question was deleted successfully!');
-    // res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
 
 
 }));

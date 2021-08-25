@@ -13,22 +13,23 @@ block content
 		a(href=`/questions`) All Quesitons
 
 	div(class='questionContainer')
-		div(class='vote') #{qUpVote|0} upVotes
-		div(class='vote') #{qDownVote|0} downVotes
-		div(class='question') #{question.content}
-		div by #{question.User.username}
-		//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
+		if question
+			div(class='vote') #{qUpVote|0} upVotes
+			div(class='vote') #{qDownVote|0} downVotes
+			div(class='question') #{question.content}
+			div by #{question.User.username}
+			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
 
-		if locals.authenticated
-			if locals.user.id === question.User.id
-				div
-					a(href=`/questions/delete/${question.id}`) Delete
-				//- need to do dynamic edit post
-				div
-					button Edit
-
-
-	div #{question.Answers.length|0} Answers
+			if locals.authenticated
+				if locals.user.id === question.User.id
+					div
+						a(href=`/questions/delete/${question.id}`) Delete
+					//- need to do dynamic edit post
+					div
+						button Edit
+			div #{question.Answers.length|0} Answers
+		else 
+			div This question does not exist.
 
 	//- div(class='answersContainer')
 	//-     each answer in question.Answers
