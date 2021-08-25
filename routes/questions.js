@@ -3,7 +3,8 @@ const router = express.Router();
 const { csrfProtection, asyncHandler, bcrypt } = require('./utils');
 const { User,Question,QuestionLike,Answer,AnswerLike } = require('../db/models');
 const { check, validationResult } = require('express-validator');
-const { loginUser, requireAuth } = require('../auth.js')
+const { loginUser, requireAuth } = require('../auth.js');
+const e = require('express');
 
 const questionValidators = [
     check('content')
@@ -113,11 +114,15 @@ router.get("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async 
 
 // require log-in to delete user's own question
 
+
 router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { include: User });
-
-    res.render('delete-question', { title: 'Delete your flo question', question, csrfToken: req.csrfToken() })
+    if(res.locals.user.id === question.User.id){
+        await question.destroy();
+    }
+    res.redirect('/');
+    alert('Your question was deleted successfully!');
     // res.send('Need to do pug file to confirm deleting question and a button to post delete to delete the question')
 
 

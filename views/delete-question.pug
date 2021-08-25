@@ -14,7 +14,7 @@ block content
 		
 		if locals.user.id === question.User.id
 			h2 Are you sure you want to delete the following question?
-			form(action='/questions/delete/:id(\\d+)' method='post')
+			form(action=`/questions/delete/${question.id}` method='post')
 				input(type='hidden' name='_csrf' value=csrfToken)
 				p your question:#{question.content}
 				div
