@@ -1,5 +1,5 @@
 
-const clickEidtButton = async(event)=>{
+const clickEditButton = async(event)=>{
     //once edit button is clicked, the textarea to edit question and submit update button will be displayed. And the edit button will be hidden. 
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
     updateQuestionContent.style.display = 'block';
@@ -7,7 +7,10 @@ const clickEidtButton = async(event)=>{
     updateQuestionButton.style.display = 'none'; 
     
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-    cancelUpdateQuestionButton.style.display = 'block';
+    cancelUpdateQuestionButton.style.display = 'block';   
+
+    const questionContent = document.querySelector("#questionContent");
+    questionContent.style.display = 'none';
     
 }
 
@@ -42,6 +45,7 @@ const submitUpdate = async(event)=>{
         //original question to be updated as edits
         const questionContent = document.querySelector("#questionContent");
         questionContent.innerHTML=content;
+        questionContent.style.display = 'block';
 
         // hide edit form after edit is done
         
@@ -63,6 +67,9 @@ const submitUpdate = async(event)=>{
 
 const cancelUpdate = async (event) => {
 
+    const questionContent = document.querySelector("#questionContent");
+    questionContent.style.display = 'block';
+
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
     updateQuestionContent.style.display = 'none';
 
@@ -72,6 +79,8 @@ const cancelUpdate = async (event) => {
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'none';
 
+    
+
 }
 
 
@@ -79,7 +88,7 @@ document.addEventListener("DOMContentLoaded", async(event) => {
     // click update button
     const updateQuestionButton = document.querySelector("#updateQuestionButton");
 
-    updateQuestionButton.addEventListener("click", clickEidtButton)
+    updateQuestionButton.addEventListener("click", clickEditButton)
     
     //submit update
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
