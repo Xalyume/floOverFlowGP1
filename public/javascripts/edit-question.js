@@ -9,14 +9,15 @@ const clickEidtButton = async(event)=>{
 }
 
 const submitUpdate = async(event)=>{
-    e.preventDefault();
-    const formData = new FormData(form);
-    const content= formData.get("updateQuestion");
+    event.preventDefault();
+    const formData = new FormData(updateQuestionContent);
+    const content= formData.get("questionContent");
+    const questionId = formData.get("questionId")
     const body = { content };
 
     try {
         // question in pug file is accessible here in this script js ?
-        const res = await fetch(`/questions/${question.id}`, {
+        const res = await fetch(`/questions/${questionId}`, {
             method: "POST",
             body: JSON.stringify(body),
             headers: {"Content-Type": "application/json"},
@@ -35,13 +36,20 @@ const submitUpdate = async(event)=>{
             question: { content },
         } = await res.json();
 
-        //original question
+        //original question to be updated as edits
         const questionContent = document.querySelector("#questionContent");
         questionContent.innerHTML=content;
 
+        // hide edit form after edit is done
+        
+        updateQuestionContent.style.display = 'none'
+
+        updateQuestionButton.style.display = 'block';
     
 
-    }catch(err){
+    }
+    ///// need to think about err?
+    catch(err){
 
     }
 }

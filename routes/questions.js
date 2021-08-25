@@ -128,19 +128,26 @@ router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async
 router.post("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { include: User });
-    if (res.locals.user.id === question.User.id && question) {
-        console.log('hereeeeee??',req.body)
-        await question.update({...req.body})
 
-        res.json({question})
+    const validatorErrors = validationResult(req);
 
-    }else {
-        const err = new Error(`You have no authorization to edit the question`);
-        err.title = 'No authorization';
-        err.status = 401;
-        next(err)
+    if (validatorErrors.isEmpty()) {
+        if (res.locals.user.id === question.User.id && question) {
+            await question.update({ ...req.body })
 
+            res.json({ question })
+
+        } else {
+            const err = new Error(`You have no authorization to edit the question`);
+            err.title = 'No authorization';
+            err.status = 401;
+            next(err)
+        }        
+    } else {
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.json({errors})
     }
+
 
 }));
 

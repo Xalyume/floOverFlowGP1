@@ -28,7 +28,8 @@ block content
 					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 					div
 						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
-							textarea(name="updateQuestion" )
+							input( style='display:none' name='questionId' value=question.id)
+							textarea(name="questionContent" )
 							button Submit Update
 					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
 					button(id='updateQuestionButton') Edit Question
