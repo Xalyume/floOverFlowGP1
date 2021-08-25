@@ -31,15 +31,14 @@ block content
 			</div>
 
 			<div class="question-summary-container">
-				<a class="question-summary-link" href="/">Question #{q.id}</a>
 				<div class="question-summary">
-					p(class='content') #{q.content}
+					<a class="question-summary-link" href="/">#{q.content}</a>
+					//- p(class='content') #{q.content}
 				</div>
 				<div class="question-summary-footer">
 					<div class="question-summary-user">
 						<div class="question-summary-info">
-							<span>asked <span class='time'>?</span> months ago by:</span>
-							<a href="/"> #{q.User.username}</a>
+							<span>asked <span class='time'>?</span> months ago by: <span class='time'>#{q.User.username}</span></span>
 						</div>
 					</div>
 				</div>
