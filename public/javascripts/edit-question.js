@@ -1,11 +1,11 @@
 
 const clickEidtButton = async(event)=>{
-    //once edit button is clicked, the textarea to edit question and submit update button will be displayed. And the edit button will be hidden. 
+    //once edit button is clicked, the textarea to edit question and submit update button will be displayed. And the edit button will be hidden.
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
     updateQuestionContent.style.display = 'block'
-    
-    updateQuestionButton.style.display = 'none';    
-    
+
+    updateQuestionButton.style.display = 'none';
+
 }
 
 const submitUpdate = async(event)=>{
@@ -32,7 +32,7 @@ const submitUpdate = async(event)=>{
         }
 
         const {
-        
+
             question: { content },
         } = await res.json();
 
@@ -41,11 +41,11 @@ const submitUpdate = async(event)=>{
         questionContent.innerHTML=content;
 
         // hide edit form after edit is done
-        
+
         updateQuestionContent.style.display = 'none'
 
         updateQuestionButton.style.display = 'block';
-    
+
 
     }
     ///// need to think about err?

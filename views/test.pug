@@ -1,19 +1,55 @@
-extends layout.pugappend head
+extends layout.pug
+
+include utils.pug
+
+append head
+	//- add page specific styles by appending to the head
 	link(rel="stylesheet" href="/stylesheets/index.css")
-	script(src="/javascripts/index.js" type="module" defer)
+	//- add page specific js
+	script(src="/javascripts/edit-question.js" type="module" defer)
 
 block content
-	div
-		a(href='/questions/new') Ask A Question
-		a(href='/questions') Go to Questions
-	div
-		h2 Welcome Back #{user.username}!
-		p Member Since:
-	div
-		h3 My Questions:
-			each q in questions
-				a(href=`/questions/${q.id}`) #{q.content}
 
+	div(class='questionContainer')
+		div(class='main-links all-btn')
+			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
+		if question
+			//- div(class='vote') #{qUpVote|0} upVotes
+			//- div(class='vote') #{qDownVote|0} downVotes
+			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
+			//- div(class='question' id='questionContent') #{question.content}
+			//- div by #{question.User.username}
+			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
 
-    div(class='log-in-form')
-        <h3 id="logo">#{user.username}!</h3>
+			if locals.authenticated
+				if locals.user.id === question.User.id
+				div(class="logged-in-container")
+					div(class="question-stats-container")
+						div(class="question-stats-votes logged-in-votes")
+							span #{qUpVote|0}
+							p upVotes
+							span #{qDownVote|0}
+							p downVotes
+					div(class='question-summary-container')
+						div(class="question-summary")
+							a(href=`#` class="longer") #{question.content}
+					div(class="question-summary-footer")
+						div(class="question-summary-user")
+							div(class="question-summary-info")
+								<span>asked by: <span class='time'>#{question.User.username}</span></span>
+				div(class='single-question-btns')
+					div
+						a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete
+					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+					div
+						+validationErrorSummary(errors)
+						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
+							input( style='display:none' name='questionId' value=question.id)
+							textarea(name="questionContent" )
+							button Submit Update
+					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
+					button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
+			//- div #{question.Answers.length|0} Answers
+
+		else
+			div This question does not exist.

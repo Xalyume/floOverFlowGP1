@@ -21,7 +21,6 @@ block content
 			a(href='/questions/new' class='btn log-in-submit btn1') Ask A Question
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 	div
-<<<<<<< HEAD
 		div(class='title-container')
 			h3(class='subtitle-1 questions-title') My flo-Questions
 		each q in questions
@@ -42,14 +41,3 @@ block content
 						div(class="question-summary-info")
 							<span>asked <span class='time'>?</span> months ago</span>
 		div(class='test')
-=======
-		a(href='/questions/new') Ask A Question
-		a(href='/questions') Go to Questions
-	div
-		h2 Welcome Back #{user.username}!
-		p Member Since: #{user.createdAt}
-	div
-		h3 My Questions:
-			each q in questions
-				a(href=`/questions/${q.id}`) #{q.content}
->>>>>>> main

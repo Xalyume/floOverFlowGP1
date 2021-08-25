@@ -373,7 +373,7 @@ input[type="submit"]:active {
 
 .question-container {
   display: flex;
-  min-width: 50%;
+  min-width: 67%;
   padding: 1em;
   border-bottom: 0.125em solid #3db2ff;
   align-self: center;
@@ -384,7 +384,7 @@ input[type="submit"]:active {
 }
 
 .question-container:hover {
-  min-width: 50.5%;
+  min-width: 67.5%;
   border-bottom: 0.125em solid #ff2442;
 }
 
@@ -439,10 +439,23 @@ input[type="submit"]:active {
 }
 
 .question-summary-link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30em;
   font-size: 1.5em;
   color: #3db2ff;
   text-decoration: none;
   transition: 0.2s ease all;
+}
+
+.longer {
+  max-width: 30em;
+  font-size: 1.5em;
+  color: #3db2ff;
+  text-decoration: none;
+  transition: 0.2s ease all;
+  cursor: default;
 }
 
 .question-summary-link:hover {
@@ -607,4 +620,53 @@ textarea {
 
 .test {
   height: 7.5em;
+}
+
+.single-question-btns {
+  margin: 0 auto;
+  width: 67.5%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin-top: 7.5em;
+
+}
+
+.single-question-btns * {
+  width: 2.5em;
+  height: 5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.single-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+}
+
+.all-btn * {
+  position: relative;
+  width: 2.5em;
+  height: 5em;
+  top: 0em;
+}
+
+.logged-in-container {
+  display: flex;
+  min-width: 67%;
+  padding: 1em;
+  border-bottom: 0.125em solid #3db2ff;
+  align-self: center;
+  align-items: center;
+  position: relative;
+  top: 2em;
 }
