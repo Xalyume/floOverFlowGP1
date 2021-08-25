@@ -9,15 +9,9 @@ append head
 	script(src="/javascripts/index.js" type="module" defer)
 
 block content
+	div(class='title-container')
+		h3(class='subtitle-1 questions-title') flo-Questions
 	each q in questions
-		//- div(class='question-container')
-		//- 	div(class='tab-item')
-		//- 		div(class='darker')
-		//- 			a(href=`/questions/${q.id}`) Question: #{q.content}
-		//- 		div(class='lighter')
-		//- 			div By: #{q.User.username}
-		//- 			div #{q.Answers.length} answers
-
 		<div class="question-container">
 			<div class="question-stats-container">
 				<div class="question-stats-votes">
@@ -44,3 +38,5 @@ block content
 				</div>
 			</div>
 		</div>
+	div(class='test')
+		div(class='test')
