@@ -138,12 +138,16 @@ router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req
             res.json({ question })
 
         } else {
+            // usually the question should exist.
             const err = new Error(`You have no authorization to edit the question`);
-            err.title = 'No authorization';
-            err.status = 401;
-            res.json({ err })
+            // include err message in an array, in order to be used by dynamically used in pug file
+            const errors= [err.message]
+            // err.title = 'No authorization';
+            // err.status = 401;
+            res.json({errors})
         }        
     } else {
+        //in order to be used by dynamically used in pug file
         const errors = validatorErrors.array().map((error) => error.msg);
         res.json({errors})
     }
