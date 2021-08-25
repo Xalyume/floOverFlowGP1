@@ -21,9 +21,9 @@ html
 
 					if locals.authenticated
 						<div class="links">
-							<a href="/questions/new" class="btn log-in-btn">Ask a flo-Question!</a>
+							<a href="/questions/new" class="btn log-in-btn ask-question-btn">Ask a flo-Question!</a>
 							form(action='/logout' method='post')
-								button(class='btn sign-up-btn' type='submit') Logout
+								button(class='btn sign-up-btn log-out-btn' type='submit') Logout
 						</div>
 					else
 						<div class="links">
