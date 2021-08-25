@@ -10,15 +10,20 @@ append head
 
 block content
 	div
-		h2 Post your flo questions!
-		+validationErrorSummary(errors)
-		form(action='/questions' method='post')
+		form(action='/questions' method='post' class='log-in-form question-post')
+
+			<h3 id="logo">Post your flo-Question!</h3>
+
+			div(class='errors')
+				+validationErrorSummary(errors)
+
 			input(type='hidden' name='_csrf' value=csrfToken)
-			textarea(id="content" name="content")
+
+			textarea(class='log-in-input' type="textarea" id="content" name="content" placeholder="Type in your question..")
+
 			if locals.authenticated
-				div
-					button(type='submit') Submit
-					a(href='/') Cancel
+				div(class='new-question-footer')
+					button(type='submit' class='btn log-in-submit new-question-btn') Submit
+					a(href='/' class='cancel forgot') Cancel
 			else
-				div
-					a(href='/login') Please login to ask a flo question
+				a(href='/login') Please login to ask a flo question
