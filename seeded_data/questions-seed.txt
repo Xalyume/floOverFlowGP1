@@ -5,9 +5,16 @@
 { content: 'what do you guys think about marshmellos new album?', userId: 5, createdAt: new Date('2021-7-20T02:18:00'), updatedAt: new Date('2021-7-20T02:18:00') }
 { content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', userId: 6, createdAt: new Date('2021-8-14T03:36:00'), updatedAt: new Date('2021-8-14T03:36:00') }
 { content: 'do you guys also hear the similarities in Skrillex\'s Bangarang to Beethoven's Pathetique', userId: 5, createdAt: new Date('2021-7-22T03:36:00'), updatedAt: new Date('2021-7-22T03:36:00') }
-{ content: 'what do you guys think Kdot was trying to convey when he wrote "YAK YAK YAK YAK" in maad city?', userId: 4, createdAt: , updatedAt:  }
+{ content: 'what do you guys think Kdot was trying to convey when he wrote "YAK YAK YAK YAK" in maad city?', userId: 4, createdAt: new Date('2021-8-23T012:45:00'), updatedAt: new Date('2021-8-23T012:45:00') }
 { content: 'who are some of your favorite hip-hop artists?', userId: 3, createdAt: new Date('2021-8-24T07:45:00'), updatedAt: new Date('2021-8-24T07:45:00') }
 { content: 'What is your favorite song of all time?', userId: 2, createdAt: new Date('2021-8-23T03:45:00') , updatedAt: new Date('2021-8-23T03:45:00')  }
-{ content: 'Can someone recommend me their referred Taylor Swift songs?', userId: 1, createdAt: new Date('2021-8-20T01:22:00'), updatedAt: new Date('2021-8-20T01:22:00') }
+{ content: 'Can someone recommend me their preferred Taylor Swift songs?', userId: 1, createdAt: new Date('2021-8-20T01:22:00'), updatedAt: new Date('2021-8-20T01:22:00') }
 { content: 'recommend me songs with themes about love', userId: 2, createdAt: new Date('2021-8-18T07:45:00'), updatedAt: new Date('2021-8-18T07:45:00') }
 { content: 'why is Kanye better than Mozart?', userId: 3, createdAt: new Date('2021-8-2T07:45:00'), updatedAt: new Date('2021-8-2T07:45:00') }
+
+id:1 = metalman123
+id:2 = hydroHomie21
+id:3 = defnotKanye
+id:4 = hypebeast360
+id:5 = WUBWUBwub
+id:6 = badquestions

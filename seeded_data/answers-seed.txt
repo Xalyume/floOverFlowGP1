@@ -1,0 +1,22 @@
+{ content: 'i dont think this is even a question....', questionId: 6, userId: 2, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'i thought there was no such thing as a bad question, i guess i was wrong', questionId: 6, userId: 4, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'i think kdot spent some time in Mongolia as a child and wanted to pay homage to his childhood', questionId: 8, userId: 3, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'not wrong, Mozart def did not have sick 808s', questionId: 13, userId: 5, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'idk i disagree, i think Mozart had some BANGERS', questionId: 13, userId: 2, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'nah not really', questionId: 7, userId: 6, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'yea totally, i think the bass line is the same?', questionId: 7, userId: 1, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'def not Kanye.', questionId: 9, userId: 5, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'I have been listening to alot of tyler lately', questionId: 9, userId: 4, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'I think anything by John Mayer is really close to that song honestly', questionId: 4, userId: 6, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'all songs are about love if you think about it', questionId: 12, userId: 1, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'whats a BMTH?', questionId: 1, userId: 2, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'so sick, glad they did some heavy stuff', questionId: 1, userId: 3, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'you belong with me is probably my favorite', questionId: 11, userId: 1, createdAt: new Date(), updatedAt: new Date() }
+{ content: 'thunder by boys like girls, GREAT SONG', questionId: 12, userId: 5, createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
+{ content: '', questionId: , userId: , createdAt: new Date(), updatedAt: new Date() }
