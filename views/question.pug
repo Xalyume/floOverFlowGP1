@@ -27,6 +27,7 @@ block content
 						a(href=`/questions/delete/${question.id}`) Delete
 					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 					div
+						+validationErrorSummary(errors)
 						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(name="questionContent" )

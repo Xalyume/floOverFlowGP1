@@ -141,7 +141,7 @@ router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req
             const err = new Error(`You have no authorization to edit the question`);
             err.title = 'No authorization';
             err.status = 401;
-            next(err)
+            res.json({ err })
         }        
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
