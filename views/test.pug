@@ -1,0 +1,19 @@
+extends layout.pugappend head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	script(src="/javascripts/index.js" type="module" defer)
+
+block content
+	div
+		a(href='/questions/new') Ask A Question
+		a(href='/questions') Go to Questions
+	div
+		h2 Welcome Back #{user.username}!
+		p Member Since:
+	div
+		h3 My Questions:
+			each q in questions
+				a(href=`/questions/${q.id}`) #{q.content}
+
+
+    div(class='log-in-form')
+        <h3 id="logo">#{user.username}!</h3>

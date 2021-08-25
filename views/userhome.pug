@@ -7,13 +7,37 @@ append head
 	script(src="/javascripts/index.js" type="module" defer)
 
 block content
+	//- div
+	//- 	a(href='/questions/new') Ask A Question
+	//- 	a(href='/questions') Go to Questions
+	//- div
+	//- 	h2 Welcome Back #{user.username}!
+	//- 	p Member Since:
+	div(class='log-in-form logged-in')
+		<h3 id="logo">Welcome back, <span class='username'>#{user.username}!</span></h3>
+		div(class='user-details')
+			p(class='subtitle-2') Member since: ?
+		div(class='main-links')
+			a(href='/questions/new' class='btn log-in-submit btn1') Ask A Question
+			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 	div
-		a(href='/questions/new') Ask A Question
-		a(href='/questions') Go to Questions
-	div
-		h2 Welcome Back #{user.username}!
-		p Member Since:
-	div
-		h3 My Questions:
-			each q in questions
-				a(href=`/questions/${q.id}`) #{q.content}
+		div(class='title-container')
+			h3(class='subtitle-1 questions-title') My flo-Questions
+		each q in questions
+			div(class="question-container logged-in-container")
+				div(class="question-stats-container")
+					div(class="question-stats-votes logged-in-votes")
+						span ?
+						p votes
+					div(class="question-stats-answers logged-in-answers")
+						//- span #{q.Answers}
+						span 0
+						p answers
+				div(class='question-summary-container')
+					div(class="question-summary")
+						a(href=`/questions/${q.id}` class="question-summary-link") #{q.content}
+				div(class="question-summary-footer")
+					div(class="question-summary-user")
+						div(class="question-summary-info")
+							<span>asked <span class='time'>?</span> months ago</span>
+		div(class='test')
