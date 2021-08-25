@@ -22,7 +22,6 @@ const submitUpdate = async(event)=>{
     const body = { content };
 
     try {
-        // question in pug file is accessible here in this script js ?
         const res = await fetch(`/questions/${questionId}`, {
             method: "PUT",
             body: JSON.stringify(body),
@@ -37,10 +36,21 @@ const submitUpdate = async(event)=>{
             throw res;// res will include error  object
         }
 
-        const {
-        
+        const {      
             question: { content },
         } = await res.json();
+        // need to do validation errors!!!!!!!!!!
+        // const {
+        //     errors
+        // } = await res.json();
+
+        // if (errors){
+        //     const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+        //     let errorContent = errors.map(message=>{
+        //         return `<li>${message}</li>`
+        //     })
+        //     errorUpdateQuestion.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
+        // }
 
         //original question to be updated as edits
         const questionContent = document.querySelector("#questionContent");
