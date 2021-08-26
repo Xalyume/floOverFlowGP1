@@ -16,7 +16,7 @@ block content
 	div(class='log-in-form logged-in')
 		<h3 id="logo">Welcome back, <span class='username'>#{user.username}!</span></h3>
 		div(class='user-details')
-			p(class='subtitle-2') Member since: #{month}-#{day}-#{year}
+			p(class='subtitle-2') Member since: #{user.createdAt.toLocaleDateString()}
 		div(class='main-links')
 			a(href='/questions/new' class='btn log-in-submit btn1') Ask a Question
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
@@ -39,5 +39,6 @@ block content
 				div(class="question-summary-footer")
 					div(class="question-summary-user")
 						div(class="question-summary-info")
-							<span>asked <span class='time'>?</span> months ago</span>
+							span asked on:
+							span(class='time')= q.createdAt.toLocaleDateString()
 		div(class='test')

@@ -32,7 +32,7 @@ block content
 				<div class="question-summary-footer">
 					<div class="question-summary-user">
 						<div class="question-summary-info">
-							<span>asked <span class='time'>?</span> months ago by: <span class='time'>#{q.User.username}</span></span>
+							<span>asked on <span class='time'>#{q.createdAt.toLocaleDateString()}</span> by: <span class='time'>#{q.User.username}</span></span>
 						</div>
 					</div>
 				</div>
