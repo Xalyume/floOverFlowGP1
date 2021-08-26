@@ -13,12 +13,13 @@ router.get('/', asyncHandler(async(req, res, next) => {
       }
     })
 
-    const user = await User.findByPk(userId)
-    const month = user.createdAt.getUTCMonth() + 1
-    const day = user.createdAt.getUTCDate()
-    const year = user.createdAt.getUTCFullYear()
+    const questionCreated = questions[0].createdAt.toLocaleDateString()
 
-    res.render('userhome', { user, month, day, year, questions, title: 'Welcome Back!' })
+    console.log(questionCreated)
+
+    const user = await User.findByPk(userId)
+
+    res.render('userhome', { user, questions, title: 'Welcome Back!' })
   } else {
     res.render('index', { title: 'Welcome to flo Overflow!' });
   }
