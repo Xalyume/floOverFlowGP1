@@ -1,5 +1,5 @@
 var express = require('express');
-const { Question, User } = require('../db/models');
+const { Question, User, QuestionLike, Answer } = require('../db/models');
 var router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 
@@ -9,16 +9,31 @@ router.get('/', asyncHandler(async(req, res, next) => {
     userId = req.session.auth.userId;
     const questions = await Question.findAll({
       where: {
-        userId
-      }
+        userId,
+        
+      },
+      order: [["createdAt", "DESC"]],
+      include: [User, QuestionLike, Answer],
+    })
+
+    //const questionCreated = questions[0].createdAt.toLocaleDateString()
+
+    //add votes to each question
+    questions.forEach(q => {
+      let votes = 0;
+      q.QuestionLikes.forEach(v => {
+        if (v.vote) {
+          votes++;
+        } else {
+          votes--;
+        }
+      })
+      q.votes = votes;
     })
 
     const user = await User.findByPk(userId)
-    const month = user.createdAt.getUTCMonth() + 1
-    const day = user.createdAt.getUTCDate()
-    const year = user.createdAt.getUTCFullYear()
 
-    res.render('userhome', { user, month, day, year, questions, title: 'Welcome Back!' })
+    res.render('userhome', { user, questions, title: 'Welcome Back!' })
   } else {
     res.render('index', { title: 'Welcome to flo Overflow!' });
   }

@@ -14,41 +14,77 @@ block content
 		div(class='main-links all-btn')
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 		if question
-			//- div(class='vote') #{qUpVote|0} upVotes
-			//- div(class='vote') #{qDownVote|0} downVotes
-			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
-			//- div(class='question' id='questionContent') #{question.content}
-			//- div by #{question.User.username}
-			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
-
 			if locals.authenticated
 				if locals.user.id === question.User.id
 				div(class="logged-in-container")
 					div(class="question-stats-container")
+						div(class='test-2')
+							p(class='vote-count-1') #{qUpVote|0}
+							p(class='vote-count-2') #{qDownVote|0}
+
 						div(class="question-stats-votes logged-in-votes")
-							span #{qUpVote|0}
-							p upVotes
-							span #{qDownVote|0}
-							p downVotes
+							a(href=`/questions/delete/${question.id}` class='arrow-up-container')
+								div(class='arrow-up')
+							div(class='up-votes') upVotes
+							div(class='down-votes') downVotes
+							a(href=`/questions/delete/${question.id}` class='arrow-down-container')
+								div(class='arrow-down')
 					div(class='question-summary-container')
-						div(class="question-summary")
-							a(href=`#` class="longer") #{question.content}
+						div(class="question-summary edit-question-question")
+							div(id='questionContent' class="question longer") #{question.content}
+								div(class='edit-form')
+									+validationErrorSummary(errors)
+									form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
+										input( style='display:none' name='questionId' value=question.id)
+										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input edit-text-area') #{question.content}
 					div(class="question-summary-footer")
 						div(class="question-summary-user")
 							div(class="question-summary-info")
-								<span>asked by: <span class='time'>#{question.User.username}</span></span>
+								<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+									div(class='edit-btns')
+										button(id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none;') Submit Update
+										button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none;') Cancel Update
 				div(class='single-question-btns')
-					div
-						a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete
-					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-					div
-						+validationErrorSummary(errors)
-						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
-							input( style='display:none' name='questionId' value=question.id)
-							textarea(name="questionContent" )
-							button Submit Update
-					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
+					a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete Question
 					button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
+
+			div(class='log-in-form question-post answers-container')
+				div
+					//- p(class='answers-title subtitle-1') flo-Answers!
+				div(class="logged-in-container answer-container")
+					div(class="question-stats-container answer-username-container")
+						div(class='up-votes answer-username') pawan087
+					div(class='question-summary-container')
+						div(class="question-summary edit-question-question")
+							div(id='questionContent' class="question answer longer") This is my answer to you.
+								div(class='edit-form')
+					div(class="question-summary-footer")
+						div(class="question-summary-user")
+							div(class='single-question-btns')
+								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete') Delete Answer
+								//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+
+				div(class='single-question-btns')
+
+			form(action='#' method='post' class='log-in-form question-post')
+
+
+				div(class='errors')
+					+validationErrorSummary(errors)
+
+				input(type='hidden' name='_csrf' value=csrfToken)
+
+				textarea(class='log-in-input answer-input' type="textarea" id="content" name="content" placeholder="Leave a flo-Answer..")
+
+				if locals.authenticated
+					div(class='new-question-footer')
+						button(type='submit' class='btn log-in-submit new-question-btn') Submit
+					div(class='test-4')
+						div(class='test-4')
+				else
+					a(href='/login') Please login to ask a flo question
+					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
 			//- div #{question.Answers.length|0} Answers
 
 		else

@@ -35,14 +35,14 @@ const signupValidators = [
     check('password')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for Password')
-        .isLength({ min: 6, max: 25 })
+        .isLength({ min: 6, max: 24 })
         .withMessage('Password must be more than 5 characters and less than 25 characters long')
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
         .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
     check('confirmPassword')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a value for Confirm Password')
-        .isLength({ min: 6, max: 25 })
+        .isLength({ min: 6, max: 24 })
         .withMessage('Confirm Password must be more than 5 characters and less than 25 characters long')
         .custom((value, { req }) => {
             if (value !== req.body.password) {

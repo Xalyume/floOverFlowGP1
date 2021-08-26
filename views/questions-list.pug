@@ -14,11 +14,11 @@ block content
 	each q in questions
 		<div class="question-container">
 			<div class="question-stats-container">
-				<div class="question-stats-votes">
-					<span>?</span>
+				<div class="question-stats-votes logged-in-votes">
+					<span>#{q.votes}</span>
 					<p>votes</p>
 				</div>
-				<div class="question-stats-answers">
+				<div class="question-stats-answers logged-in-answers">
 					<span>#{q.Answers.length}</span>
 					<p>answers</p>
 				</div>
@@ -26,13 +26,13 @@ block content
 
 			<div class="question-summary-container">
 				<div class="question-summary">
-					<a class="question-summary-link" href="/">#{q.content}</a>
+					a(class="question-summary-link" href=`/questions/${q.id}`) #{q.content}
 					//- p(class='content') #{q.content}
 				</div>
 				<div class="question-summary-footer">
 					<div class="question-summary-user">
 						<div class="question-summary-info">
-							<span>asked <span class='time'>?</span> months ago by: <span class='time'>#{q.User.username}</span></span>
+							<span>asked on <span class='time'>#{q.createdAt.toLocaleDateString()}</span> by: <span class='time'>#{q.User.username}</span></span>
 						</div>
 					</div>
 				</div>

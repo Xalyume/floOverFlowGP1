@@ -18,20 +18,24 @@ router.get("/", asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         //include: [{ model: User,  attributes: ["username"] }],
         include: [Answer, User,QuestionLike],
-        order: [["updatedAt", "DESC"]],
+        order: [["createdAt", "DESC"]],
     });
-    // let upVote = 0;
-    // let downVote = 0;
-    // questions.forEach(q=>{
-    //     q.QuestionLikes.forEach(v=>{
-    //         if(v.vote){
-    //             upVote++;
-    //         }else{
-    //             downVote++;
-    //         }
-    //     })
-    // })
+
+    // add votes to each question
+    questions.forEach(q=>{
+        let votes = 0;
+        q.QuestionLikes.forEach(v=>{
+            if(v.vote){
+                votes++;
+            }else{
+                votes--;
+            }
+        })
+        q.votes = votes;
+    })
  
+    //space for /questions votes and user, time, try to prevent merge conflict
+
     //res.json(questions[0])
     res.render('questions-list', { questions})
     
@@ -77,7 +81,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     const question = await Question.findByPk(questionId, { 
         include: [User, QuestionLike,{model:Answer,include:[User,AnswerLike]}]
     });
-    //To Test: question votes
+    // count votes for questions
     let qUpVote =0;
     let qDownVote=0;
     if (question){
@@ -91,11 +95,38 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
 
     }
     
-    // To Do: answer votes => especially associate with each answer 
-    
     //res.json(question);
-  
-    res.render('question', { question, qUpVote, qDownVote})
+
+    // color the voted button
+    let qUpVoteColor='';
+    let qDownVoteColor='';
+    if (req.session.auth){
+
+        const userId = res.locals.user.id;
+        if (userId){
+            const voteRecord = await QuestionLike.findOne({
+                where: {
+                    questionId,
+                    userId
+                }
+            });
+    
+            if (voteRecord){
+                if(voteRecord.vote){
+                    qUpVoteColor='red';
+    
+                }else{
+                    qDownVoteColor='blue';
+                }
+            }
+    
+        }
+    }
+
+    let qVotes = qUpVote - qDownVote;
+    
+    // To Do: answer votes => especially associate with each answer 
+    res.render('question', { question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor})
    
 }))
 
@@ -138,18 +169,34 @@ router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req
             res.json({ question })
 
         } else {
-            // usually the question should exist.
+            // usually the question should exist. Thus label it as No authorization.
             const err = new Error(`You have no authorization to edit the question`);
             // include err message in an array, in order to be used by dynamically used in pug file
-            const errors= [err.message]
+            err.status=401;
+            const errors = [err.message];
+            res.json({question, errors,err})
+
+            //Another way in practice project
+            // err.errors = errors;
             // err.title = 'No authorization';
             // err.status = 401;
-            res.json({errors})
+            //return next(err);
         }        
     } else {
         //in order to be used by dynamically used in pug file
+        
         const errors = validatorErrors.array().map((error) => error.msg);
-        res.json({errors})
+        const err = Error("Bad request.");
+        err.status = 400;
+        
+        res.json({question,errors,err})
+
+        // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-question.js
+        // const err = Error("Bad request.");
+        // err.errors = errors;
+        // err.status = 400;
+        // err.title = "Bad request.";
+        //return next(err);
     }
 
 
