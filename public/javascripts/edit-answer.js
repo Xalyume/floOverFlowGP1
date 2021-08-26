@@ -53,7 +53,6 @@ const clickAnswersContainer = async (event) => {
 
 
                 if (errors) {
-                    console.log(errors)
 
                     const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
 
@@ -84,6 +83,7 @@ const clickAnswersContainer = async (event) => {
                     const cancelUpdateAnswerButton = document.querySelector(`#cancelUpdateAnswerButton_${answerId}`);
                     cancelUpdateAnswerButton.style.display = 'none';
 
+                    // to hide error div
                     const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
                     errorUpdateAnswer.style.display = 'none';
 
@@ -128,6 +128,10 @@ const clickAnswersContainer = async (event) => {
 
         const answerContent = document.querySelector(`#answerContent_${answerId}`);
         answerContent.style.display = 'block';
+
+        // to hide error div
+        const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
+        errorUpdateAnswer.style.display = 'none';
 
     }
 

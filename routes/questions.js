@@ -203,53 +203,7 @@ router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async
 }));
 
 
-// require log-in to dynamically edit user's own question - JSON
 
-router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
-    const questionId = req.params.id;
-    const question = await Question.findByPk(questionId, { include: User });
-
-    const validatorErrors = validationResult(req);
-
-    if (validatorErrors.isEmpty()) {
-        if (res.locals.user.id === question.User.id && question) {
-            await question.update({ ...req.body })
-
-            res.json({ question })
-
-        } else {
-            // usually the question should exist. Thus label it as No authorization.
-            const err = new Error(`You have no authorization to edit the question`);
-            // include err message in an array, in order to be used by dynamically used in pug file
-            err.status=401;
-            const errors = [err.message];
-            res.json({question, errors,err})
-
-            //Another way in practice project
-            // err.errors = errors;
-            // err.title = 'No authorization';
-            // err.status = 401;
-            //return next(err);
-        }        
-    } else {
-        //in order to be used by dynamically used in pug file
-        
-        const errors = validatorErrors.array().map((error) => error.msg);
-        const err = Error("Bad request.");
-        err.status = 400;
-        
-        res.json({question,errors,err})
-
-        // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-question.js
-        // const err = Error("Bad request.");
-        // err.errors = errors;
-        // err.status = 400;
-        // err.title = "Bad request.";
-        //return next(err);
-    }
-
-
-}));
 
 
 

@@ -22,7 +22,7 @@ const submitUpdate = async(event)=>{
     const body = { content };
 
     try {
-        const res = await fetch(`/questions/${questionId}`, {
+        const res = await fetch(`/api/questions/${questionId}`, {
             method: "PUT",
             body: JSON.stringify(body),
             headers: {"Content-Type": "application/json"},
@@ -129,6 +129,9 @@ const cancelUpdate = async (event) => {
 
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'none';
+
+    const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+    errorUpdateQuestion.style.display = 'none';
 
 
 
