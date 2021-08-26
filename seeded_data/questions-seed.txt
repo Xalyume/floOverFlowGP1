@@ -12,9 +12,13 @@
 { content: 'recommend me songs with themes about love', userId: 2, createdAt: new Date('2021-7-17T07:45:00'), updatedAt: new Date('2021-7-17T07:45:00') }
 { content: 'why is Kanye better than Mozart?', userId: 3, createdAt: new Date('2021-7-2T07:45:00'), updatedAt: new Date('2021-7-2T07:45:00') }
 
+{ content: 'Who or what have been you been listening to alot lately?', userId: 7, createdAt: new Date('2021-7-27T07:45:00'), updatedAt: new Date('2021-7-27T07:45:00') }
+{ content: 'what was your best memorable concert experience?', userId: 7, createdAt: new Date('2021-8-10T07:45:00'), updatedAt: new Date('2021-8-10T07:45:00') }
+
 id:1 = metalman123
 id:2 = hydroHomie21
 id:3 = defnotKanye
 id:4 = hypebeast360
 id:5 = WUBWUBwub
 id:6 = badquestions
+id:7 = demouser1

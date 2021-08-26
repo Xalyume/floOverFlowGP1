@@ -14,7 +14,8 @@ module.exports = {
       { username: 'defnotKanye', email: 'donda@donda.com', hashedPassword: '$2a$10$4aQ3NopkhWTMWXVTbZIJ..hG1lTP8AQjhEh5HMLhZ2xjj85sU82Ym', createdAt: new Date('2021-6-30'), updatedAt: new Date('2021-6-30') },
       { username: 'hypebeast360', email: 'reseller@supreme.com', hashedPassword: '$2a$10$4Wb3LYLwxtyjMUxphH6RbehrSU8zDeq4NlMsrhl/.nABFoP0/JUzO', createdAt: new Date('2021-6-30'), updatedAt: new Date('2021-6-30') },
       { username: 'WUBWUBwub', email: 'edm@edm.com', hashedPassword: '$2a$10$ZACZbuty.hEmS9EuLlJliezYjqlPbYWFBSMCu9lilrr7C28IWFSDm', createdAt: new Date('2021-7-12'), updatedAt: new Date('2021-7-12') },
-      { username: 'badquestions', email: 'william@bad.com', hashedPassword: '$2a$10$D6BTUlLDaPGKA.R1zlBaAO9yhalM4JpRBzdq.9IWt0oL6UlzdCNam', createdAt: new Date('2021-6-1'), updatedAt: new Date('2021-6-1') }
+      { username: 'badquestions', email: 'william@bad.com', hashedPassword: '$2a$10$D6BTUlLDaPGKA.R1zlBaAO9yhalM4JpRBzdq.9IWt0oL6UlzdCNam', createdAt: new Date('2021-6-1'), updatedAt: new Date('2021-6-1') },
+      { username: 'demouser1', email: 'demo@demo.com', hashedPassword: '$2a$10$qQh0oPXvYaRMgpAUZr86o.AreddePYKbgUEW.DJbbOjY537rNMbQi', createdAt: new Date('2021-6-1'), updatedAt: new Date('2021-6-1') }
     ], {});
   },
 
