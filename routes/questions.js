@@ -138,19 +138,34 @@ router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req
             res.json({ question })
 
         } else {
-            // usually the question should exist.
+            // usually the question should exist. Thus label it as No authorization.
             const err = new Error(`You have no authorization to edit the question`);
             // include err message in an array, in order to be used by dynamically used in pug file
-            const errors= [err.message]
+            err.status=401;
+            const errors = [err.message];
+            res.json({question, errors,err})
+
+            //Another way in practice project
+            // err.errors = errors;
             // err.title = 'No authorization';
             // err.status = 401;
-            res.json({question, errors})
+            //return next(err);
         }        
     } else {
         //in order to be used by dynamically used in pug file
+        
         const errors = validatorErrors.array().map((error) => error.msg);
-        console.log('error!!!',errors)
-        res.json({question,errors})
+        const err = Error("Bad request.");
+        err.status = 400;
+        
+        res.json({question,errors,err})
+
+        // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-question.js
+        // const err = Error("Bad request.");
+        // err.errors = errors;
+        // err.status = 400;
+        // err.title = "Bad request.";
+        //return next(err);
     }
 
 
