@@ -66,14 +66,14 @@ block content
 				//- div(class='vote') #{answerDownVote|0} downVotes
 
 				div()
-					form(action=`/questions/${question.id}/answers/votes` method='post')
+					form(action=`/answers/${answer.id}/votes` method='post')
 						input(type='hidden' name='aUpVote' value=1)
 						button(style=`color:${aUpVoteColor}`)
 							i(class="material-icons") thumb_up
 				div #{answer.votes|0}
 
 				div()
-					form(action=`/questions/${question.id}/answers/votes` method='post')
+					form(action=`/answers/${answer.id}/votes` method='post')
 						input(type='hidden' name='aDownVote' value=0)
 						button(style=`color:${aDownVoteColor}`)
 							i(class="material-icons" ) thumb_down
