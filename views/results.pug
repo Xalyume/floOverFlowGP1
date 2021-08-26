@@ -10,6 +10,7 @@ append head
 
 
 block content
+	a(href='/questions') Go to All Questions.
 	if results.length !== 0
 		each result in results
 			a(href=`/questions/${result.id}`)= result.content
