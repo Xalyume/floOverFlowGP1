@@ -96,24 +96,27 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     // color the voted button
     let qUpVoteColor='';
     let qDownVoteColor='';
-    const userId = res.locals.user.id;
-    if (userId){
-        const voteRecord = await QuestionLike.findOne({
-            where: {
-                questionId,
-                userId
-            }
-        });
+    if (req.session.auth){
 
-        if (voteRecord){
-            if(voteRecord.vote){
-                qUpVoteColor='red';
-
-            }else{
-                qDownVoteColor='blue';
+        const userId = res.locals.user.id;
+        if (userId){
+            const voteRecord = await QuestionLike.findOne({
+                where: {
+                    questionId,
+                    userId
+                }
+            });
+    
+            if (voteRecord){
+                if(voteRecord.vote){
+                    qUpVoteColor='red';
+    
+                }else{
+                    qDownVoteColor='blue';
+                }
             }
+    
         }
-
     }
     
     // To Do: answer votes => especially associate with each answer 
