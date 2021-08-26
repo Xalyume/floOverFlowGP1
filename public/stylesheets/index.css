@@ -850,6 +850,7 @@ input[type="textarea"] {
 .arrow-up-container:hover,
 .arrow-down-container:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .arrow-up {
