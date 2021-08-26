@@ -27,11 +27,11 @@ block content
 			div(class="question-container logged-in-container")
 				div(class="question-stats-container")
 					div(class="question-stats-votes logged-in-votes")
-						span ?
+						span #{q.votes}
 						p votes
 					div(class="question-stats-answers logged-in-answers")
 						//- span #{q.Answers}
-						span 0
+						span #{q.Answers.length|0}
 						p answers
 				div(class='question-summary-container')
 					div(class="question-summary")

@@ -18,47 +18,23 @@ router.get("/", asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         //include: [{ model: User,  attributes: ["username"] }],
         include: [Answer, User,QuestionLike],
-        order: [["updatedAt", "DESC"]],
+        order: [["createdAt", "DESC"]],
     });
-    // let upVote = 0;
-    // let downVote = 0;
-    // questions.forEach(q=>{
-    //     q.QuestionLikes.forEach(v=>{
-    //         if(v.vote){
-    //             upVote++;
-    //         }else{
-    //             downVote++;
-    //         }
-    //     })
-    // })
+
+    // add votes to each question
+    questions.forEach(q=>{
+        let votes = 0;
+        q.QuestionLikes.forEach(v=>{
+            if(v.vote){
+                votes++;
+            }else{
+                votes--;
+            }
+        })
+        q.votes = votes;
+    })
  
     //space for /questions votes and user, time, try to prevent merge conflict
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //res.json(questions[0])
     res.render('questions-list', { questions})
@@ -105,7 +81,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     const question = await Question.findByPk(questionId, { 
         include: [User, QuestionLike,{model:Answer,include:[User,AnswerLike]}]
     });
-    //To Test: question votes
+    // count votes for questions
     let qUpVote =0;
     let qDownVote=0;
     if (question){
