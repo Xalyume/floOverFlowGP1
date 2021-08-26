@@ -30,7 +30,13 @@ module.exports = {
       { content: 'honestly I think any song by Thrice can be considered my favorite', questionId: 10, userId: 6, createdAt: new Date('2021-8-03'), updatedAt: new Date('2021-8-03') },
       { content: 'Stairway to Heaven is a masterpiece', questionId: 10, userId: 1, createdAt: new Date('2021-8-05'), updatedAt: new Date('2021-8-05') },
       { content: 'The Beatles? John, Paul, George and Ringo!', questionId: 3, userId: 5, createdAt: new Date('2021-8-11'), updatedAt: new Date('2021-8-11') },
-      { content: 'Apparently its not YAK but YAWK and it was a sample from another song, not sure what it means though', questionId: 8, userId: 2, createdAt: new Date('2021-8-25'), updatedAt: new Date('2021-8-25') }
+      { content: 'Apparently its not YAK but YAWK and it was a sample from another song, not sure what it means though', questionId: 8, userId: 2, createdAt: new Date('2021-8-25'), updatedAt: new Date('2021-8-25') },
+      { content: 'I honestly think both are great!', questionId: 13, userId: 7, createdAt: new Date('2021-8-03'), updatedAt: new Date('2021-8-03') },
+      { content: 'i think dubstep is the best for drinking water!', questionId: 2, userId: 7, createdAt: new Date('2021-8-05'), updatedAt: new Date('2021-8-05') },
+      { content: 'Great question! I think Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', questionId: 6, userId: 7, createdAt: new Date('2021-8-20'), updatedAt: new Date('2021-8-20') },
+      { content: 'I have been listening to alot of ADTR lately. They\'re great!', questionId: 14, userId: 1, createdAt: new Date('2021-8-11'), updatedAt: new Date('2021-8-11') },
+      { content: 'Ed Sheeran at MSG. it was epic!', questionId: 15, userId: 4, createdAt: new Date('2021-8-8'), updatedAt: new Date('2021-8-8') },
+      { content: 'been listening to alot of deep house in general, not really any 1 specific artist though.', questionId: 15, userId: 5, createdAt: new Date('2021-8-22'), updatedAt: new Date('2021-8-22') }
     ], {});
   },
 
@@ -41,6 +47,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Answers', null,  { truncate: true, cascade: true, restartIdentity: true });
+    return queryInterface.bulkDelete('Answers', null, { truncate: true, cascade: true, restartIdentity: true });
   }
 };
