@@ -12,10 +12,11 @@ router.get('/', asyncHandler(async(req, res, next) => {
         userId,
         
       },
+      order: [["createdAt", "DESC"]],
       include: [User, QuestionLike, Answer],
     })
 
-    const questionCreated = questions[0].createdAt.toLocaleDateString()
+    //const questionCreated = questions[0].createdAt.toLocaleDateString()
 
     //add votes to each question
     questions.forEach(q => {

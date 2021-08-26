@@ -18,7 +18,7 @@ router.get("/", asyncHandler(async (req, res) => {
     const questions = await Question.findAll({
         //include: [{ model: User,  attributes: ["username"] }],
         include: [Answer, User,QuestionLike],
-        order: [["updatedAt", "DESC"]],
+        order: [["createdAt", "DESC"]],
     });
 
     // add votes to each question
