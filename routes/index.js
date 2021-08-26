@@ -1,5 +1,5 @@
 var express = require('express');
-const { Question, User } = require('../db/models');
+const { Question, User, QuestionLike, Answer } = require('../db/models');
 var router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 
@@ -9,13 +9,26 @@ router.get('/', asyncHandler(async(req, res, next) => {
     userId = req.session.auth.userId;
     const questions = await Question.findAll({
       where: {
-        userId
-      }
+        userId,
+        
+      },
+      include: [User, QuestionLike, Answer],
     })
 
     const questionCreated = questions[0].createdAt.toLocaleDateString()
 
-    console.log(questionCreated)
+    //add votes to each question
+    questions.forEach(q => {
+      let votes = 0;
+      q.QuestionLikes.forEach(v => {
+        if (v.vote) {
+          votes++;
+        } else {
+          votes--;
+        }
+      })
+      q.votes = votes;
+    })
 
     const user = await User.findByPk(userId)
 
