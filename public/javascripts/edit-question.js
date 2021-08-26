@@ -138,17 +138,26 @@ const cancelUpdate = async (event) => {
 document.addEventListener("DOMContentLoaded", async(event) => {
     // click update button
     const updateQuestionButton = document.querySelector("#updateQuestionButton");
+    if (updateQuestionButton){
+        updateQuestionButton.addEventListener("click", clickEditButton)
 
-    updateQuestionButton.addEventListener("click", clickEditButton)
+    }
+    
 
     //submit update
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
+    if (updateQuestionContent){
+        updateQuestionContent.addEventListener("submit", submitUpdate)
 
-    updateQuestionContent.addEventListener("submit", submitUpdate)
+    }
+    
 
     // cancel update
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
+    if (cancelUpdateQuestionButton ){
+        cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
 
-    cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
+    }
+    
 
 })

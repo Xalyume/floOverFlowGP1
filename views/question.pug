@@ -5,6 +5,7 @@ include utils.pug
 append head
 	//- add page specific styles by appending to the head
 	link(rel="stylesheet" href="/stylesheets/index.css")
+	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
 
@@ -15,8 +16,18 @@ block content
 	div(class='questionContainer')
 		if question
 			div by #{question.User.username}
-			div(class='vote') #{qUpVote|0} upVotes
-			div(class='vote') #{qDownVote|0} downVotes
+			div(class='vote')
+				form(action=`/questions/${question.id}/votes` method='post')
+					div #{qUpVote|0} 
+					input(type='hidden' name='qUpVote' value=1)
+					button
+						i(class="material-icons") thumb_up
+			div(class='vote')
+				form(action=`/questions/${question.id}/votes` method='post')
+					div #{qDownVote|0}
+					input(type='hidden' name='qDownVote' value=0)
+					button
+						i(class="material-icons") thumb_down
 
 			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
 			div(class='question' id='questionContent') #{question.content}
