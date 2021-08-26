@@ -488,10 +488,9 @@ input[type="submit"]:active {
   padding: 0.5em;
   background-color: #ffedda;
   border-radius: 0.5em;
-  max-width: 30em;
+  max-width: 70%;
   font-size: 1.5em;
   color: #3db2ff;
-  text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
   text-decoration: none;
   transition: 0.2s ease all;
   cursor: default;
@@ -1004,4 +1003,13 @@ input[type="textarea"] {
   background-color: transparent;
   outline: none;
   border: none;
+}
+
+.single-question {
+  max-width: 37.5em;
+  position: relative;
+  text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
+  font-size: 1.25em;
+  color: #3db2ff;
+  padding-left: .5em;
 }
