@@ -146,9 +146,11 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
         }
     }
+
+    let qVotes = qUpVote - qDownVote;
     
     // To Do: answer votes => especially associate with each answer 
-    res.render('question', { question, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor})
+    res.render('question', { question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor})
    
 }))
 
