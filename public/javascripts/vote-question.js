@@ -1,18 +1,19 @@
-const qUpVoteIcon = document.querySelector("#qUpVoteIcon");
-const qDownVoteIcon = document.querySelector("#qDownVoteIcon");
+const qUpVoteButton = document.querySelector("#qUpVoteButton");
+const qDownVoteButton = document.querySelector("#qDownVoteButton");
 
 
     
 // we do not want to make vote dynamically, redirect everytime. that's why the color change does not stay?
-qUpVoteIcon.addEventListener("click", async(event)=>{
-    if (qUpVoteIcon.style.color==="red"){
-        qUpVoteIcon.style = "color:black"
+qUpVoteButton.addEventListener("click", async(event)=>{
+
+    if (qUpVoteButton.style.color==="red"){
+        qUpVoteButton.style = "color:black"
     } else{
-        qUpVoteIcon.style = "color:red"
+        qUpVoteButton.style = "color:red"
     }       
 })
 
-qDownVoteIcon.addEventListener("click", async (event) => {
+qDownVoteButton.addEventListener("click", async (event) => {
     if (event.target.style.color === "blue") {
         event.target.style = "color:black"
     } else {

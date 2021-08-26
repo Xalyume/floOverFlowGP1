@@ -19,9 +19,16 @@ router.post(/\/\d+\/votes/i, requireAuth, asyncHandler(async (req, res, next) =>
         include: [User, QuestionLike, { model: Answer, include: [User, AnswerLike] }]
     });
     const usersVotedArr = question.QuestionLikes.map(v => v.userId);
+    
+    let qUpVoteColor='';
+  
 
     if (!usersVotedArr.includes(userId)) {
         const newVoteRecord = await QuestionLike.create({ questionId, vote, userId })
+        if(vote===1){
+            qUpVoteColor = 'red'
+
+        }
     }else{
         console.log('hit here?')
         const existingVote = await QuestionLike.findOne({
@@ -42,6 +49,7 @@ router.post(/\/\d+\/votes/i, requireAuth, asyncHandler(async (req, res, next) =>
 
     }
     
+ 
     res.redirect(`/questions/${questionId}`);
 
 }));
