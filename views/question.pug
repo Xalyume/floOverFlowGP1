@@ -42,11 +42,7 @@ block content
 						p(id='errorUpdateQuestion' style={color: 'red'})
 
 						//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-<<<<<<< HEAD
 						form(action=`/questions/${question.id}` method='post'
-=======
-						form(action=`/questions/${question.id}` method='post'
->>>>>>> main
 						id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
@@ -60,15 +56,9 @@ block content
 						form(action=`/questions/delete/${question.id}`,method='get')
 							Button Delete
 
-<<<<<<< HEAD
 			p -----------------------------------------------------------------------------
 			div #{question.Answers.length|0} Answers:
 
-=======
-			p -----------------------------------------------------------------------------
-			div #{question.Answers.length|0} Answers:
-
->>>>>>> main
 			//- div(class='answersContainer')
 			//- each answer in question.Answers
 			//- 	div(class='vote') #{answerUpVote|0} upVotes
@@ -78,8 +68,3 @@ block content
 
 		else
 			div This question does not exist.
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
