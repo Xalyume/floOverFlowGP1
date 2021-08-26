@@ -36,32 +36,6 @@ router.get("/", asyncHandler(async (req, res) => {
  
     //space for /questions votes and user, time, try to prevent merge conflict
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //res.json(questions[0])
     res.render('questions-list', { questions})
     
