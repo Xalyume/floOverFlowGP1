@@ -8,6 +8,7 @@ append head
 	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
+	script(src="/javascripts/vote-question.js" type="module" defer)
 
 block content
 	div
@@ -16,18 +17,18 @@ block content
 	div(class='questionContainer')
 		if question
 			div by #{question.User.username}
-			div(class='vote')
+			div()
 				form(action=`/questions/${question.id}/votes` method='post')
 					div #{qUpVote|0} 
 					input(type='hidden' name='qUpVote' value=1)
-					button
-						i(class="material-icons") thumb_up
-			div(class='vote')
+					button(id='qUpVoteIcon')
+						i(class="material-icons" ) thumb_up
+			div()
 				form(action=`/questions/${question.id}/votes` method='post')
 					div #{qDownVote|0}
 					input(type='hidden' name='qDownVote' value=0)
-					button
-						i(class="material-icons") thumb_down
+					button()
+						i(class="material-icons" id='qDownVoteIcon') thumb_down
 
 			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
 			div(class='question' id='questionContent') #{question.content}
