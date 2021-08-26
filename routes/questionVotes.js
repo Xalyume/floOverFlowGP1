@@ -30,7 +30,7 @@ router.post(/\/\d+\/votes/i, requireAuth, asyncHandler(async (req, res, next) =>
 
         }
     }else{
-        console.log('hit here?')
+        
         const existingVote = await QuestionLike.findOne({
             where:{userId,questionId,vote}
         });

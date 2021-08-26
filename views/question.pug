@@ -19,13 +19,14 @@ block content
 			div by #{question.User.username}
 			div()
 				form(action=`/questions/${question.id}/votes` method='post')
-					div #{qUpVote|0}
+					//-div #{qUpVote|0}
 					input(type='hidden' name='qUpVote' value=1)
 					button(style=`color:${qUpVoteColor}`)
 						i(class="material-icons") thumb_up
+			div #{qVotes|0}
 			div()
 				form(action=`/questions/${question.id}/votes` method='post')
-					div #{qDownVote|0}
+					//-div #{qDownVote|0}
 					input(type='hidden' name='qDownVote' value=0)
 					button(style=`color:${qDownVoteColor}`)
 						i(class="material-icons" ) thumb_down
