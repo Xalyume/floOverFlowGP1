@@ -9,24 +9,40 @@ const e = require('express');
 // require log-in to votes
 router.post(/\/\d+\/votes/i, requireAuth, asyncHandler(async (req, res, next) => {
     const questionId = req.url.split('/')[1];
-    const userId = res.locals.user.id;
+    const userId = res.locals.user.id; // type is number
+    
 
-    let vote= Object.values(req.body)[0] // '1' for upVote, '0' for downVote
-    if(vote==='1') vote = true;
-    if(vote==='0') vote = false;
+    let vote= parseInt(Object.values(req.body)[0],10) // 1 for upVote, 0 for downVote
+    if(vote===1) vote = true;
+    if(vote===0) vote = false;
     let question = await Question.findByPk(questionId, {
         include: [User, QuestionLike, { model: Answer, include: [User, AnswerLike] }]
     });
+    const usersVotedArr = question.QuestionLikes.map(v => v.userId);
 
-    console.log(question.QuestionLikes)
+    if (!usersVotedArr.includes(userId)) {
+        const newVoteRecord = await QuestionLike.create({ questionId, vote, userId })
+    }else{
+        console.log('hit here?')
+        const existingVote = await QuestionLike.findOne({
+            where:{userId,questionId,vote}
+        });
 
-    await QuestionLike.create({ questionId, vote, userId })
+        if(existingVote){
+            await existingVote.destroy();
 
-    res.redirect(`/questions/${questionId}`);
+        }else{
+            const oppositeVoteRecord = await QuestionLike.create({ questionId, vote: !vote, userId })
+            await oppositeVoteRecord.destroy();
+            await QuestionLike.create({ questionId, vote, userId })
+            
 
+        }
+        
 
+    }
     
-
+    res.redirect(`/questions/${questionId}`);
 
 }));
 
