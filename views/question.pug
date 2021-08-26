@@ -59,12 +59,12 @@ block content
 			p -----------------------------------------------------------------------------		
 			div #{question.Answers.length|0} Answers:
 			
-			div(class='answersContainer')
-			each answer in question.Answers
-				div(class='vote') #{answerUpVote|0} upVotes
-				div(class='vote') #{answerDownVote|0} downVotes
-				div(class='answer') #{answer.content}
-				div by #{answer.User.username}
+			//- div(class='answersContainer')
+			//- each answer in question.Answers
+			//- 	div(class='vote') #{answerUpVote|0} upVotes
+			//- 	div(class='vote') #{answerDownVote|0} downVotes
+			//- 	div(class='answer') #{answer.content}
+			//- 	div by #{answer.User.username}
 
 		else
 			div This question does not exist.
