@@ -29,19 +29,21 @@ block content
 						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file
 						p(id='errorUpdateQuestion' style={color: 'red'})
 
-						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
+						//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+						form(action=`/questions/${question.id}` method='post' 
+						id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
 							button Submit Update
 
-						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Eit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
+						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Edit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
 						button(id='cancelUpdateQuestionButton' style='display:none') Cancel Update
 						button(id='updateQuestionButton' ) Edit Question
 
 					div
 						form(action=`/questions/delete/${question.id}`,method='get')
 							Button Delete
-					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+					
 			div #{question.Answers.length|0} Answers
 
 		else
