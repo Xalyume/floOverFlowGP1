@@ -19,7 +19,7 @@ block content
 			div by #{question.User.username}
 			div()
 				form(action=`/questions/${question.id}/votes` method='post')
-					div #{qUpVote|0} 
+					div #{qUpVote|0}
 					input(type='hidden' name='qUpVote' value=1)
 					button(style=`color:${qUpVoteColor}`)
 						i(class="material-icons") thumb_up
@@ -42,7 +42,7 @@ block content
 						p(id='errorUpdateQuestion' style={color: 'red'})
 
 						//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-						form(action=`/questions/${question.id}` method='post' 
+						form(action=`/questions/${question.id}` method='post'
 						id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
@@ -56,9 +56,9 @@ block content
 						form(action=`/questions/delete/${question.id}`,method='get')
 							Button Delete
 
-			p -----------------------------------------------------------------------------		
+			p -----------------------------------------------------------------------------
 			div #{question.Answers.length|0} Answers:
-			
+
 			//- div(class='answersContainer')
 			//- each answer in question.Answers
 			//- 	div(class='vote') #{answerUpVote|0} upVotes
@@ -68,5 +68,3 @@ block content
 
 		else
 			div This question does not exist.
-		
-

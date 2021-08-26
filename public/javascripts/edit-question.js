@@ -28,27 +28,27 @@ const submitUpdate = async(event)=>{
             headers: {"Content-Type": "application/json"},
         })
 
-        // Another way - 
+        // Another way -
             // back-end API route ends with next(err), then res.status = err.status
             //  if (res.status === 401) {
             //     window.location.href = "/login";
             //     return;
-            // }        
-            //if back-end API route ends with next(err), then res.ok will be false; res will include error  object, thus throw res, that will be catched by catch(err) below      
+            // }
+            //if back-end API route ends with next(err), then res.ok will be false; res will include error  object, thus throw res, that will be catched by catch(err) below
             //  if (!res.ok) {
             // throw res;
             // }
-       
-        const { 
+
+        const {
             errors,
             question: { content },
             err
          } = await res.json();
-         
+
         // If empty value is submitted, it will dynamically show an error message. If no authorization, it will dynamically show an error message
         if (errors){
             const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
-    
+
             let errorContent = errors.map(message=>{
                 return `<li>${message}</li>`
             })
@@ -103,12 +103,12 @@ const submitUpdate = async(event)=>{
     //             );
     //         }
     //         errorUpdateQuestion.innerHTML = errorsHtml.join("");
-    //     } 
+    //     }
     // else { }
 
 
-    // internet down => fetch will only throw error if internet connection issue       
-        
+    // internet down => fetch will only throw error if internet connection issue
+
         alert(
             "Something went wrong. Please check your internet connection and try again!"
             );
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async(event) => {
         updateQuestionButton.addEventListener("click", clickEditButton)
 
     }
-    
+
 
     //submit update
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
@@ -150,7 +150,7 @@ document.addEventListener("DOMContentLoaded", async(event) => {
         updateQuestionContent.addEventListener("submit", submitUpdate)
 
     }
-    
+
 
     // cancel update
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
@@ -158,6 +158,6 @@ document.addEventListener("DOMContentLoaded", async(event) => {
         cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
 
     }
-    
+
 
 })
