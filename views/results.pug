@@ -4,15 +4,22 @@ include utils.pug
 
 append head
 	//- add page specific styles by appending to the head
-	link(rel="stylesheet" href="/stylesheets/index.css")
+	link(rel="stylesheet" href="/stylesheets/results.css")
 	//- add page specific js
 	script(src="/javascripts/index.js" type="module" defer)
 
 
 block content
-	a(href='/questions') Go to All Questions.
-	if results.length !== 0
-		each result in results
-			a(href=`/questions/${result.id}`)= result.content
-	else
-		p Sorry there are no matches!
+	div.all-questions
+		a(href='/questions' class="all-questions-link all-btn") Go to All Questions.
+	div.outer-results-table
+		div.inner-results-table
+			h2.results-title Search Results
+			ol
+				if results.length !== 0
+					each result in results
+						li.result-li
+							a(href=`/questions/${result.id}` class="result-tab result-btn")= result.content
+				else
+					p.result-tab.no-results Sorry there are no matches for 
+						span.search-term #{term}!
