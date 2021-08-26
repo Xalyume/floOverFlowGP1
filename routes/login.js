@@ -7,11 +7,11 @@ const { check, validationResult } = require('express-validator')
 
 const loginValidator = [
     check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Email Address'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a value for Password'),
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for Email Address'),
+    check('password')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a value for Password'),
 ]
 
 router.get('/', csrfProtection, (req, res) => {
@@ -39,13 +39,17 @@ router.post('/', csrfProtection, loginValidator, asyncHandler(async (req, res) =
     }
 
     res.render('login', {
-      title: 'Login',
-      email,
-      errors,
-      csrfToken: req.csrfToken(),
+        title: 'Login',
+        email,
+        errors,
+        csrfToken: req.csrfToken(),
     });
 
 }))
 
+router.post('/demo', asyncHandler(async (req, res) => {
+    req.session.auth = { userId: 7 }
+    return res.redirect('/');
+}))
 
 module.exports = router;
