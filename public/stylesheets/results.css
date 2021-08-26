@@ -112,7 +112,7 @@ body {
 
 
 
-  /* this is what i worked on. */
+  /* this is what i worked on. - result page formatting */
   .outer-results-table{
     display: flex;
     flex-direction: column;
