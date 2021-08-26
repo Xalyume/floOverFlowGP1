@@ -26,7 +26,7 @@ block content
 
 			<div class="question-summary-container">
 				<div class="question-summary">
-					<a class="question-summary-link" href="/">#{q.content}</a>
+					a(class="question-summary-link" href=`/questions/${q.id}`) #{q.content}
 					//- p(class='content') #{q.content}
 				</div>
 				<div class="question-summary-footer">
