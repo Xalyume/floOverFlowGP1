@@ -103,9 +103,16 @@ block content
 							div
 								form(action=`/answers/delete/${answer.id}`,method='get')
 									Button Delete
+									
+			p ------------------------Post your Answer------------------------
 
-			div()
-				div Post your answer 
+			p(id=`errorNewAnswer` style={color:'red'})
+			form(action='/answers' method='post' id='newAnswer')
+				input( style='display:none' name='questionId' value=question.id)
+				textarea(name="answerContent")
+				if locals.authenticated
+					button Submit your answer
+
 					
 
 
@@ -113,3 +120,5 @@ block content
 
 		else
 			div This question does not exist.
+
+			

@@ -48,7 +48,7 @@ const clickAnswersContainer = async (event) => {
                 const {
                     errors,
                     answer,
-                    err
+                    
                 } = await res.json();
 
 

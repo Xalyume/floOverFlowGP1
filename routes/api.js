@@ -114,4 +114,51 @@ router.put("/answers/:id(\\d+)", requireAuth, answerValidators, asyncHandler(asy
 
 }));
 
+
+// require login to create answer
+router.post("/answers", requireAuth, answerValidators, asyncHandler(async (req, res, next) => {
+    console.log('hi')
+    const{content,questionId} = req.body;
+    const userId = res.locals.user.id;
+    const existingAnswer = await Answer.findOne({ where: {questionId,userId}});
+    const answer = await Answer.Build(content, questionId, userId);
+
+    const validatorErrors = validationResult(req);
+
+    if (validatorErrors.isEmpty()) {
+        if(!existingAnswer){
+            await answer.save();
+            res.json({ answer })
+        }
+        // already post answer to the question
+        else{
+            const err = new Error(`You have already post your answer to the question. Please edit your answer instead!`);
+            // include err message in an array, in order to be used by dynamically used in pug file
+            const errors = [err.message];
+            res.json({ answer, errors })
+        
+        }
+        
+       
+    } else {
+        //in order to be used by dynamically used in pug file
+
+        const errors = validatorErrors.array().map((error) => error.msg);
+        const err = Error("Bad request.");
+        err.status = 400;
+        //console.log(errors)
+
+        res.json({ answer, errors })
+
+        // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-answer.js
+        // const err = Error("Bad request.");
+        // err.errors = errors;
+        // err.status = 400;
+        // err.title = "Bad request.";
+        //return next(err);
+    }
+
+}))
+
+
 module.exports = router;
