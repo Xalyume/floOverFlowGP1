@@ -9,6 +9,7 @@ append head
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
 	script(src="/javascripts/edit-answer.js" type="module" defer)
+	script(src="/javascripts/new-answer.js" type="module" defer)
 	//-script(src="/javascripts/vote-question.js" type="module" defer)
 
 block content
@@ -59,10 +60,15 @@ block content
 							Button Delete
 
 			p -----------------------------------------------------------------------------
-			div #{answers.length|0} Answers:
+			div(id='numberOfAnswers') #{answers.length|0} Answers:
 			
+				
+
 			//-need the div id 'answersContainer' for DOM manipulate
 			div(class='answersContainer' id='answersContainer')
+				//- doing here to add new question??????
+				div(id='newQuestionContainer') 
+
 				each answer in answers
 					div()
 						form(action=`/answers/${answer.id}/votes` method='post')

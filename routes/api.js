@@ -117,21 +117,23 @@ router.put("/answers/:id(\\d+)", requireAuth, answerValidators, asyncHandler(asy
 
 // require login to create answer
 router.post("/answers", requireAuth, answerValidators, asyncHandler(async (req, res, next) => {
-    console.log('hi')
     const{content,questionId} = req.body;
     const userId = res.locals.user.id;
     const existingAnswer = await Answer.findOne({ where: {questionId,userId}});
-    const answer = await Answer.Build(content, questionId, userId);
+
+    const answer = await Answer.build({ content, questionId: parseInt(questionId, 10), userId });
 
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
         if(!existingAnswer){
-            await answer.save();
+            answer.save()
+            
             res.json({ answer })
         }
         // already post answer to the question
         else{
+            console.log('there already')
             const err = new Error(`You have already post your answer to the question. Please edit your answer instead!`);
             // include err message in an array, in order to be used by dynamically used in pug file
             const errors = [err.message];
