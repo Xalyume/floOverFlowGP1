@@ -45,8 +45,44 @@ block content
 										button(id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none;') Submit Update
 										button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none;') Cancel Update
 				div(class='single-question-btns')
-					a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete
+					a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete Question
 					button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
+
+			div(class='log-in-form question-post answers-container')
+				div
+					//- p(class='answers-title subtitle-1') flo-Answers!
+				div(class="logged-in-container answer-container")
+					div(class="question-stats-container answer-username-container")
+						div(class='up-votes answer-username') pawan087
+					div(class='question-summary-container')
+						div(class="question-summary edit-question-question")
+							div(id='questionContent' class="question answer longer") This is my answer to you.
+								div(class='edit-form')
+					div(class="question-summary-footer")
+						div(class="question-summary-user")
+							div(class='single-question-btns')
+								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete') Delete Answer
+								//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+
+				div(class='single-question-btns')
+
+			form(action='#' method='post' class='log-in-form question-post')
+
+
+				div(class='errors')
+					+validationErrorSummary(errors)
+
+				input(type='hidden' name='_csrf' value=csrfToken)
+
+				textarea(class='log-in-input answer-input' type="textarea" id="content" name="content" placeholder="Leave a flo-Answer..")
+
+				if locals.authenticated
+					div(class='new-question-footer')
+						button(type='submit' class='btn log-in-submit new-question-btn') Submit
+					div(class='test-4')
+						div(class='test-4')
+				else
+					a(href='/login') Please login to ask a flo question
 					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
 			//- div #{question.Answers.length|0} Answers
