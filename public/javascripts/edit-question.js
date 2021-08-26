@@ -79,6 +79,9 @@ const submitUpdate = async(event)=>{
             const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
             cancelUpdateQuestionButton.style.display = 'none';
 
+            const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
+            submitUpdateQuestionButton.style.display = 'none';
+
             const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
             errorUpdateQuestion.style.display='none'
         }
@@ -137,6 +140,9 @@ const cancelUpdate = async (event) => {
 
     const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
     submitUpdateQuestionButton.style.display = 'none';
+
+    const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+    errorUpdateQuestion.style.display = 'none';
 
 }
 

@@ -12,7 +12,7 @@ append head
 block content
 
 	div(class='questionContainer')
-		div(class='main-links all-btn')
+		div(class='main-links all-btn back-btn')
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 		if question
 			if locals.authenticated
@@ -42,7 +42,7 @@ block content
 								p(id='questionContent' class="question single-question") #{question.content}
 								div(class='edit-form' id='test')
 									//- +validationErrorSummary(errors)
-									p(id='errorUpdateQuestion' style={color: 'red'})
+									p(id='errorUpdateQuestion' class='edit-errors')
 									form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
 										input( style='display:none' name='questionId' value=question.id)
 										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input edit-text-area') #{question.content}
@@ -66,7 +66,7 @@ block content
 						div(class='up-votes answer-username') pawan087
 					div(class='question-summary-container')
 						div(class="question-summary edit-question-question")
-							div(id='questionContent' class="question answer longer") This is my answer to you.
+							div(id='questionContent' class="question answer single-question") This is my answer to you.
 								div(class='edit-form')
 					div(class="question-summary-footer")
 						div(class="question-summary-user")

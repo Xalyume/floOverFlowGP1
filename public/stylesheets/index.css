@@ -466,6 +466,7 @@ input[type="submit"]:active {
 
 .question-summary-container {
   /* overflow: hidden; */
+
 }
 
 .question-summary-link {
@@ -751,8 +752,6 @@ textarea {
 }
 
 .edit-form {
-  height: 25em;
-  width: 25em;
 }
 
 .edit-btn {
@@ -786,6 +785,7 @@ textarea {
 .edit-input {
   padding: 1.5em 1.5em;
   min-width: 100%;
+  min-height: 100%;
   font-size: 1.125em;
   outline: none;
   border: 1px solid #bbb;
@@ -975,6 +975,9 @@ input[type="textarea"] {
 
 .answer {
   font-size: 1.25em;
+  background-color: #FFEDDA;
+  padding: .5em;
+  border-radius: .5em;
 }
 
 .test-4 {
@@ -1006,10 +1009,30 @@ input[type="textarea"] {
 }
 
 .single-question {
-  max-width: 37.5em;
+  max-width: 35em;
   position: relative;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
-  font-size: 1.25em;
+  font-size: 1.33em;
   color: #3db2ff;
   padding-left: .5em;
+}
+
+.edit-errors {
+  text-shadow: none;
+  position: relative;
+  font-size: 1.25em;
+  color: #ff2442;
+  left: 39em;
+  top: -2em;
+  font-weight: bold;
+}
+
+.edit-errors * {
+  width: 30em;
+  font-family: inherit;
+  font-style: italic;
+}
+
+.back-btn {
+  margin-bottom: 1.25em;
 }
