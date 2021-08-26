@@ -290,7 +290,7 @@ input[type="textarea"] {
   padding: 1.5em 5em;
   position: relative;
   top: -2.5em;
-  width: auto;
+  /* width: auto; */
   background: #ffb830;
   font-size: 1.0625em;
   border: none;
@@ -476,9 +476,9 @@ input[type="submit"]:active {
   max-width: 30em;
   font-size: 1.5em;
   color: #3db2ff;
-  background-color: #ffedda;
-  padding: 0.5em;
-  border-radius: 0.5em;
+  /* background-color: #ffedda; */
+  /* padding: 0.5em;
+  border-radius: 0.5em; */
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
   text-decoration: none;
   transition: 0.2s ease all;
@@ -749,6 +749,7 @@ textarea {
   font-style: normal;
   position: relative;
   top: 0.75em;
+  color: #ff2442;
 }
 
 .edit-form {
@@ -890,11 +891,19 @@ input[type="textarea"] {
 
 .logged-in-votes span {
   color: #3db2ff;
+  /* background-color: #ffedda; */
+  padding: .125em;
+  border-radius: .125em;
+  text-shadow: none;
   font-size: 2.5em;
 }
 
 .logged-in-answers span {
   color: #3db2ff;
+  /* background-color: #ffedda; */
+  padding: .125em;
+  border-radius: .125em;
+  text-shadow: none;
   font-size: 2.5em;
 }
 
@@ -917,8 +926,10 @@ input[type="textarea"] {
 .vote-count-2 {
   font-size: 2.5em;
   color: #3db2ff;
+  background-color: #ffedda;
+  padding: .125em;
+  border-radius: .125em;
   font-weight: bold;
-  text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
 
 .vote-count-1 {
@@ -975,10 +986,12 @@ input[type="textarea"] {
 }
 
 .answer {
+  background-color: #ffedda;
   font-size: 1.25em;
-  background-color: #FFEDDA;
   padding: .5em;
   border-radius: .5em;
+  text-align: left;
+  max-width: 21em;
 }
 
 .test-4 {
@@ -1000,7 +1013,7 @@ input[type="textarea"] {
 
 .answer-container:hover {
   min-width: 80.5%;
-  border-bottom: 0.25em solid #ffb830;
+  border-bottom: 0.25em solid #3db2ff;
 }
 
 .hide-btn {
@@ -1036,4 +1049,31 @@ input[type="textarea"] {
 
 .back-btn {
   margin-bottom: 1.25em;
+}
+
+.answer-edit {
+  background-color: #3db2ff;
+  width: .5em;
+}
+
+.auth-error-title {
+  margin: 0 auto;
+  font-size: 2.5em;
+  margin-top: 1.5em;
+  font-weight: bolder;
+  text-align: center;
+  color: #ff2442;
+  padding: .5em;
+  border-radius: .5em;
+}
+
+.auth-error-container {
+  display: flex;
+  margin-top: 2.5em;
+}
+
+.auth-error-btn {
+  top: 0;
+  margin: 0 auto;
+  width: 1em;
 }

@@ -25,5 +25,6 @@ block content
 					a(href='/' class='cancel forgot del-cancel') Cancel
 		else
 			div
-				p You do not have the authorization to delete other user's question.
-				a(href = '/') Home page
+				p(class='auth-error-title') You do not have the authorization to delete other user's question.
+				div(class='auth-error-container')
+					a(href = '/' class='btn log-in-submit btn2 auth-error-btn') Home page
