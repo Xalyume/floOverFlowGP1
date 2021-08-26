@@ -405,9 +405,25 @@ input[type="submit"]:active {
   transition: 0.2s ease all;
 }
 
+.logged-in-container {
+  transition: 0.2s ease all;
+}
+
+.logged-in-container:hover {
+  border-bottom: 0.25em solid #3db2ff;
+}
+
+.logged-in-container:hover > .question-stats-container {
+  border-right: 0.25em solid #ffb830;
+}
+
 .question-container:hover {
   min-width: 67.5%;
-  border-bottom: 0.25em solid #ffb830;
+  border-bottom: 0.25em solid #3db2ff;
+}
+
+.question-container:hover > .question-stats-container {
+  border-right: 0.25em solid #ffb830;
 }
 
 .question-stats-container {
@@ -466,7 +482,6 @@ input[type="submit"]:active {
 
 .question-summary-container {
   /* overflow: hidden; */
-
 }
 
 .question-summary-link {
@@ -892,8 +907,8 @@ input[type="textarea"] {
 .logged-in-votes span {
   color: #3db2ff;
   /* background-color: #ffedda; */
-  padding: .125em;
-  border-radius: .125em;
+  padding: 0.125em;
+  border-radius: 0.125em;
   text-shadow: none;
   font-size: 2.5em;
 }
@@ -901,8 +916,8 @@ input[type="textarea"] {
 .logged-in-answers span {
   color: #3db2ff;
   /* background-color: #ffedda; */
-  padding: .125em;
-  border-radius: .125em;
+  padding: 0.125em;
+  border-radius: 0.125em;
   text-shadow: none;
   font-size: 2.5em;
 }
@@ -927,8 +942,8 @@ input[type="textarea"] {
   font-size: 2.5em;
   color: #3db2ff;
   background-color: #ffedda;
-  padding: .125em;
-  border-radius: .125em;
+  padding: 0.125em;
+  border-radius: 0.125em;
   font-weight: bold;
 }
 
@@ -973,6 +988,7 @@ input[type="textarea"] {
 }
 
 .answer-username-container {
+  transition: 0.2s ease all;
   border-right: 0.125em solid #3db2ff;
 }
 
@@ -988,10 +1004,9 @@ input[type="textarea"] {
 .answer {
   background-color: #ffedda;
   font-size: 1.25em;
-  padding: .5em;
-  border-radius: .5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
   text-align: left;
-  max-width: 21em;
 }
 
 .test-4 {
@@ -1012,8 +1027,12 @@ input[type="textarea"] {
 }
 
 .answer-container:hover {
-  min-width: 80.5%;
+  /* min-width: 80.5%; */
   border-bottom: 0.25em solid #3db2ff;
+}
+
+.answer-container:hover > .answer-username-container {
+  border-right: 0.25em solid #ffb830;
 }
 
 .hide-btn {
@@ -1028,7 +1047,8 @@ input[type="textarea"] {
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
   font-size: 1.33em;
   color: #3db2ff;
-  padding-left: .5em;
+  line-height: 1.25em;
+  padding-left: 0.5em;
 }
 
 .edit-errors {
@@ -1053,7 +1073,7 @@ input[type="textarea"] {
 
 .answer-edit {
   background-color: #3db2ff;
-  width: .5em;
+  width: 0.5em;
 }
 
 .auth-error-title {
@@ -1063,8 +1083,8 @@ input[type="textarea"] {
   font-weight: bolder;
   text-align: center;
   color: #ff2442;
-  padding: .5em;
-  border-radius: .5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
 }
 
 .auth-error-container {
@@ -1076,4 +1096,18 @@ input[type="textarea"] {
   top: 0;
   margin: 0 auto;
   width: 1em;
+}
+
+.answer-btns {
+  position: relative;
+  top: 5.75em;
+  left: 1.68em;
+}
+
+.answer-text-area {
+  /* display: flex; */
+  position: relative;
+  min-width: 47.5em;
+  top: -2.75em;
+  min-height: 100%;
 }

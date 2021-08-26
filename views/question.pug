@@ -44,7 +44,7 @@ block content
 									p(id='errorUpdateQuestion' class='edit-errors')
 									form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
 										input( style='display:none' name='questionId' value=question.id)
-										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input edit-text-area') #{question.content}
+										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
 										//- button(id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Update
 					div(class="question-summary-footer")
 						div(class="question-summary-user")
@@ -68,9 +68,13 @@ block content
 						div(class="question-summary edit-question-question")
 							div(id='questionContent' class="question answer single-question") This is my answer to you.
 								div(class='edit-form')
+									form(action=`/questions/${question.id}` method='post' id='updateAnswerContent')
+										input( style='display:none' name='answerId' value=question.id)
+										textarea(name="answerContent" id='textareaUpdateAnswer' class='edit-input edit-text-area answer-text-area') This is my answer to you. 
+
 					div(class="question-summary-footer")
 						div(class="question-summary-user")
-							div(class='single-question-btns')
+							div(class='single-question-btns answer-btns')
 								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete') Delete Answer
 								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
 								//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
