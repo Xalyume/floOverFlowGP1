@@ -6,11 +6,14 @@ const clickEditButton = async(event)=>{
 
     updateQuestionButton.style.display = 'none';
 
+    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
+    submitUpdateQuestionButton.style.display = 'block';
+
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'block';
 
     const questionContent = document.querySelector("#questionContent");
-    questionContent.style.display = 'none';
+    // questionContent.style.display = 'none';
 
 }
 
@@ -63,12 +66,14 @@ const submitUpdate = async(event)=>{
             //if no error/no empty value as question content, original question to be updated as edits
             const questionContent = document.querySelector("#questionContent");
             questionContent.innerHTML = content;
-            questionContent.style.display = 'block';
-
+            // questionContent.style.display = 'block';
             // hide edit form after edit is done and display eidt question button
+
+            let updateQuestionContent = document.querySelector("#updateQuestionContent");
 
             updateQuestionContent.style.display = 'none'
 
+            const updateQuestionButton = document.querySelector("#updateQuestionButton");
             updateQuestionButton.style.display = 'block';
 
             const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
@@ -130,7 +135,8 @@ const cancelUpdate = async (event) => {
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'none';
 
-
+    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
+    submitUpdateQuestionButton.style.display = 'none';
 
 }
 

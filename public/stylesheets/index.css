@@ -796,6 +796,7 @@ textarea {
 
 .edit-input,
 input[type="textarea"] {
+  position: absolute;
   background-color: #ffedda;
   color: #3db2ff;
 }
@@ -836,7 +837,8 @@ input[type="textarea"] {
 }
 
 .edit-submit-btn {
-  right: 1em;
+  right: 1.0625em;
+  top: -2.5em;
   background: #3db2ff;
 }
 
@@ -921,8 +923,7 @@ input[type="textarea"] {
 
 .vote-count-1 {
   position: relative;
-  top: 0.4em;
-  left: 0.25em;
+  top: 1em;
 }
 
 .vote-count-2 {
@@ -997,4 +998,10 @@ input[type="textarea"] {
 .answer-container:hover {
   min-width: 80.5%;
   border-bottom: 0.25em solid #ffb830;
+}
+
+.hide-btn {
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
