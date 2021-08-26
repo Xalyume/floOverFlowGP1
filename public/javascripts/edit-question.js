@@ -28,47 +28,90 @@ const submitUpdate = async(event)=>{
             headers: {"Content-Type": "application/json"},
         })
 
-        if (res.status === 401) {
-            window.location.href = "/login";
-            return;
-        }
-        if (!res.ok) {
-            throw res;// res will include error  object
-        }
-
-        const {
+        // Another way - 
+            // back-end API route ends with next(err), then res.status = err.status
+            //  if (res.status === 401) {
+            //     window.location.href = "/login";
+            //     return;
+            // }        
+            //if back-end API route ends with next(err), then res.ok will be false; res will include error  object, thus throw res, that will be catched by catch(err) below      
+            //  if (!res.ok) {
+            // throw res;
+            // }
+       
+        const { 
+            errors,
             question: { content },
-        } = await res.json();
-        // need to do validation errors!!!!!!!!!!
-        // const {
-        //     errors
-        // } = await res.json();
+            err
+         } = await res.json();
+         
+        // If empty value is submitted, it will dynamically show an error message. If no authorization, it will dynamically show an error message
+        if (errors){
+            const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+    
+            let errorContent = errors.map(message=>{
+                return `<li>${message}</li>`
+            })
+            errorUpdateQuestion.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
 
-        // if (errors){
-        //     const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
-        //     let errorContent = errors.map(message=>{
-        //         return `<li>${message}</li>`
-        //     })
-        //     errorUpdateQuestion.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
-        // }
+            errorUpdateQuestion.style.display = 'block'
 
-        //original question to be updated as edits
-        const questionContent = document.querySelector("#questionContent");
-        questionContent.innerHTML=content;
-        questionContent.style.display = 'block';
 
-        // hide edit form after edit is done
+        }
+        else{
 
-        updateQuestionContent.style.display = 'none'
+            //if no error/no empty value as question content, original question to be updated as edits
+            const questionContent = document.querySelector("#questionContent");
+            questionContent.innerHTML = content;
+            questionContent.style.display = 'block';
 
-        updateQuestionButton.style.display = 'block';
+            // hide edit form after edit is done and display eidt question button
 
-        const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-        cancelUpdateQuestionButton.style.display = 'none';
+            updateQuestionContent.style.display = 'none'
+
+            updateQuestionButton.style.display = 'block';
+
+            const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
+            cancelUpdateQuestionButton.style.display = 'none';
+
+            const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+            errorUpdateQuestion.style.display='none'
+        }
     }
-    ///// need to think about err?
     catch(err){
+    // another way to catch error in practice project;
+    //     if (err.status >= 400 && err.status < 600) {
+    //         const errorJSON = await err.json();
+    //         const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+    //         // default error message
+    //         let errorsHtml = [
+    //             `
+    //     <div>
+    //         Something went wrong. Please try again.
+    //     </div>
+    //   `,
+    //         ];
+    //         const { errors } = errorJSON;
+    //         /// if array of error; extract error message from error object
+    //         if (errors && Array.isArray(errors)) {
+    //             errorsHtml = errors.map(
+    //                 (message) => `
+    //       <div class="alert alert-danger">
+    //           ${message}
+    //       </div>
+    //     `
+    //             );
+    //         }
+    //         errorUpdateQuestion.innerHTML = errorsHtml.join("");
+    //     } 
+    // else { }
 
+
+    // internet down => fetch will only throw error if internet connection issue       
+        
+        alert(
+            "Something went wrong. Please check your internet connection and try again!"
+            );
     }
 }
 
@@ -95,17 +138,26 @@ const cancelUpdate = async (event) => {
 document.addEventListener("DOMContentLoaded", async(event) => {
     // click update button
     const updateQuestionButton = document.querySelector("#updateQuestionButton");
+    if (updateQuestionButton){
+        updateQuestionButton.addEventListener("click", clickEditButton)
 
-    updateQuestionButton.addEventListener("click", clickEditButton)
+    }
+    
 
     //submit update
     const updateQuestionContent = document.querySelector("#updateQuestionContent");
+    if (updateQuestionContent){
+        updateQuestionContent.addEventListener("submit", submitUpdate)
 
-    updateQuestionContent.addEventListener("submit", submitUpdate)
+    }
+    
 
     // cancel update
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
+    if (cancelUpdateQuestionButton ){
+        cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
 
-    cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
+    }
+    
 
 })

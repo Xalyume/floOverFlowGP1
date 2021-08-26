@@ -5,8 +5,10 @@ include utils.pug
 append head
 	//- add page specific styles by appending to the head
 	link(rel="stylesheet" href="/stylesheets/index.css")
+	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
+	//-script(src="/javascripts/vote-question.js" type="module" defer)
 
 block content
 	div
@@ -15,8 +17,18 @@ block content
 	div(class='questionContainer')
 		if question
 			div by #{question.User.username}
-			div(class='vote') #{qUpVote|0} upVotes
-			div(class='vote') #{qDownVote|0} downVotes
+			div()
+				form(action=`/questions/${question.id}/votes` method='post')
+					div #{qUpVote|0} 
+					input(type='hidden' name='qUpVote' value=1)
+					button(style=`color:${qUpVoteColor}`)
+						i(class="material-icons") thumb_up
+			div()
+				form(action=`/questions/${question.id}/votes` method='post')
+					div #{qDownVote|0}
+					input(type='hidden' name='qDownVote' value=0)
+					button(style=`color:${qDownVoteColor}`)
+						i(class="material-icons" ) thumb_down
 
 			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
 			div(class='question' id='questionContent') #{question.content}
@@ -27,29 +39,34 @@ block content
 
 					div
 						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file
-						div(id='errorUpdateQuestion')
+						p(id='errorUpdateQuestion' style={color: 'red'})
 
-						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
+						//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+						form(action=`/questions/${question.id}` method='post' 
+						id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)
 							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
 							button Submit Update
 
-						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Eit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
+						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Edit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
 						button(id='cancelUpdateQuestionButton' style='display:none') Cancel Update
 						button(id='updateQuestionButton' ) Edit Question
 
 					div
 						form(action=`/questions/delete/${question.id}`,method='get')
 							Button Delete
-					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-			div #{question.Answers.length|0} Answers
+
+			p -----------------------------------------------------------------------------		
+			div #{question.Answers.length|0} Answers:
+			
+			//- div(class='answersContainer')
+			//- each answer in question.Answers
+			//- 	div(class='vote') #{answerUpVote|0} upVotes
+			//- 	div(class='vote') #{answerDownVote|0} downVotes
+			//- 	div(class='answer') #{answer.content}
+			//- 	div by #{answer.User.username}
 
 		else
 			div This question does not exist.
+		
 
-	//- div(class='answersContainer')
-	//-     each answer in question.Answers
-	//-         //- div(class='vote') #{answerUpVote|0} upVotes
-	//-         //- div(class='vote') #{answerDownVote|0} downVotes
-	//-         div(class='answer') #{answer.content}
-	//-         div by #{answer.User.username}
