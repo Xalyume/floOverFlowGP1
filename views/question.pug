@@ -68,14 +68,14 @@ block content
 				div()
 					form(action=`/answers/${answer.id}/votes` method='post')
 						input(type='hidden' name='aUpVote' value=1)
-						button(style=`color:${aUpVoteColor}`)
+						button(style=`color:${answer.aUpVoteColor}`)
 							i(class="material-icons") thumb_up
 				div #{answer.votes|0}
 
 				div()
 					form(action=`/answers/${answer.id}/votes` method='post')
 						input(type='hidden' name='aDownVote' value=0)
-						button(style=`color:${aDownVoteColor}`)
+						button(style=`color:${answer.aDownVoteColor}`)
 							i(class="material-icons" ) thumb_down
 
 

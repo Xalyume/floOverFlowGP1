@@ -97,7 +97,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
     //res.json(question);
 
-    // color the voted button
+    // color the voted button for question
     let qUpVoteColor='';
     let qDownVoteColor='';
     if (req.session.auth){
@@ -141,6 +141,37 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
         a.votes = votes;
     })
 
+    // ???????color the voted button for each answer need to work on color!
+    
+    answers.forEach(a => {
+        if (req.session.auth) {
+            const userId = res.locals.user.id;
+            if (userId) {
+                const voteRecordforAnswer =  AnswerLike.findOne({
+                    where: {
+                        answerId:a.id,
+                        userId
+                    }
+                }).then(voteRecordforAnswer=>{
+                    //console.log('hi!!!', voteRecordforAnswer)
+                    if (voteRecordforAnswer) {
+                        if (voteRecordforAnswer.vote) {
+                            a.aUpVoteColor = 'red';
+
+                        } else {
+                            a.aDownVoteColor = 'blue';
+                        }
+                    }
+
+                })
+               
+    
+            }
+        }
+    })
+
+ 
+    
 
     res.render('question', { question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
         answers
