@@ -11,18 +11,19 @@ append head
 
 block content
 	div
-		
+
 		if locals.user.id === question.User.id
-			h2 Are you sure you want to delete the following question?
-			form(action=`/questions/delete/${question.id}` method='post')
+			div(class='title-container del-header')
+				h3(class='subtitle-1 questions-title') Are you sure you want to delete the following question?
+			form(action=`/questions/delete/${question.id}` method='post' )
 				input(type='hidden' name='_csrf' value=csrfToken)
-				p your question:#{question.content}
-				div
-					button(type='submit') Delete
-					a(href='/') Cancel
-		else 	
+				div(class='del-question')
+					p(class='subtitle-2 confirm') #{question.content}
+
+				div(class='new-question-footer')
+					button(type='submit' class='btn log-in-submit new-question-btn delete-btn') Delete
+					a(href='/' class='cancel forgot del-cancel') Cancel
+		else
 			div
 				p You do not have the authorization to delete other user's question.
 				a(href = '/') Home page
-			
-					

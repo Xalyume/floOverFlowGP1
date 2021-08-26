@@ -14,13 +14,6 @@ block content
 		div(class='main-links all-btn')
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 		if question
-			//- div(class='vote') #{qUpVote|0} upVotes
-			//- div(class='vote') #{qDownVote|0} downVotes
-			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
-			//- div(class='question' id='questionContent') #{question.content}
-			//- div by #{question.User.username}
-			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
-
 			if locals.authenticated
 				if locals.user.id === question.User.id
 				div(class="logged-in-container")
@@ -31,24 +24,25 @@ block content
 							span #{qDownVote|0}
 							p downVotes
 					div(class='question-summary-container')
-						div(class="question-summary")
+						div(class="question-summary edit-question-question")
 							a(href=`#` class="longer") #{question.content}
+								div(class='edit-form')
+									+validationErrorSummary(errors)
+									form(action=`/questions/${question.id}` method='post' id='updateQuestionContent')
+										input( style='display:none' name='questionId' value=question.id)
+										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input edit-text-area') #{question.content}
 					div(class="question-summary-footer")
 						div(class="question-summary-user")
 							div(class="question-summary-info")
-								<span>asked by: <span class='time'>#{question.User.username}</span></span>
+								<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+									div(class='edit-btns')
+										button( class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Update
+										button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn') Cancel Update
 				div(class='single-question-btns')
-					div
-						a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete
-					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-					div
-						+validationErrorSummary(errors)
-						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
-							input( style='display:none' name='questionId' value=question.id)
-							textarea(name="questionContent" )
-							button Submit Update
-					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
+					a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete
 					button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
+					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
 			//- div #{question.Answers.length|0} Answers
 
 		else

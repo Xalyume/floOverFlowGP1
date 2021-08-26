@@ -9,8 +9,11 @@ const clickEditButton = async(event)=>{
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'block';
 
-    const questionContent = document.querySelector("#questionContent");
-    questionContent.style.display = 'none';
+    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
+    submitUpdateQuestionButton.style.display = 'block';
+
+    // const questionContent = document.querySelector("#questionContent");
+    // questionContent.style.display = 'none';
 
 }
 
@@ -86,6 +89,10 @@ const cancelUpdate = async (event) => {
 
     const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
     cancelUpdateQuestionButton.style.display = 'none';
+
+
+    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
+    submitUpdateQuestionButton.style.display = 'none';
 
 
 
