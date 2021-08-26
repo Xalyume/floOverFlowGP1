@@ -91,11 +91,33 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
 
     }
     
-    // To Do: answer votes => especially associate with each answer 
-    
     //res.json(question);
-  
-    res.render('question', { question, qUpVote, qDownVote})
+
+    // color the voted button
+    let qUpVoteColor='';
+    let qDownVoteColor='';
+    const userId = res.locals.user.id;
+    if (userId){
+        const voteRecord = await QuestionLike.findOne({
+            where: {
+                questionId,
+                userId
+            }
+        });
+
+        if (voteRecord){
+            if(voteRecord.vote){
+                qUpVoteColor='red';
+
+            }else{
+                qDownVoteColor='blue';
+            }
+        }
+
+    }
+    
+    // To Do: answer votes => especially associate with each answer 
+    res.render('question', { question, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor})
    
 }))
 
