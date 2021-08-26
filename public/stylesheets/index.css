@@ -2,9 +2,17 @@ h1 {
   color: #555555;
 }
 
+body {
+  padding-top: 5em;
+}
+
 .nav-bar {
   min-height: 5em;
+  width: 100%;
   display: flex;
+  position: fixed;
+  top: 0px;
+  z-index: 100;
   justify-content: space-between;
   align-items: center;
   background-color: #3db2ff;
@@ -129,6 +137,7 @@ h1 {
   left: 0;
   bottom: 0;
   width: 100%;
+  height: 3.5em;
 }
 
 .menu {
@@ -201,7 +210,9 @@ body {
 
 .h1 {
   font-size: 5em;
+  font-style: italic;
   color: rgba(0, 0, 0, 0.75);
+  margin-top: 0.5em;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
 
@@ -366,8 +377,8 @@ input[type="submit"]:active {
 
 .test-logo {
   display: inline-block;
-  width: 2.5em;
-  height: 2.5em;
+  width: 0em;
+  height: 0em;
 }
 
 .splash-page {
@@ -380,7 +391,6 @@ input[type="submit"]:active {
 }
 
 .splash-page * {
-
 }
 
 .question-container {
@@ -927,7 +937,7 @@ input[type="textarea"] {
 
 .answers-container {
   /* background-color: #ffedda; */
-  border-radius: .5em;
+  border-radius: 0.5em;
   width: 67.5%;
   display: flex;
   flex-direction: column;
@@ -942,9 +952,7 @@ input[type="textarea"] {
 
 .answer-container {
   min-width: 80%;
-  border-bottom: .125em solid #3db2ff;
-
-
+  border-bottom: 0.125em solid #3db2ff;
 }
 
 .answer-username {
@@ -953,14 +961,14 @@ input[type="textarea"] {
 }
 
 .answer-username-container {
-  border-right: .125em solid #3db2ff
+  border-right: 0.125em solid #3db2ff;
 }
 
 .answers-title {
   margin-top: 0.5em;
   position: relative;
   top: 0.75em;
-  border-radius: .5em;
+  border-radius: 0.5em;
   color: #3db2ff;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
