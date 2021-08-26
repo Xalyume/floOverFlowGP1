@@ -144,12 +144,13 @@ router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req
             const errors= [err.message]
             // err.title = 'No authorization';
             // err.status = 401;
-            res.json({errors})
+            res.json({question, errors})
         }        
     } else {
         //in order to be used by dynamically used in pug file
         const errors = validatorErrors.array().map((error) => error.msg);
-        res.json({errors})
+        console.log('error!!!',errors)
+        res.json({question,errors})
     }
 
 

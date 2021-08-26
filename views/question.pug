@@ -27,7 +27,7 @@ block content
 
 					div
 						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file
-						div(id='errorUpdateQuestion')
+						p(id='errorUpdateQuestion' style={color: 'red'})
 
 						form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none')
 							input( style='display:none' name='questionId' value=question.id)

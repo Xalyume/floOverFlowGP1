@@ -36,35 +36,44 @@ const submitUpdate = async(event)=>{
             throw res;// res will include error  object
         }
 
-        const {
+        const { errors,
             question: { content },
         } = await res.json();
-        // need to do validation errors!!!!!!!!!!
-        // const {
-        //     errors
-        // } = await res.json();
 
-        // if (errors){
-        //     const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
-        //     let errorContent = errors.map(message=>{
-        //         return `<li>${message}</li>`
-        //     })
-        //     errorUpdateQuestion.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
-        // }
+        // If empty value is submitted, it will dynamically show an error message.
+  
+        if (errors){
+            const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+    
+            let errorContent = errors.map(message=>{
+                return `<li>${message}</li>`
+            })
+            errorUpdateQuestion.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
 
-        //original question to be updated as edits
-        const questionContent = document.querySelector("#questionContent");
-        questionContent.innerHTML=content;
-        questionContent.style.display = 'block';
+            errorUpdateQuestion.style.display = 'block'
 
-        // hide edit form after edit is done
 
-        updateQuestionContent.style.display = 'none'
+        }
+        else{
+            //original question to be updated as edits
+            const questionContent = document.querySelector("#questionContent");
+            questionContent.innerHTML = content;
+            questionContent.style.display = 'block';
 
-        updateQuestionButton.style.display = 'block';
+            // hide edit form after edit is done and display eidt question button
 
-        const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-        cancelUpdateQuestionButton.style.display = 'none';
+            updateQuestionContent.style.display = 'none'
+
+            updateQuestionButton.style.display = 'block';
+
+            const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
+            cancelUpdateQuestionButton.style.display = 'none';
+
+            const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
+            errorUpdateQuestion.style.display='none'
+
+        }
+
     }
     ///// need to think about err?
     catch(err){
