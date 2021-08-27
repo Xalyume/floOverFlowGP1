@@ -1140,6 +1140,20 @@ input[type="textarea"] {
 }
 
 .answer-edit-btns {
-  top: 13.5em;
-  margin: 0 auto;
+  top: 5.4em;
+  right: -1.74em;
+  /* margin: 0 auto; */
+}
+
+.answer-edit-cancel {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.05em;
+}
+
+.answer-edit-submit {
+  background-color: #3db2ff;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.05em;
 }
