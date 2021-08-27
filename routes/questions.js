@@ -12,11 +12,10 @@ const questionValidators = [
         .withMessage('Please provide a value for your flo question.')
 ]
 
-// get /questions => Not require login
+// Not require login
 router.get("/", asyncHandler(async (req, res) => {
 
     const questions = await Question.findAll({
-        //include: [{ model: User,  attributes: ["username"] }],
         include: [Answer, User,QuestionLike],
         order: [["createdAt", "DESC"]],
     });
@@ -34,12 +33,9 @@ router.get("/", asyncHandler(async (req, res) => {
         q.votes = votes;
     })
  
-    //space for /questions votes and user, time, try to prevent merge conflict
-
-    //res.json(questions[0])
-    res.render('questions-list', { questions})
+    //res.json(questions[0]) for develpment
+    res.render('questions-list', {questions})
     
-
 }));
 
 // get /questions/new => Not require login, will show the form to create question, but will not show the button to submit queston. Instead it will have a link to login saying ' please login to ask a quesiton'
@@ -75,11 +71,14 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
 
 }));
 
-
+// specific question page
 router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { 
-        include: [User, QuestionLike,{model:Answer,include:[User,AnswerLike]}]
+        include: [User, QuestionLike,{
+            model:Answer,
+            include:[User,AnswerLike]
+        }]
     });
     // count votes for questions
     let qUpVote =0;
@@ -97,7 +96,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
     //res.json(question);
 
-    // color the voted button
+    // color the voted button for question
     let qUpVoteColor='';
     let qDownVoteColor='';
     if (req.session.auth){
@@ -124,10 +123,51 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     }
 
     let qVotes = qUpVote - qDownVote;
-    
-    // To Do: answer votes => especially associate with each answer 
-    res.render('question', { question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor})
-   
+
+  // count votes for each answer
+   let answers;
+
+    if(question){
+        answers = question.Answers
+        // add votes to each answers
+        answers.forEach(a => {
+            let votes = 0;
+            a.AnswerLikes.forEach(v => {
+                if (v.vote) {
+                votes++;
+                } else {
+                    votes--;
+                }
+         })
+         a.votes = votes;
+    })
+
+    // color the voted button for each answer     
+    answers.forEach(a => {
+        if (req.session.auth) {
+            const userId = res.locals.user.id;
+            const existingVoteForAnswer = a.AnswerLikes.filter(v => v.userId === userId)[0]
+            if (existingVoteForAnswer){
+                if (existingVoteForAnswer.vote){
+                    a.aUpVoteColor = 'red';
+
+                }else{
+                    a.aDownVoteColor = 'blue';
+                }
+         }
+        }
+       
+     })
+     // sort arr of answers by createdAt 
+        answers = answers.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+               
+}
+    res.render('question', {
+          question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
+          answers
+      })  
 }))
 
 
@@ -154,53 +194,7 @@ router.post("/delete/:id(\\d+)", requireAuth, csrfProtection, asyncHandler(async
 }));
 
 
-// require log-in to dynamically edit user's own question - JSON
 
-router.put("/:id(\\d+)", requireAuth, questionValidators,asyncHandler(async (req, res, next) => {
-    const questionId = req.params.id;
-    const question = await Question.findByPk(questionId, { include: User });
-
-    const validatorErrors = validationResult(req);
-
-    if (validatorErrors.isEmpty()) {
-        if (res.locals.user.id === question.User.id && question) {
-            await question.update({ ...req.body })
-
-            res.json({ question })
-
-        } else {
-            // usually the question should exist. Thus label it as No authorization.
-            const err = new Error(`You have no authorization to edit the question`);
-            // include err message in an array, in order to be used by dynamically used in pug file
-            err.status=401;
-            const errors = [err.message];
-            res.json({question, errors,err})
-
-            //Another way in practice project
-            // err.errors = errors;
-            // err.title = 'No authorization';
-            // err.status = 401;
-            //return next(err);
-        }        
-    } else {
-        //in order to be used by dynamically used in pug file
-        
-        const errors = validatorErrors.array().map((error) => error.msg);
-        const err = Error("Bad request.");
-        err.status = 400;
-        
-        res.json({question,errors,err})
-
-        // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-question.js
-        // const err = Error("Bad request.");
-        // err.errors = errors;
-        // err.status = 400;
-        // err.title = "Bad request.";
-        //return next(err);
-    }
-
-
-}));
 
 
 

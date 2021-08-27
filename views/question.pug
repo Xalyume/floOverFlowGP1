@@ -8,6 +8,8 @@ append head
 	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
+	script(src="/javascripts/edit-answer.js" type="module" defer)
+	script(src="/javascripts/new-answer.js" type="module" defer)
 	//-script(src="/javascripts/vote-question.js" type="module" defer)
 
 block content
@@ -16,6 +18,7 @@ block content
 
 	div(class='questionContainer')
 		if question
+			div asked at #{question.createdAt.toLocaleDateString()}
 			div by #{question.User.username}
 			div()
 				form(action=`/questions/${question.id}/votes` method='post')
@@ -58,14 +61,73 @@ block content
 							Button Delete
 
 			p -----------------------------------------------------------------------------
-			div #{question.Answers.length|0} Answers:
+			div() 
+				a(id='numberOfAnswers') #{answers.length|0} 
+				a Answers:
+			
+			//-need the div id 'answersContainer' for DOM manipulate
+			div(class='answersContainer' id='answersContainer')
+				//- newQuestionContainer div for appending newly created answer
+				div(id='newQuestionContainer') 
+				
+				each answer in answers
+					div answered at #{answer.createdAt.toLocaleDateString()}
+					div by #{answer.User.username}
+					div()
+						form(action=`/answers/${answer.id}/votes` method='post')
+							input(type='hidden' name='aUpVote' value=1)
+							button(style=`color:${answer.aUpVoteColor}`)
+								i(class="material-icons") thumb_up
+					div #{answer.votes|0}
 
-			//- div(class='answersContainer')
-			//- each answer in question.Answers
-			//- 	div(class='vote') #{answerUpVote|0} upVotes
-			//- 	div(class='vote') #{answerDownVote|0} downVotes
-			//- 	div(class='answer') #{answer.content}
-			//- 	div by #{answer.User.username}
+					div()
+						form(action=`/answers/${answer.id}/votes` method='post')
+							input(type='hidden' name='aDownVote' value=0)
+							button(style=`color:${answer.aDownVoteColor}`)
+								i(class="material-icons" ) thumb_down
+
+
+					div(class='answer' id=`answerContent_${answer.id}`) #{answer.content}
+
+					if locals.authenticated
+						if locals.user.id === answer.userId
+							div
+								//-div for Error: null content of answer, that will be manipulated in js file appended to this pug file
+								p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
+						
+								//-need updateAnswerContent,updateAnswerButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+								form(action=`/answers/${answer.id}` method='post'
+								id=`updateAnswerContent_${answer.id}` style='display:none')
+									input( style='display:none' name='answerId' value=answer.id)
+									textarea(id=`textareaUpdateAnswer_{answer.id}` 	name="answerContent" ) #{answer.content}
+
+									button(id=`submitUpdateAnswerButton_${answer.id}`) Submit Update
+
+								//- buttons  are not in form above with textarea because they will not submit the texarea, but the 	testarea 	will be showned once the Edit Answer button is clicked. And testarea will be hidden 	once Cancel Update is clicked
+								button(id=`cancelUpdateAnswerButton_${answer.id}` style='display:none') Cancel Update
+
+								
+								button(id=`updateAnswerButton_${answer.id}`) Edit Answer
+							div
+								form(action=`/answers/delete/${answer.id}`,method='get')
+									Button Delete
+									
+			p ------------------------Post your Answer------------------------
+
+			p(id=`errorNewAnswer` style={color:'red'})
+			form(action='/answers' method='post' id='newAnswer')
+				input( style='display:none' name='questionId' value=question.id)
+				textarea(name="answerContent")
+				if locals.authenticated
+					button Submit your answer
+					button(type='reset' id='cancelNewAnswer') Cancel
+
+					
+
+
+
 
 		else
 			div This question does not exist.
+
+			
