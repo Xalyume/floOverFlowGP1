@@ -1104,10 +1104,36 @@ input[type="textarea"] {
   left: 1.68em;
 }
 
-.answer-text-area {
-  /* display: flex; */
+/* .answer-text-area {
+  display: flex;
   position: relative;
   min-width: 47.5em;
   top: -2.75em;
   min-height: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: .5em;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  min-height: 100%;
+  cursor: text;
+  overflow: auto;
+  resize: none;
+} */
+
+.answer-text-area {
+  position: absolute;
+  padding: .5em;
+  min-width: 100%;
+  min-height: 100%;
+  outline: none;
+  border-radius: 0.5em;
+  overflow: hidden;
+  resize: vertical;
+  z-index: 50;
+  box-sizing: border-box;
+  min-width: 47.5em;
+  height: 100%;
+  /* display: none; */
 }
