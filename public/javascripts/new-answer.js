@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 answer,
             } = await res.json();
 
-
+           //console.log('answer',answer) no User appended to it,use answered by you to indicate that is current user's newly created answer.
+           //console.log('err',errors)
             if (errors) {
                 
                 const errorNewAnswer= document.querySelector('#errorNewAnswer');
@@ -33,15 +34,64 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
                 errorNewAnswer.style.display = 'block'
             }else{
-               /// how to show the answer dynamically on the page??????
+        
                 const newQuestionContainer = document.querySelector("#newQuestionContainer")
-                newQuestionContainer.innerHTML = `${answer.content}`
+                newQuestionContainer.innerHTML = `
+
+                <div>
+                     <form action=/answers/${answer.id}/votes method="post">
+	                    <input type="hidden" name="aUpVote" value="1">
+                         <button style=color:${answer.aUpVoteColor}>
+		                    <i class="material-icons">thumb_up</i>
+	                    </button> 
+                    </form>
+  
+                </div> 
+                <div> ${answer.votes | 0}</div>
+                <div>
+                    <form action=/answers/${answer.id}/votes method="post">
+                        <input type="hidden" name="aDownVote" value="0">
+                        <button style= color:${answer.aDownVoteColor}>
+                             <i class="material-icons">thumb_down</i>
+	                    </button>
+                     </form>
+                </div>
+                <div> by You </div>
+                <div class="answer" id=answerContent_${answer.id}>${answer.content}</div>
+
+                <div>
+	                <p id = errorUpdateAnswer_${answer.id} style = 'color:red'></p>
+	                <form action = /answers/${answer.id} method = 'post' id = updateAnswerContent_${answer.id} style = 'display:none')>
+
+	                    <input style = 'display:none' name = 'answerId' value = ${answer.id}>
+	                    <textarea id = textareaUpdateAnswer_{answer.id} name = "answerContent"> ${answer.content}</textarea>
+	
+	                    <button id = submitUpdateAnswerButton_${answer.id} >Submit Update</button> 
+
+	                </form>
+
+	                <button id = cancelUpdateAnswerButton_${answer.id} style = 'display:none')>Cancel Update</button> 
+		
+		
+	                <button id = updateAnswerButton_${answer.id} >Edit Answer</button>
+
+                </div>
+                <div>
+                <form action = / answers / delete /${answer.id}, method = 'get'>
+                <Button> Delete </Button>
+                </form> 
+                
+                </div>
+
+                
+                
+              `
                 newQuestionContainer.styple.display='block'
 
                 // update # of answers????
 
                 const numberOfAnswers = document.querySelector("#numberOfAnswers")
-                numberOfAnswers.innerHTML = `3`
+            
 
                 
                 
@@ -50,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         }
         catch(err){
            /// sometimes will hit this, but all data saved, page on browser good!
-           /// finding the created/saved data in db; 
+           /// finding the created/saved data in db; console.log a lot in api route
             alert(
                 "Something went wrong. Please check your internet connection and try again!"
             );

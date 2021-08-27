@@ -126,7 +126,11 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     let qVotes = qUpVote - qDownVote;
 
   // To Do: answer votes => especially associate with each answer 
-    const answers = question.Answers
+   let answers;
+  if(question){
+
+  
+     answers = question.Answers
 
     // add votes to each answers
     answers.forEach(a => {
@@ -171,11 +175,16 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     })
 
  
-    
+  }
 
-    res.render('question', { question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
-        answers
-    })
+  
+      res.render('question', {
+          question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
+          answers
+      })
+
+  
+    
    
 }))
 

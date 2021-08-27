@@ -127,7 +127,13 @@ router.post("/answers", requireAuth, answerValidators, asyncHandler(async (req, 
 
     if (validatorErrors.isEmpty()) {
         if(!existingAnswer){
-            answer.save()
+            await answer.save();
+            //console.log('id!!!!!!!!!!!!!!!!!!', answer.id)
+            const user = await User.findByPk(userId);
+            answer.User=user
+            //console.log('again', answer.User.username)
+            ///????? answer.User.username exist but go to front-end, not exist
+    
             
             res.json({ answer })
         }
