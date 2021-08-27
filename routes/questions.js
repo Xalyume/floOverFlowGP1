@@ -75,7 +75,10 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
 router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { 
-        include: [User, QuestionLike,{model:Answer,include:[User,AnswerLike]}]
+        include: [User, QuestionLike,{
+            model:Answer,
+            include:[User,AnswerLike]
+        }]
     });
     // count votes for questions
     let qUpVote =0;
