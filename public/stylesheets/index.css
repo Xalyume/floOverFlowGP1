@@ -1140,8 +1140,8 @@ input[type="textarea"] {
 }
 
 .answer-edit-btns {
-  top: 5.4em;
-  right: -1.74em;
+  top: 15.5em;
+  right: -1.75em;
   /* margin: 0 auto; */
 }
 
@@ -1156,4 +1156,25 @@ input[type="textarea"] {
   display: flex;
   flex-direction: column;
   font-size: 1.05em;
+}
+
+.answer-stats-container {
+  border: none;
+}
+
+.answer-stats-votes {
+  position: relative;
+  left: 3.5em;
+  top: 1em;
+}
+
+.answer-username {
+  top: 10em;
+
+  left: 44em;
+}
+
+.answer-vote-count {
+  left: 1.25em;
+  top: 1.25em;
 }

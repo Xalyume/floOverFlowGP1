@@ -64,7 +64,24 @@ block content
 					//- p(class='answers-title subtitle-1') flo-Answers!
 				div(class="logged-in-container answer-container")
 					div(class="question-stats-container answer-username-container")
-						div(class='up-votes answer-username') pawan087
+						div(class="question-stats-container answer-stats-container")
+							div(class='test-2')
+								p(class='vote-count-1 answer-vote-count') #{qVotes|0}
+							div(class="question-stats-votes answer-stats-votes logged-in-votes")
+								form(action=`/questions/${question.id}/votes` method='post')
+									input(type='hidden' name='qUpVote' value=1)
+									button(class='arrow-up-container hide-btn')
+										div(class='arrow-up')
+								//- a(href=`/questions/delete/${question.id}` class='arrow-up-container')
+								//- 	div(class='arrow-up')
+								div(class='up-votes') upVote
+								div(class='down-votes') downVote
+								form(action=`/questions/${question.id}/votes` method='post')
+									input(type='hidden' name='qDownVote' value=0)
+									button(class='arrow-up-container hide-btn')
+										div(class='arrow-down')
+						div(class='up-votes answer-username')
+							<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
 					div(class='question-summary-container')
 						div(class="question-summary edit-question-question")
 							div(id='answerContent' class="question answer single-question") This is my answer to you.
