@@ -1244,3 +1244,29 @@ input[type="textarea"] {
 .answer-submit-btn {
   background-color: #3db2ff;
 }
+
+.please-log-in {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.log-link {
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.log-link {
+  color: #ffb830;
+  text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
+  text-decoration: none;
+}
+
+.log-link:hover {
+  color: #ff2442;
+  text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
+}

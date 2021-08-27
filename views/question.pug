@@ -17,44 +17,45 @@ block content
 		div(class='main-links all-btn back-btn')
 			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
 		if question
+			//- if locals.authenticated
+			div(class="logged-in-container")
+				div(class="question-stats-container")
+					div(class='test-2')
+						p(class='vote-count-1') #{qVotes|0}
+					div(class="question-stats-votes logged-in-votes")
+						form(action=`/questions/${question.id}/votes` method='post')
+							input(type='hidden' name='qUpVote' value=1)
+							button(class='arrow-up-container hide-btn')
+								div(class='arrow-up')
+						//- a(href=`/questions/delete/${question.id}` class='arrow-up-container')
+						//- 	div(class='arrow-up')
+						div(class='up-votes') upVote
+						div(class='down-votes') downVote
+						form(action=`/questions/${question.id}/votes` method='post')
+							input(type='hidden' name='qDownVote' value=0)
+							button(class='arrow-up-container hide-btn')
+								div(class='arrow-down')
+						//- a(href=`/questions/delete/${question.id}` class='arrow-down-container')
+						//- 	div(class='arrow-down')
+				div(class='question-summary-container')
+					div(class="question-summary edit-question-question")
+						div(class="question single-question")
+							p(id='questionContent' class="question single-question") #{question.content}
+							div(class='edit-form' id='test')
+								//- +validationErrorSummary(errors)
+								p(id='errorUpdateQuestion' class='edit-errors')
+								form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
+									input( style='display:none' name='questionId' value=question.id)
+									textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
+									//- button(id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Update
+				div(class="question-summary-footer")
+					div(class="question-summary-user")
+						div(class="question-summary-info")
+							<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+								div(class='edit-btns')
+									button(type='submit' form='updateQuestionContent' id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none;') Submit Update
+									button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none;') Cancel Update
 			if locals.authenticated
-				div(class="logged-in-container")
-					div(class="question-stats-container")
-						div(class='test-2')
-							p(class='vote-count-1') #{qVotes|0}
-						div(class="question-stats-votes logged-in-votes")
-							form(action=`/questions/${question.id}/votes` method='post')
-								input(type='hidden' name='qUpVote' value=1)
-								button(class='arrow-up-container hide-btn')
-									div(class='arrow-up')
-							//- a(href=`/questions/delete/${question.id}` class='arrow-up-container')
-							//- 	div(class='arrow-up')
-							div(class='up-votes') upVote
-							div(class='down-votes') downVote
-							form(action=`/questions/${question.id}/votes` method='post')
-								input(type='hidden' name='qDownVote' value=0)
-								button(class='arrow-up-container hide-btn')
-									div(class='arrow-down')
-							//- a(href=`/questions/delete/${question.id}` class='arrow-down-container')
-							//- 	div(class='arrow-down')
-					div(class='question-summary-container')
-						div(class="question-summary edit-question-question")
-							div(class="question single-question")
-								p(id='questionContent' class="question single-question") #{question.content}
-								div(class='edit-form' id='test')
-									//- +validationErrorSummary(errors)
-									p(id='errorUpdateQuestion' class='edit-errors')
-									form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
-										input( style='display:none' name='questionId' value=question.id)
-										textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
-										//- button(id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Update
-					div(class="question-summary-footer")
-						div(class="question-summary-user")
-							div(class="question-summary-info")
-								<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
-									div(class='edit-btns')
-										button(type='submit' form='updateQuestionContent' id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none;') Submit Update
-										button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none;') Cancel Update
 				if locals.user.id === question.User.id
 					div(class='single-question-btns')
 						a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete Question
@@ -100,11 +101,13 @@ block content
 								button(type='submit' form='updateAnswerContent' id=`submitUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-submit after-cancel' style='display:none') Submit Update
 								button(id=`cancelUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-cancel after-cancel' style='display:none') Cancel Update
 							div(class="question-summary-user")
-								div(class='single-question-btns answer-btns')
-									a(href=`/answers/delete/${answer.id}` id='deleteAnswerButton' class='btn log-in-submit delete-btn answer-delete') Delete Answer
-									button(id=`updateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
-									//- a(href=`/questions/delete/${question.id}`  class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
-									//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+								if locals.authenticated
+									if locals.user.id === answer.userId
+										div(class='single-question-btns answer-btns')
+											a(href=`/answers/delete/${answer.id}` id='deleteAnswerButton' class='btn log-in-submit delete-btn answer-delete') Delete Answer
+											button(id=`updateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
+											//- a(href=`/questions/delete/${question.id}`  class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
+											//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
 					div(class='single-question-btns')
 
 
@@ -131,10 +134,8 @@ block content
 					div(class='test-4')
 						div(class='test-4')
 				else
-					div
-						span Please
-						a(href='/login') Log in
-						span to post your answer.
+					div(class='please-log-in')
+						<span class='subtitle-1'> Please <a href='/login' class=' subtitle-1 time log-link'>Log in</a> to post your flo-answer</span>
 					//- a(href='/login') Please login to ask a flo question
 					//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 					//- button not in form because it will not submit the texarea, but the testarea will be showned once the button is clicked
