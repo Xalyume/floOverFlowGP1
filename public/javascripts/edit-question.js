@@ -143,7 +143,6 @@ const cancelUpdate = async (event) => {
 
     const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
     errorUpdateQuestion.style.display = 'none';
-
 }
 
 
