@@ -1,7 +1,7 @@
 doctype html
 html
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	link(rel="preconnect" href="https://fonts.googleapis.com")
+	link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
 
 			block head
@@ -11,25 +11,21 @@ html
 					a(class='main-page' href='/') flo-Overflow 🎤
 					//- <img src="../public/logo.png" class="logo" />
 
-					<div class="wrap">
-						<form action="/search" method="post" class='search-bar'>
-							<input class='search-input' placeholder='Search flo-Questions' type="text" name="search_str" value=""/>
-							<input type="submit" class="btn search-btn" value="Go"/>
-						</form>
-					</div>
+					div(class="wrap")
+						form(action="/search" method="post" class='search-bar')
+							input(class='search-input' placeholder='Search flo-Questions' type="text" name="search_str" value="")
+							input(type="submit" class="btn search-btn" value="Go")
 
 
 					if locals.authenticated
-						<div class="links">
-							<a href="/questions/new" class="btn log-in-btn ask-question-btn">Ask a flo-Question!</a>
+						div(class="links")
+							a(href="/questions/new" class="btn log-in-btn ask-question-btn") Ask a flo-Question!
 							form(action='/logout' method='post')
 								button(class='btn sign-up-btn log-out-btn' type='submit') Logout
-						</div>
 					else
-						<div class="links">
-							<a href="/login" class="btn log-in-btn">Log In</a>
-							<a href="/signup" class="btn sign-up-btn">Sign Up</a>
-						</div>
+						div(class="links")
+							a(href="/login" class="btn log-in-btn") Log In
+							a(href="/signup" class="btn sign-up-btn") Sign Up
 						//- div
 						//- 	form(action="/login/demo" method="post")
 						//- 		button(class="btn sign-up-btn") Demo User
@@ -40,7 +36,7 @@ html
 	body
 		block content
 
-	<footer class="footer">
+	footer(class="footer")
 		//- <div class="menu">
 		//- 	<a href="#" class="foot-link">Questions</a>
 
@@ -54,7 +50,5 @@ html
 		//- 	<img src="../public/logo.png" class="logo" />
 		//- </div>
 
-		<div class="content">
-			<img class='test-logo' src="http://i.imgur.com/nuRmQJX.png">
-		</div>
-	</footer>
+		div(class="content")
+			img(class='test-logo' src="http://i.imgur.com/nuRmQJX.png")

@@ -27,29 +27,28 @@ block content
 		//- div
 		//- 	p: a(href='/') Go Back to Homepage
 
-		<form method="post" action="" class='log-in-form'>
+		form(method="post" action="" class='log-in-form')
 
-			<h3 id="logo">Sign-up</h3>
+			h3(id="logo") Sign-up
 
 			div(class='errors')
 				+validationErrorSummary(errors)
 
 			input(type='hidden' name='_csrf' value=csrfToken)
 
-			<label class='log-in-label' for="username">Username</label>
-			<input class='log-in-input' type="username" id="username" name="username" placeholder="Type in a username.." autocomplete="off" />
+			label(class='log-in-label' for="username") Username
+			input(class='log-in-input' type="username" id="username" name="username" placeholder="Type in a username.." autocomplete="off")
 
-			<label class='log-in-label' for="email">Email</label>
-			<input class='log-in-input' type="email" id="email" name="email" placeholder="Enter your email.." autocomplete="off" />
+			label(class='log-in-label' for="email") Email
+			input(class='log-in-input' type="email" id="email" name="email" placeholder="Enter your email.." autocomplete="off")
 
-			<label class='log-in-label' for="password">Password</label>
-			<input class='log-in-input' type="password" id="password" name="password" placeholder="Enter a password.." autocomplete="off"  />
+			label(class='log-in-label' for="password") Password
+			input(class='log-in-input' type="password" id="password" name="password" placeholder="Enter a password.." autocomplete="off")
 
-			<label class='log-in-label' for="confirmPassword">Confirm Password</label>
-			<input class='log-in-input' type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password.." autocomplete="off" />
+			label(class='log-in-label' for="confirmPassword") Confirm Password
+			input(class='log-in-input' type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password.." autocomplete="off")
 
-			<a class="forgot" href="/login">Already have an account?</a>
-			<a class="register" href="/">Go Back to the Homepage</a>
+			a(class="forgot" href="/login") Already have an account?
+			a(class="register" href="/") Go Back to the Homepage
 
-			<input class='log-in-submit' type="submit" name="submit" value="Register" />
-		</form>
+			input(class='log-in-submit' type="submit" name="submit" value="Register")
