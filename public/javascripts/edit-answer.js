@@ -1,33 +1,41 @@
 const clickAnswersContainer = async (event) => {
     //event.target the one you click
     //event.currentTarget the whole div block that eventListener is attached to
-    
+
 
     //if edit button is clicked, the textarea to edit answer and submit update button will be displayed. And the edit button will be hidden.
-   
+
     if (event.target.id.startsWith('updateAnswerButton_')){
 
         const answerId = event.target.id.split('_')[1]
         // to display textarea
         const updateAnswerContent = document.querySelector(`#updateAnswerContent_${answerId}`);
         updateAnswerContent.style.display = 'block';
+
         // to hide edit button
         const updateAnswerButton = document.querySelector(`#updateAnswerButton_${answerId}`);
         updateAnswerButton.style.display = 'none';
-        
+
+        const deleteAnswerButton = document.querySelector(`#deleteAnswerButton`);
+        deleteAnswerButton.style.display = 'none';
+
        // to show cancel update button
         const cancelUpdateAnswerButton = document.querySelector(`#cancelUpdateAnswerButton_${answerId}`);
         cancelUpdateAnswerButton.style.display = 'block';
 
+        const submitUpdateAnswerButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
+        submitUpdateAnswerButton.style.display = 'block';
+
        // to hide origianl answer content
-        
+
         const answerContent = document.querySelector(`#answerContent_${answerId}`);
-        answerContent.style.display = 'none';
+        answerContent.style.background = 'transparent';
+        answerContent.style.color = 'transparent';
 
 
         //listening its edit form to submit
 
-       
+
 
         updateAnswerContent.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -36,9 +44,9 @@ const clickAnswersContainer = async (event) => {
             const answerId = formData.get("answerId")
             const body = { content };
 
-            try { 
+            try {
 
-            
+
                 const res = await fetch(`/api/answers/${answerId}`, {
                     method: "PUT",
                     body: JSON.stringify(body),
@@ -48,7 +56,7 @@ const clickAnswersContainer = async (event) => {
                 const {
                     errors,
                     answer,
-                    
+
                 } = await res.json();
 
 
@@ -75,6 +83,7 @@ const clickAnswersContainer = async (event) => {
                     // to hide textarea
                     const updateAnswerContent = document.querySelector(`#updateAnswerContent_${answerId}`);
                     updateAnswerContent.style.display = 'none';
+
                     // to show edit button
                     const updateAnswerButton = document.querySelector(`#updateAnswerButton_${answerId}`);
                     updateAnswerButton.style.display = 'block';
@@ -91,7 +100,7 @@ const clickAnswersContainer = async (event) => {
 
 
             }
-            
+
             catch(err){
                 alert(
                     "Something went wrong. Please check your internet connection and try again!"
@@ -102,13 +111,14 @@ const clickAnswersContainer = async (event) => {
 
         })
 
- 
 
 
-        
+
+
 
     }
-    
+
+
     // if click cancel update button
     if (event.target.id.startsWith('cancelUpdateAnswerButton_')) {
 
@@ -116,6 +126,9 @@ const clickAnswersContainer = async (event) => {
         // to hide textarea
         const updateAnswerContent = document.querySelector(`#updateAnswerContent_${answerId}`);
         updateAnswerContent.style.display = 'none';
+
+        const deleteAnswerButton = document.querySelector(`#deleteAnswerButton`);
+        deleteAnswerButton.style.display = 'block';
         // to show edit button
         const updateAnswerButton = document.querySelector(`#updateAnswerButton_${answerId}`);
         updateAnswerButton.style.display = 'block';
@@ -124,10 +137,12 @@ const clickAnswersContainer = async (event) => {
         const cancelUpdateAnswerButton = document.querySelector(`#cancelUpdateAnswerButton_${answerId}`);
         cancelUpdateAnswerButton.style.display = 'none';
 
+
         // to showorigianl answer content
 
         const answerContent = document.querySelector(`#answerContent_${answerId}`);
-        answerContent.style.display = 'block';
+        answerContent.style.background = '#FFEDDA';
+        answerContent.style.color = '#3DB2FF';
 
         // to hide error div
         const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
@@ -135,7 +150,7 @@ const clickAnswersContainer = async (event) => {
 
     }
 
-    
+
 
 }
 
@@ -149,6 +164,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
 
 
-    
+
 
 })
