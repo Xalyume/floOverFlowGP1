@@ -18,6 +18,7 @@ block content
 
 	div(class='questionContainer')
 		if question
+			div asked at #{question.createdAt.toLocaleDateString()}
 			div by #{question.User.username}
 			div()
 				form(action=`/questions/${question.id}/votes` method='post')
@@ -68,8 +69,10 @@ block content
 			div(class='answersContainer' id='answersContainer')
 				//- newQuestionContainer div for appending newly created answer
 				div(id='newQuestionContainer') 
-
+				
 				each answer in answers
+					div answered at #{answer.createdAt.toLocaleDateString()}
+					div by #{answer.User.username}
 					div()
 						form(action=`/answers/${answer.id}/votes` method='post')
 							input(type='hidden' name='aUpVote' value=1)
@@ -84,7 +87,6 @@ block content
 								i(class="material-icons" ) thumb_down
 
 
-					div by #{answer.User.username}
 					div(class='answer' id=`answerContent_${answer.id}`) #{answer.content}
 
 					if locals.authenticated

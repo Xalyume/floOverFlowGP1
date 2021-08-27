@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 answer,
             } = await res.json();
 
-           //console.log('answer',answer) 
+            //console.log('answer', answer)
            //no User appended to it,use answered by you to indicate that is current user's newly created answer.
            //console.log('err',errors)
             if (errors) {
@@ -47,7 +47,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 // dynamically add the newly posted answer to the answer section
                 const newQuestionContainer = document.querySelector("#newQuestionContainer")
                 newQuestionContainer.innerHTML = `
-
+                <div> answered at ${new Date(answer.createdAt).toLocaleDateString()} </div>
+                <div> by YOU </div>
                 <div>
                      <form action=/answers/${answer.id}/votes method="post">
 	                    <input type="hidden" name="aUpVote" value="1">
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 	                    </button>
                      </form>
                 </div>
-                <div> by YOUSELF </div>
+                
                 <div class="answer" id=answerContent_${answer.id}>${answer.content}</div>
 
                 <div>
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         catch(err){
            /// When sometimes will hit this, but all data saved, page on browser good, console.log(err) to see it in browser dev console
            /// another way to check err is to looking for the newly created/saved data in db at API back end/json; console.log a lot in api route
-            //console.log(err.status)
+            console.log(err)
          
                 alert(
                     "Something went wrong. Please check your internet connection and try again!"
