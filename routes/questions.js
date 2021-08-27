@@ -158,6 +158,10 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
         }
        
      })
+     // sort arr of answers by createdAt 
+        answers = answers.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
                
 }
     res.render('question', {
