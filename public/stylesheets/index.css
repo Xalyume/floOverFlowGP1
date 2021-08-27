@@ -1272,3 +1272,11 @@ input[type="textarea"] {
   color: #ff2442;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
+
+.answer-errors {
+  margin-top: 5em;
+}
+
+.bottom-answer {
+  margin-top: 5em;
+}
