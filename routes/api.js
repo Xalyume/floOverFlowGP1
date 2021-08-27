@@ -128,18 +128,15 @@ router.post("/answers", requireAuth, answerValidators, asyncHandler(async (req, 
     if (validatorErrors.isEmpty()) {
         if(!existingAnswer){
             await answer.save();
-            //console.log('id!!!!!!!!!!!!!!!!!!', answer.id)
             const user = await User.findByPk(userId);
             answer.User=user
-            //console.log('again', answer.User.username)
-            ///????? answer.User.username exist but go to front-end, not exist
-    
-            
+            //console.log('username is HERE!!!!!!!', answer.User.username)
+            ///answer.User.username exist here, but front-end does not not exist    
             res.json({ answer })
         }
         // already post answer to the question
         else{
-            console.log('there already')
+    
             const err = new Error(`You have already post your answer to the question. Please edit your answer instead!`);
             // include err message in an array, in order to be used by dynamically used in pug file
             const errors = [err.message];
@@ -154,8 +151,6 @@ router.post("/answers", requireAuth, answerValidators, asyncHandler(async (req, 
         const errors = validatorErrors.array().map((error) => error.msg);
         const err = Error("Bad request.");
         err.status = 400;
-        //console.log(errors)
-
         res.json({ answer, errors })
 
         // Another way in practice project - if the input is empty/null, create an err and next(err), that will be received by front-end fetch. e.g edit-answer.js

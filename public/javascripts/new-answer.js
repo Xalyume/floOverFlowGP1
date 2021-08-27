@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
-    // click update button
+
     const newAnswer = document.querySelector("#newAnswer");
 
     newAnswer.addEventListener("submit", async (event) => {
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
                 errorNewAnswer.style.display = 'block'
             }else{
-        
+                // dynamically add the newly posted answer to the answer section
                 const newQuestionContainer = document.querySelector("#newQuestionContainer")
                 newQuestionContainer.innerHTML = `
 
@@ -86,21 +86,18 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 
                 
               `
-                newQuestionContainer.styple.display='block'
-
-                // update # of answers????
-
+                // update number of answers by adding 1
                 const numberOfAnswers = document.querySelector("#numberOfAnswers")
+                numberOfAnswers.innerHTML = parseInt(numberOfAnswers.innerHTML,10)+1
             
 
                 
-                
-
             }
         }
         catch(err){
-           /// sometimes will hit this, but all data saved, page on browser good!
-           /// finding the created/saved data in db; console.log a lot in api route
+           /// When sometimes will hit this, but all data saved, page on browser good, console.log(err) to see it in browser dev console
+           /// another way to check err is to looking for the newly created/saved data in db at API back end/json; console.log a lot in api route
+
             alert(
                 "Something went wrong. Please check your internet connection and try again!"
             );

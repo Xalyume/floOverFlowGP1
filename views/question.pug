@@ -60,10 +60,10 @@ block content
 							Button Delete
 
 			p -----------------------------------------------------------------------------
-			div(id='numberOfAnswers') #{answers.length|0} Answers:
+			div() 
+				a(id='numberOfAnswers') #{answers.length|0} 
+				a Answers:
 			
-				
-
 			//-need the div id 'answersContainer' for DOM manipulate
 			div(class='answersContainer' id='answersContainer')
 				//- newQuestionContainer div for appending newly created answer
@@ -118,6 +118,7 @@ block content
 				textarea(name="answerContent")
 				if locals.authenticated
 					button Submit your answer
+					button(type='reset') Cancel
 
 					
 

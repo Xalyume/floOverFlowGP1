@@ -12,11 +12,10 @@ const questionValidators = [
         .withMessage('Please provide a value for your flo question.')
 ]
 
-// get /questions => Not require login
+// Not require login
 router.get("/", asyncHandler(async (req, res) => {
 
     const questions = await Question.findAll({
-        //include: [{ model: User,  attributes: ["username"] }],
         include: [Answer, User,QuestionLike],
         order: [["createdAt", "DESC"]],
     });
@@ -34,12 +33,9 @@ router.get("/", asyncHandler(async (req, res) => {
         q.votes = votes;
     })
  
-    //space for /questions votes and user, time, try to prevent merge conflict
-
-    //res.json(questions[0])
-    res.render('questions-list', { questions})
+    //res.json(questions[0]) for develpment
+    res.render('questions-list', {questions})
     
-
 }));
 
 // get /questions/new => Not require login, will show the form to create question, but will not show the button to submit queston. Instead it will have a link to login saying ' please login to ask a quesiton'
@@ -75,7 +71,7 @@ router.post("/", requireAuth, csrfProtection, questionValidators,asyncHandler(as
 
 }));
 
-
+// specific question page
 router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     const questionId = req.params.id;
     const question = await Question.findByPk(questionId, { 
@@ -125,67 +121,46 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
 
     let qVotes = qUpVote - qDownVote;
 
-  // To Do: answer votes => especially associate with each answer 
+  // count votes for each answer
    let answers;
-  if(question){
 
-  
-     answers = question.Answers
-
-    // add votes to each answers
-    answers.forEach(a => {
-        let votes = 0;
-        a.AnswerLikes.forEach(v => {
-            if (v.vote) {
+    if(question){
+        answers = question.Answers
+        // add votes to each answers
+        answers.forEach(a => {
+            let votes = 0;
+            a.AnswerLikes.forEach(v => {
+                if (v.vote) {
                 votes++;
-            } else {
-                votes--;
-            }
-        })
-        a.votes = votes;
+                } else {
+                    votes--;
+                }
+         })
+         a.votes = votes;
     })
 
-    // ???????color the voted button for each answer need to work on color!
-    
+    // color the voted button for each answer     
     answers.forEach(a => {
         if (req.session.auth) {
             const userId = res.locals.user.id;
-            if (userId) {
-                const voteRecordforAnswer =  AnswerLike.findOne({
-                    where: {
-                        answerId:a.id,
-                        userId
-                    }
-                }).then(voteRecordforAnswer=>{
-                    //console.log('hi!!!', voteRecordforAnswer)
-                    if (voteRecordforAnswer) {
-                        if (voteRecordforAnswer.vote) {
-                            a.aUpVoteColor = 'red';
+            const existingVoteForAnswer = a.AnswerLikes.filter(v => v.userId === userId)[0]
+            if (existingVoteForAnswer){
+                if (existingVoteForAnswer.vote){
+                    a.aUpVoteColor = 'red';
 
-                        } else {
-                            a.aDownVoteColor = 'blue';
-                        }
-                    }
-
-                })
-               
-    
-            }
+                }else{
+                    a.aDownVoteColor = 'blue';
+                }
+         }
         }
-    })
-
- 
-  }
-
-  
-      res.render('question', {
+       
+     })
+               
+}
+    res.render('question', {
           question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
           answers
-      })
-
-  
-    
-   
+      })  
 }))
 
 
