@@ -1,0 +1,29 @@
+extends layout.pug
+
+include utils.pug
+
+
+append head
+	//- add page specific styles by appending to the head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+	//- add page specific js
+	script(src="/javascripts/index.js" type="module" defer)
+
+block content
+	div
+
+		if locals.user.id === answer.User.id
+			div(class='title-container del-header')
+				h3(class='subtitle-1 questions-title') Are you sure you want to delete the following answer?
+			form(action=`/answers/delete/${answer.id}` method='post' )
+				input(type='hidden' name='_csrf' value=csrfToken)
+				div(class='del-question')
+					p(class='subtitle-2 confirm') #{answer.content}
+
+				div(class='new-question-footer')
+					button(type='submit' class='btn log-in-submit new-question-btn delete-btn') Delete
+					a(href='/' class='cancel forgot del-cancel') Cancel
+		else
+			div
+				p You do not have the authorization to delete other user's answer.
+				a(href = '/') Home page
