@@ -128,14 +128,17 @@ const clickAnswersContainer = async (event) => {
         updateAnswerContent.style.display = 'none';
 
         const deleteAnswerButton = document.querySelector(`#deleteAnswerButton`);
-        deleteAnswerButton.style.display = 'block';
+        deleteAnswerButton.style.display = 'flex';
         // to show edit button
         const updateAnswerButton = document.querySelector(`#updateAnswerButton_${answerId}`);
-        updateAnswerButton.style.display = 'block';
+        updateAnswerButton.style.display = 'flex';
 
         // to hide cancel update button
         const cancelUpdateAnswerButton = document.querySelector(`#cancelUpdateAnswerButton_${answerId}`);
         cancelUpdateAnswerButton.style.display = 'none';
+
+        const submitUpdateAnswerButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
+        submitUpdateAnswerButton.style.display = 'none';
 
 
         // to showorigianl answer content

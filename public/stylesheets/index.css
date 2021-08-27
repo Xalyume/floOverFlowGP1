@@ -1166,8 +1166,8 @@ input[type="textarea"] {
 }
 
 .answer-edit-btns {
-  top: 15.5em;
-  right: -1.75em;
+  top: 10em;
+  right: -1.70em;
   /* margin: 0 auto; */
 }
 
@@ -1225,18 +1225,22 @@ input[type="textarea"] {
   font-weight: bold;
 }
 
-.after-cancel {
-  display: flex;
-  flex-direction: row;
+.answer-btns {
+  /* display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   justify-items: center;
   justify-self: center;
   align-content: center;
   align-items: center;
-  align-self: center;
-  text-align: center;
+  align-self: center; */
+
 }
 
 .answer-submission-btns {
   flex-direction: row;
+}
+
+.answer-submit-btn {
+  background-color: #3db2ff;
 }

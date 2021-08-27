@@ -95,10 +95,10 @@ block content
 						//- div(class='edit-btns answer-edit-btns')
 						//- 	button(type='submit' form='updateAnswerContent' id='submitUpdateAnswerButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Answer Update
 						//- 	button(id='cancelUpdateAnswerButton' class='log-in-submit new-question-btn edit-cancel-btn') Cancel Answer Update
-						div(class='edit-btns answer-edit-btns after-cancel')
-							button(type='submit' form='updateAnswerContent' id=`submitUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-submit after-cancel' style='display:none') Submit Update
-							button(id=`cancelUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-cancel after-cancel' style='display:none') Cancel Update
 						div(class="question-summary-footer")
+							div(class='edit-btns answer-edit-btns after-cancel')
+								button(type='submit' form='updateAnswerContent' id=`submitUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-submit after-cancel' style='display:none') Submit Update
+								button(id=`cancelUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-cancel after-cancel' style='display:none') Cancel Update
 							div(class="question-summary-user")
 								div(class='single-question-btns answer-btns')
 									a(href=`/answers/delete/${answer.id}` id='deleteAnswerButton' class='btn log-in-submit delete-btn answer-delete') Delete Answer
@@ -111,7 +111,7 @@ block content
 
 			//- p ------------------------Post your Answer------------------------
 
-			p(id=`errorNewAnswer` style={color:'red'})
+			p(id=`errorNewAnswer` class='errors')
 
 			form(action='/answers' method='post' id='newAnswer' class='log-in-form question-post')
 
@@ -125,9 +125,9 @@ block content
 
 				if locals.authenticated
 					div(class='new-question-footer answer-submission-btns')
-						button(type='submit' class='btn log-in-submit new-question-btn') Submit
+						button(type='submit' class='btn log-in-submit new-question-btn answer-submit-btn') Submit
 
-						button(type='reset' id='cancelNewAnswer' class='btn log-in-submit new-question-btn') Cancel
+						button(type='reset' id='cancelNewAnswer' class='btn log-in-submit new-question-btn delete-btn') Cancel
 					div(class='test-4')
 						div(class='test-4')
 				else
