@@ -21,7 +21,9 @@ module.exports = {
       { content: 'What is your favorite song of all time?', userId: 2, createdAt: new Date('2021-7-23'), updatedAt: new Date('2021-7-23') },
       { content: 'Can someone recommend me their preferred Taylor Swift songs?', userId: 1, createdAt: new Date('2021-7-20'), updatedAt: new Date('2021-7-20') },
       { content: 'recommend me songs with themes about love', userId: 2, createdAt: new Date('2021-7-17'), updatedAt: new Date('2021-7-17') },
-      { content: 'why is Kanye better than Mozart?', userId: 3, createdAt: new Date('2021-7-2'), updatedAt: new Date('2021-7-2') }
+      { content: 'why is Kanye better than Mozart?', userId: 3, createdAt: new Date('2021-7-2'), updatedAt: new Date('2021-7-2') },
+      { content: 'Who or what have been you been listening to alot lately?', userId: 7, createdAt: new Date('2021-7-27'), updatedAt: new Date('2021-7-27') },
+      { content: 'what was your best memorable concert experience?', userId: 7, createdAt: new Date('2021-8-10'), updatedAt: new Date('2021-8-10') }
     ], {});
   },
 
