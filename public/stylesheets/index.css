@@ -1133,7 +1133,13 @@ input[type="textarea"] {
   resize: vertical;
   z-index: 50;
   box-sizing: border-box;
+
   min-width: 47.5em;
   height: 100%;
   /* display: none; */
+}
+
+.answer-edit-btns {
+  top: 13.5em;
+  margin: 0 auto;
 }

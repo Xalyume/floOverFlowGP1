@@ -8,6 +8,7 @@ append head
 	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
 	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
+	script(src="/javascripts/edit-answer.js" type="module" defer)
 
 block content
 
@@ -66,17 +67,23 @@ block content
 						div(class='up-votes answer-username') pawan087
 					div(class='question-summary-container')
 						div(class="question-summary edit-question-question")
-							div(id='questionContent' class="question answer single-question") This is my answer to you.
+							div(id='answerContent' class="question answer single-question") This is my answer to you.
 								div(class='edit-form')
-									form(action=`/questions/${question.id}` method='post' id='updateAnswerContent')
+									form(action=`/questions/${question.id}` method='post' id='updateAnswerContent' style='display:none')
 										input( style='display:none' name='answerId' value=question.id)
-										textarea(name="answerContent" id='textareaUpdateAnswer' class='edit-input edit-text-area answer-text-area') This is my answer for you. 
-
+										textarea(name="answerContent" id='textareaUpdateAnswer' class='edit-input edit-text-area answer-text-area') This is my answer for you.
+					//- div(class='edit-btns answer-edit-btns')
+					//- 	button(type='submit' form='updateAnswerContent' id='submitUpdateAnswerButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn') Submit Answer Update
+					//- 	button(id='cancelUpdateAnswerButton' class='log-in-submit new-question-btn edit-cancel-btn') Cancel Answer Update
 					div(class="question-summary-footer")
+						div(class='edit-btns answer-edit-btns')
+							button(type='submit' form='updateAnswerContent' id='submitUpdateAnswerButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none') Submit Update
+							button(id='cancelUpdateAnswerButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none') Cancel Update
 						div(class="question-summary-user")
 							div(class='single-question-btns answer-btns')
-								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete') Delete Answer
-								a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
+								a(href=`#` id='deleteAnswerButton' class='btn log-in-submit delete-btn answer-delete') Delete Answer
+								button(id='updateAnswerButton' class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
+								//- a(href=`/questions/delete/${question.id}`  class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
 								//- <span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
 
 				div(class='single-question-btns')
