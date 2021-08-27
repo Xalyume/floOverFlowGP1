@@ -121,6 +121,11 @@ block content
 				if locals.authenticated
 					button Submit your answer
 					button(type='reset' id='cancelNewAnswer') Cancel
+				else
+					div 
+						span Please
+						a(href='/login') Log in 
+						span to post your answer.
 
 					
 
