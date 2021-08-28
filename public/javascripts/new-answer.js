@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
              // clear textarea
               const newAnswerForm = document.querySelector("#content");
               console.log('Hiii',newAnswerForm.innerHTML)
-              newAnswerForm.value = 'hhh';
+              newAnswerForm.value = '';
               
 
           }
