@@ -886,6 +886,7 @@ input[type="textarea"] {
 .arrow-down-container {
   position: relative;
   transition: 0.2s ease all;
+
 }
 
 .arrow-up-container:hover,
@@ -902,6 +903,8 @@ input[type="textarea"] {
   border-bottom: 1.5em solid #ffb830;
   position: relative;
   left: -1em;
+
+  /* background-color: red; */
 }
 
 .arrow-down {
