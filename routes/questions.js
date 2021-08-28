@@ -112,11 +112,9 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
             if (voteRecord){
                 if(voteRecord.vote){
-                    console.log('hi!!!!! red')
-                    qUpVoteColor='red';
-    
+                    qUpVoteColor ='#ffb830';
                 }else{
-                    qDownVoteColor='blue';
+                    qDownVoteColor ='#ff2442';
                 }
             }
     
@@ -150,10 +148,10 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
             const existingVoteForAnswer = a.AnswerLikes.filter(v => v.userId === userId)[0]
             if (existingVoteForAnswer){
                 if (existingVoteForAnswer.vote){
-                    a.aUpVoteColor = 'red';
+                    a.aUpVoteColor = '#ffb830';
 
                 }else{
-                    a.aDownVoteColor = 'blue';
+                    a.aDownVoteColor = '#ff2442';
                 }
          }
         }
@@ -166,7 +164,6 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
                
 }
 
-    console.log('11111',qUpVoteColor, qDownVoteColor)
     res.render('question', {
           question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
           answers

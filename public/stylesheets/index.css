@@ -689,6 +689,7 @@ textarea {
   flex-direction: row-reverse;
   justify-content: space-evenly;
   margin-top: 7.5em;
+  
 }
 
 .single-question-btns * {
@@ -885,6 +886,7 @@ input[type="textarea"] {
 .arrow-down-container {
   position: relative;
   transition: 0.2s ease all;
+
 }
 
 .arrow-up-container:hover,
@@ -898,9 +900,11 @@ input[type="textarea"] {
   height: 0;
   border-left: 1.5em solid transparent;
   border-right: 1.5em solid transparent;
-  border-bottom: 1.5em solid #ffb830;
+  border-bottom: 1.5em solid lightgray;
   position: relative;
   left: -1em;
+
+  /* background-color: red; */
 }
 
 .arrow-down {
@@ -909,7 +913,7 @@ input[type="textarea"] {
   height: 0;
   border-left: 1.5em solid transparent;
   border-right: 1.5em solid transparent;
-  border-top: 1.5em solid #ffb830;
+  border-top: 1.5em solid lightgray;
   position: relative;
   left: -1em;
 }
@@ -1074,6 +1078,7 @@ input[type="textarea"] {
   color: #3db2ff;
   line-height: 1.25em;
   padding-left: 0.5em;
+  
 }
 
 .edit-errors {
@@ -1345,6 +1350,7 @@ input[type="textarea"] {
   color: #3db2ff;
   background-color: transparent;
   font-size: large;
+  overflow:auto;
 }
 
 .edit-answer-btn {

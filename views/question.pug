@@ -26,7 +26,7 @@ block content
 							input(type='hidden' name='qUpVote' value=1)
 
 							button(class='arrow-up-container hide-btn')
-								div(class='arrow-up' style=`color:${qUpVoteColor}`)
+								div(class='arrow-up' style=`border-bottom-color:${qUpVoteColor}`) 
 
 						div(class='up-votes') upVote
 
@@ -36,7 +36,7 @@ block content
 							input(type='hidden' name='qDownVote' value=0)
 
 							button(class='arrow-up-container hide-btn' )
-								div(class='arrow-down')
+								div(class='arrow-down' style=`border-top-color:${qDownVoteColor}`) 
 
 				div(class='question-summary-container')
 					div(class="question-summary edit-question-question")
@@ -50,7 +50,7 @@ block content
 								form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
 									input( style='display:none' name='questionId' value=question.id)
 
-									textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
+									textarea( name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
 
 				div(class="question-summary-footer")
 					div(class="question-summary-user")
@@ -84,12 +84,12 @@ block content
 								form(action=`/answers/${answer.id}/votes` method='post')
 									input(type='hidden' name='aUpVote' value=1)
 									button(class='arrow-up-container hide-btn')
-										div(class='arrow-up')
+										div(class='arrow-up' style=`border-bottom-color:${answer.aUpVoteColor}`)
 								div(class='vote-count-answer') #{answer.votes|0}
 								form(action=`/answers/${answer.id}/votes` method='post')
 									input(type='hidden' name='aDownVote' value=0)
 									button(class='arrow-up-container hide-btn')
-										div(class='arrow-down')
+										div(class='arrow-down' style=`border-top-color:${answer.aDownVoteColor}`)
 
 
 							div(class='answer content-answer content-answer-2' id=`answerContent_${answer.id}`) #{answer.content}
@@ -103,7 +103,7 @@ block content
 										form(action=`/answers/${answer.id}` method='post'
 										id=`updateAnswerContent_${answer.id}` style='display:none')
 											input( style='display:none' name='answerId' value=answer.id)
-											textarea(class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` name="answerContent" required) #{answer.content}
+											textarea(rows='8' cols='120' class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` name="answerContent" required) #{answer.content}
 
 										div.answer-buttons-container
 											button(id=`submitUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer' form=`updateAnswerContent_${answer.id}` style='display:none') Submit
