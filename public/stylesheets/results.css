@@ -74,14 +74,14 @@ h1 {
     letter-spacing: 0.0625em;
   }
 
-  .all-questions {
+ .all-questions {
       display: flex;
       justify-content: center;
       justify-items: start;
 
   }
 
-  .all-questions-link {
+.all-questions-link {
       margin: 10px;
 
   }
@@ -106,10 +106,6 @@ body {
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
     0px -5px 35px rgba(255, 255, 255, 0.3);
 }
-
-
-
-
 
 
   /* this is what i worked on. - result page formatting */

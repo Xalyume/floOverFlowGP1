@@ -1028,7 +1028,7 @@ input[type="textarea"] {
 
 .answer {
   background-color: #ffedda;
-  font-size: 1.25em;
+  font-size: small;
   padding: 0.5em;
   border-radius: 0.5em;
   text-align: left;
@@ -1344,7 +1344,7 @@ input[type="textarea"] {
 .content-answer {
   color: #3db2ff;
   background-color: transparent;
-  font-size: 1.75em;
+  font-size: large;
 }
 
 .edit-answer-btn {
@@ -1370,13 +1370,89 @@ input[type="textarea"] {
 }
 
 .content-answer-2 {
-  position: relative;
-  left: -2.5em;
+  /* position: relative; */
+  /* left: -2.5em; */
 }
 
 
 .test-container{
-  width:65%;
+  display: flex;
+  width: 1250px;
+  justify-content: flex-start;
+}
 
+.outer-results-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner-results-table {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+h2.results-title{
+  margin: 5px 0px;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.result-li {
+  margin: 15px 0px;
 
 }
+
+.result-btn {
+  background-color: transparent;
+  color: #3db2ff;
+  text-decoration: none;
+  font-size: large;
+}
+
+.no-results{
+  font-size: large;
+  /* font-weight: bold; */
+
+}
+
+.all-btn {
+  background-color: transparent;
+  color: #3db2ff;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
+}
+
+.search-term {
+  font-size: x-large;
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+/* demo button on login + signup pages */
+.demo-button {
+  align-self: center;
+}
+
+.demo-btn {
+  background-color: #ffb830;
+  font-size: normal;
+  border-radius: 0.5em;
+  color: black;
+  border: none;
+  padding: 15px;
+  text-align: center;
+  margin: 15px;
+}
+
+.answer-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
