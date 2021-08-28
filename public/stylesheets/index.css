@@ -958,7 +958,6 @@ input[type="textarea"] {
   left: -0.75em;
 }
 
-
 .down-votes {
 }
 
@@ -1150,7 +1149,7 @@ input[type="textarea"] {
 
 .answer-text-area {
   position: absolute;
-  padding: .5em;
+  padding: 0.5em;
   min-width: 100%;
   min-height: 100%;
   outline: none;
@@ -1208,7 +1207,7 @@ input[type="textarea"] {
 .answer-title {
   margin: 0 auto;
   width: 100%;
-  font-size:1.5em;
+  font-size: 1.5em;
   font-weight: bolder;
   text-align: center;
   color: #3db2ff;
@@ -1219,7 +1218,7 @@ input[type="textarea"] {
 
 .answer-info {
   position: relative;
-  top:8.5em;
+  top: 8.5em;
 }
 
 .answer-time {
@@ -1236,7 +1235,6 @@ input[type="textarea"] {
   align-content: center;
   align-items: center;
   align-self: center; */
-
 }
 
 .answer-submission-btns {
@@ -1279,4 +1277,97 @@ input[type="textarea"] {
 
 .bottom-answer {
   margin-top: 5em;
+}
+
+.new-answer-container {
+  margin: 0 auto;
+  margin-top: 5em;
+  width: 67.5%;
+  min-height: 15em;
+  background-color: #ffedda;
+  height: 5em;
+  border-radius: 0.5em;
+}
+
+.answers-new-container {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.answers-new-container * {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  margin: 1em;
+}
+
+.when {
+  font-weight: bolder;
+  position: relative;
+  color: #ff2442;
+  flex-direction: column;
+  margin: 0em;
+  margin-top: 1.5em;
+}
+
+.when2 {
+  color: #3db2ff;
+}
+
+.vote-count-answer {
+  background-color: #ffedda;
+  font-size: 2.5em;
+  padding: .25em;
+  border-radius: .5em;
+  margin: 0em;
+  margin-right: 0.8em;
+}
+
+
+.votes-answer {
+  flex-direction: column;
+  color: #3db2ff;
+  font-size: 1.05em;
+}
+
+.content-answer {
+  color: #3db2ff;
+  background-color: transparent;
+  font-size: 1.75em;
+}
+
+.edit-answer-btn {
+  color: white;
+  top: 0;
+}
+
+.del-btn {
+  background-color: #ff2442;
+}
+
+.cancel-answer {
+  background: #ffb830
+}
+
+.submit-answer {
+  position: relative;
+}
+
+.move-text-area {
+  position: relative;
+  left: -5em;
+}
+
+.content-answer-2 {
+  position: relative;
+  left: -2.5em;
 }
