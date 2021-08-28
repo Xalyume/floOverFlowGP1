@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                     <button id = updateAnswerButton_${answer.id} class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn '>Edit Answer</button>
                 </div>
 
-                <div>
-                    <form action = / answers / delete /${answer.id}, method = 'get'>
+                <div> 
+                    <form action = /answers/delete/${answer.id} method = 'get'>
                         <Button class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn'> Delete </Button>
                     </form>
                 </div>
@@ -99,8 +99,11 @@ document.addEventListener("DOMContentLoaded", async (event) => {
               // update number of answers by adding 1
               const numberOfAnswers = document.querySelector("#numberOfAnswers")
               numberOfAnswers.innerHTML = parseInt(numberOfAnswers.innerHTML,10)+1
-
-
+             // clear textarea
+              const newAnswerForm = document.querySelector("#content");
+              console.log('Hiii',newAnswerForm)
+              newAnswerForm.innerHTML = '';
+              
 
           }
       }
