@@ -25,8 +25,8 @@ block content
 						form(action=`/questions/${question.id}/votes` method='post')
 							input(type='hidden' name='qUpVote' value=1)
 
-							button(class='arrow-up-container hide-btn' )
-								div(class='arrow-up' style=`color:${qUpVoteColor}` )
+							button(class='arrow-up-container hide-btn')
+								div(class='arrow-up' style=`color:${qUpVoteColor}`)
 
 						div(class='up-votes') upVote
 
@@ -36,7 +36,7 @@ block content
 							input(type='hidden' name='qDownVote' value=0)
 
 							button(class='arrow-up-container hide-btn' )
-								div(class='arrow-down' style=`color:${qDownVoteColor}`)
+								div(class='arrow-down')
 
 				div(class='question-summary-container')
 					div(class="question-summary edit-question-question")
