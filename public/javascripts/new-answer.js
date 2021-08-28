@@ -68,13 +68,13 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                         </button>
                     </form>
                 
-
+            
                 <div class='vote-count-answer'> ${answer.votes | 0}</div>
 
                 <form action=/answers/${answer.id}/votes method="post">
                     <input type="hidden" name="aDownVote" value="0">
                     <button class='arrow-up-container hide-btn'>
-                        <div class='arrow-down'></i>
+                        <div class='arrow-down'></div>
                     </button>
                 </form>
 
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 <div class='answer content-answer content-answer-2' id=answerContent_${answer.id}>${answer.content}</div>
 
                 <div class='answer-edit-form'>
-                    <p id = errorUpdateAnswer_${answer.id} style = 'color:red'></p>
+                    
                     <form action = /answers/${answer.id} method = 'post' id = updateAnswerContent_${answer.id} style = 'display:none')>
                         <input style = 'display:none' name = 'answerId' value = ${answer.id}>
                         <textarea rows='8' cols='120' id = textareaUpdateAnswer_{answer.id} name = "answerContent" class='log-in-input answer-input move-text-area' required> ${answer.content}</textarea>
