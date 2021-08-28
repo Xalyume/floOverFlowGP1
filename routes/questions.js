@@ -112,9 +112,9 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
             if (voteRecord){
                 if(voteRecord.vote){
-                    qUpVoteColor ='#ff2442;';
+                    qUpVoteColor ='#ffb830';
                 }else{
-                    qDownVoteColor ='#ffb830';
+                    qDownVoteColor ='#ff2442';
                 }
             }
     
@@ -148,10 +148,10 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
             const existingVoteForAnswer = a.AnswerLikes.filter(v => v.userId === userId)[0]
             if (existingVoteForAnswer){
                 if (existingVoteForAnswer.vote){
-                    a.aUpVoteColor = '#ff2442';
+                    a.aUpVoteColor = '#ffb830';
 
                 }else{
-                    a.aDownVoteColor = '#ffb830';
+                    a.aDownVoteColor = '#ff2442';
                 }
          }
         }
