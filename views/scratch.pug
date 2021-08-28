@@ -1,0 +1,51 @@
+div(class="logged-in-container answer-container")
+    div(class="question-stats-container answer-username-container" id='newQuestionContainer')
+        div(class="question-stats-container answer-stats-container")
+            div(class='test-2')
+                p(class='vote-count-1 answer-vote-count') #{answer.votes|0}
+
+            div(class="question-stats-votes answer-stats-votes logged-in-votes")
+                form(action=`/answers/${answer.id}/votes` method='post')
+                    input(type='hidden' name='aUpVote' value=1)
+
+                    button(class='arrow-up-container hide-btn')
+                        div(class='arrow-up')
+
+                div(class='up-votes') upVote
+
+                div(class='down-votes') downVote
+
+                form(action=`/answers/${answer.id}/votes` method='post')
+                    input(type='hidden' name='aDownVote' value=0)
+
+                    button(class='arrow-up-container hide-btn')
+                        div(class='arrow-down')
+
+        div(class='up-votes answer-username answer-info')
+            <span class='asked-by'>answered at: #{answer.createdAt.toLocaleDateString()}
+
+            <span class='time'>by #{answer.User.username}</span></span>
+
+    div(class='question-summary-container')
+        div(class="question-summary edit-question-question")
+            div(id=`answerContent_${answer.id}` class="question answer single-question") #{answer.content}
+                div(class='edit-form')
+                    p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
+
+                    form(action=`/answers/${answer.id}` method='post' id=`updateAnswerContent_${answer.id}` style='display:none')
+                        input( style='display:none' name='answerId' value=answer.id)
+
+                        textarea(name="answerContent" id=`textareaUpdateAnswer_${answer.id}` class='edit-input edit-text-area answer-text-area') #{answer.content}
+
+    div(class="question-summary-footer")
+        div(class='edit-btns answer-edit-btns after-cancel')
+            button(type='submit' form='updateAnswerContent' id=`submitUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-submit after-cancel' style='display:none') Submit Update
+
+            button(id=`cancelUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-cancel after-cancel' style='display:none') Cancel Update
+
+        div(class="question-summary-user")
+
+        div(class='single-question-btns')
+            a(href=`/questions/delete/question.id` class='btn log-in-submit delete-btn') Delete Question
+
+            button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
