@@ -112,6 +112,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
     
             if (voteRecord){
                 if(voteRecord.vote){
+                    console.log('hi!!!!! red')
                     qUpVoteColor='red';
     
                 }else{
@@ -164,6 +165,8 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
         });
                
 }
+
+    console.log('11111',qUpVoteColor, qDownVoteColor)
     res.render('question', {
           question, qVotes, qUpVote, qDownVote, qUpVoteColor, qDownVoteColor,
           answers

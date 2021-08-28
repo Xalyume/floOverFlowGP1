@@ -21,12 +21,12 @@ block content
 					div(class='test-2')
 						p(class='vote-count-1') #{qVotes|0}
 
-					div(class="question-stats-votes logged-in-votes")
+					div(class="question-stats-votes logged-in-votes" )
 						form(action=`/questions/${question.id}/votes` method='post')
 							input(type='hidden' name='qUpVote' value=1)
 
-							button(class='arrow-up-container hide-btn')
-								div(class='arrow-up')
+							button(class='arrow-up-container hide-btn' )
+								div(class='arrow-up' style=`color:${qUpVoteColor}`)
 
 						div(class='up-votes') upVote
 
@@ -35,8 +35,8 @@ block content
 						form(action=`/questions/${question.id}/votes` method='post')
 							input(type='hidden' name='qDownVote' value=0)
 
-							button(class='arrow-up-container hide-btn')
-								div(class='arrow-down')
+							button(class='arrow-up-container hide-btn' )
+								div(class='arrow-down' style=`color:${qDownVoteColor}`)
 
 				div(class='question-summary-container')
 					div(class="question-summary edit-question-question")
