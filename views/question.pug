@@ -114,6 +114,9 @@ block content
 											button(id=`updateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn ') Edit
 											form(action=`/answers/delete/${answer.id}`,method='get')
 												Button(class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn') Delete
+								else 
+									div.placement-blank 
+				
 				//- each answer in answers
 				//- 	div(class="logged-in-container answer-container")
 				//- 		div(class="question-stats-container answer-username-container" id='newQuestionContainer')
