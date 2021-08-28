@@ -50,7 +50,7 @@ block content
 								form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
 									input( style='display:none' name='questionId' value=question.id)
 
-									textarea( name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
+									textarea( required name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
 
 				div(class="question-summary-footer")
 					div(class="question-summary-user")

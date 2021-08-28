@@ -519,6 +519,7 @@ input[type="submit"]:active {
 
 .question-summary {
   display: flex;
+  font-size: small;
 }
 
 .question-summary-footer {
@@ -531,6 +532,7 @@ input[type="submit"]:active {
 .question-summary-user {
   display: flex;
   align-items: center;
+ 
 }
 
 .question-summary-user .question-summary-info {

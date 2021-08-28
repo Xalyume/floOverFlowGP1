@@ -87,8 +87,12 @@ const clickAnswersContainer = async (event) => {
                     cancelUpdateAnswerButton.style.display = 'none';
 
                     // to hide error div
+                    
                     const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
-                    errorUpdateAnswer.style.display = 'none';
+                    if (errorUpdateAnswer){
+                        errorUpdateAnswer.style.display = 'none';
+
+                    }
 
                     // to hide submit div
                     const submitButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
@@ -100,7 +104,9 @@ const clickAnswersContainer = async (event) => {
             }
 
             catch (err) {
+                console.log(err)
                 alert(
+                    
                     "Something went wrong. Please check your internet connection and try again!"
                 );
 
@@ -138,7 +144,11 @@ const clickAnswersContainer = async (event) => {
 
         // to hide error div
         const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
-        errorUpdateAnswer.style.display = 'none';
+        if (errorUpdateAnswer){
+            errorUpdateAnswer.style.display = 'none';
+
+        }
+        
 
         // to hide submit div
         const submitButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
