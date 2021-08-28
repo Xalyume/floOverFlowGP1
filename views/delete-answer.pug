@@ -22,7 +22,7 @@ block content
 
 				div(class='new-question-footer')
 					button(type='submit' class='btn log-in-submit new-question-btn delete-btn') Delete
-					a(href=`/` class='cancel forgot del-cancel') Cancel
+					a(href=`/questions/${answer.questionId}` class='cancel forgot del-cancel') Cancel
 		else
 			div
 				p You do not have the authorization to delete other user's answer.

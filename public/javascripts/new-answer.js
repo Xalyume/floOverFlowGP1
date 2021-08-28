@@ -1,11 +1,16 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
 
   const cancelNewAnswer = document.querySelector("#cancelNewAnswer");
-  cancelNewAnswer.addEventListener("click",()=>{
-      const errorNewAnswer = document.querySelector("#errorNewAnswer");
-      errorNewAnswer.style.display='none';
+    
+  if (cancelNewAnswer){
+      cancelNewAnswer.addEventListener("click", () => {
+          const errorNewAnswer = document.querySelector("#errorNewAnswer");
+          errorNewAnswer.style.display = 'none';
 
-  })
+      })
+
+  }
+  
 
 
   // when form is submit
@@ -64,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                     </form>
                 
 
-                <div class='vote-count-answer'> ${answer.votes | 0}</div
+                <div class='vote-count-answer'> ${answer.votes | 0}</div>
 
                 <form action=/answers/${answer.id}/votes method="post">
                     <input type="hidden" name="aDownVote" value="0">
@@ -119,7 +124,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
               numberOfAnswers.innerHTML = parseInt(numberOfAnswers.innerHTML,10)+1
              // clear textarea
               const newAnswerForm = document.querySelector("#content");
-              console.log('Hiii',newAnswerForm.innerHTML)
               newAnswerForm.value = '';
               
 
