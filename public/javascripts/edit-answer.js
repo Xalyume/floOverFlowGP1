@@ -6,7 +6,7 @@ const clickAnswersContainer = async (event) => {
 
     //if edit button is clicked, the textarea to edit answer and submit update button will be displayed. And the edit button will be hidden.
 
-    if (event.target.id.startsWith('updateAnswerButton_')){
+    if (event.target.id.startsWith('updateAnswerButton_')) {
 
         const answerId = event.target.id.split('_')[1]
         // to display textarea
@@ -16,15 +16,17 @@ const clickAnswersContainer = async (event) => {
         const updateAnswerButton = document.querySelector(`#updateAnswerButton_${answerId}`);
         updateAnswerButton.style.display = 'none';
 
-       // to show cancel update button
+        // to show cancel update button
         const cancelUpdateAnswerButton = document.querySelector(`#cancelUpdateAnswerButton_${answerId}`);
         cancelUpdateAnswerButton.style.display = 'flex';
 
-       // to hide origianl answer content
+        // to hide origianl answer content
 
         const answerContent = document.querySelector(`#answerContent_${answerId}`);
         answerContent.style.display = 'none';
 
+        const submitButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
+        submitButton.style.display = 'flex';
 
         //listening its edit form to submit
 
@@ -55,14 +57,14 @@ const clickAnswersContainer = async (event) => {
 
                 if (errors) {
 
-                    const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
+                    //     const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
 
-                    let errorContent = errors.map(message => {
-                        return `<li>${message}</li>`
-                    })
-                    errorUpdateAnswer.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
+                    //     let errorContent = errors.map(message => {
+                    //         return `<li>${message}</li>`
+                    //     })
+                    //     errorUpdateAnswer.innerHTML = `<p>The following error(s) occurred:<ul>${errorContent.join('')}</ul></p>`
 
-                    errorUpdateAnswer.style.display = 'flex'
+                    //     errorUpdateAnswer.style.display = 'flex'
                 }
 
                 else {
@@ -88,12 +90,16 @@ const clickAnswersContainer = async (event) => {
                     const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
                     errorUpdateAnswer.style.display = 'none';
 
+                    // to hide submit div
+                    const submitButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
+                    submitButton.style.display = 'none';
+
                 }
 
 
             }
 
-            catch(err){
+            catch (err) {
                 alert(
                     "Something went wrong. Please check your internet connection and try again!"
                 );
@@ -134,6 +140,10 @@ const clickAnswersContainer = async (event) => {
         const errorUpdateAnswer = document.querySelector(`#errorUpdateAnswer_${answerId}`);
         errorUpdateAnswer.style.display = 'none';
 
+        // to hide submit div
+        const submitButton = document.querySelector(`#submitUpdateAnswerButton_${answerId}`);
+        submitButton.style.display = 'none';
+
     }
 
 
@@ -146,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     // click update button
     const answersContainer = document.querySelector("#answersContainer");
 
-    answersContainer.addEventListener("click", clickAnswersContainer )
+    answersContainer.addEventListener("click", clickAnswersContainer)
 
 
 

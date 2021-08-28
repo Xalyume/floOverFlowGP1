@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
               errorNewAnswer.style.display = 'block'
           }else{
               // dynamically add the newly posted answer to the answer section
-              const newQuestionContainer = document.querySelector("#newQuestionContainer")
+              const newQuestionContainer = document.querySelector("#secondaryQuestionContainer")
               newQuestionContainer.innerHTML = `
                 <div class='when'> answered at
                     <span class='when2'> ${new Date(answer.createdAt).toLocaleDateString()}</span>

@@ -1,0 +1,178 @@
+h1 {
+    color: #555555;
+  }
+
+  .nav-bar {
+    min-height: 5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3db2ff;
+    border-bottom: 0.25em solid #ffb830;
+    /* z-index: 0; */
+  }
+
+  .search-bar {
+    /* background-color: rgba(0, 0, 0, 0.33); */
+    opacity: 75%;
+    height: 2.5em;
+    display: flex;
+    padding: 0px 0px 0px 1.25em;
+    border-radius: 0.5em;
+    color: #ffb830;
+    align-items: center;
+    margin-left: 5em;
+    /* position: relative; */
+  }
+
+  .search-input {
+    border: 0.0625em solid white;
+    border-right: none;
+    border-radius: 0.5em 0 0 0.5em;
+    height: 2.5em;
+    font-size: 1.25em;
+    width: 100%;
+    padding-left: 1.5em;
+    outline: 0;
+    background-color: white;
+    border-right: none;
+  }
+
+  .search-btn {
+    border: 1px solid #ff2442;
+    background: #ff2442;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 0.5em 0.5em 0;
+    border-left: none;
+    cursor: pointer;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+      0px -5px 35px rgba(255, 255, 255, 0.3);
+  }
+
+  .wrap {
+    width: 50%;
+  }
+
+  .links {
+    display: flex;
+  }
+
+  .btn {
+    opacity: 90%;
+    height: 2.5em;
+    width: 5em;
+    display: flex;
+    justify-content: center;
+    text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+      0px -5px 35px rgba(255, 255, 255, 0.3);
+    align-items: center;
+    text-decoration: none;
+    margin-right: 1.5em;
+    font-weight: 500;
+    font-size: 1.25em;
+    letter-spacing: 0.0625em;
+  }
+
+ .all-questions {
+      display: flex;
+      justify-content: center;
+      justify-items: start;
+
+  }
+
+.all-questions-link {
+      margin: 10px;
+
+  }
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+  font-family: "Roboto", Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+.log-in-btn {
+  background-color: transparent;
+  color: #ffedda;
+  text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
+    0px -5px 35px rgba(255, 255, 255, 0.3);
+}
+
+
+  /* this is what i worked on. - result page formatting */
+  .outer-results-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inner-results-table {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+
+  h2.results-title{
+    margin: 5px 0px;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  .result-li {
+    margin: 15px 0px;
+
+  }
+
+  .result-btn {
+    background-color: transparent;
+    color: #3db2ff;
+    text-decoration: none;
+    font-size: large;
+  }
+
+  .no-results{
+    font-size: large;
+    /* font-weight: bold; */
+
+  }
+
+  .all-btn {
+    background-color: transparent;
+    color: #3db2ff;
+    text-decoration: none;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .search-term {
+    font-size: x-large;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+
+  /* demo button on login + signup pages */
+.demo-button {
+    align-self: center;
+}
+
+.demo-btn {
+    background-color: #ffb830;
+    font-size: normal;
+    border-radius: 0.5em;
+    color: black;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    margin: 15px;
+ }

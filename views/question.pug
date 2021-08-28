@@ -71,6 +71,7 @@ block content
 				span(id='numberOfAnswers' class='answer-title') <span class='time answer-time'> #{answers.length|0}</span> flo-Answer(s)
 
 			div(class='log-in-form question-post answers-container answersContainer' id='answersContainer')
+				div(id='secondaryQuestionContainer')
 				div(id='newQuestionContainer' class='answers-new-container')
 					each answer in answers
 						div(class='test-container')
@@ -89,32 +90,30 @@ block content
 									input(type='hidden' name='aDownVote' value=0)
 									button(class='arrow-up-container hide-btn')
 										div(class='arrow-down')
-	
-	
+
+
 							div(class='answer content-answer content-answer-2' id=`answerContent_${answer.id}`) #{answer.content}
-	
+
 							if locals.authenticated
 								if locals.user.id === answer.userId
-									div(class='answer-edit-form')
 										//-div for Error: null content of answer, that will be manipulated in js file appended to this pug file
 										p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
-	
+
 										//-need updateAnswerContent,updateAnswerButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
 										form(action=`/answers/${answer.id}` method='post'
 										id=`updateAnswerContent_${answer.id}` style='display:none')
 											input( style='display:none' name='answerId' value=answer.id)
-											textarea(class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` 	name="answerContent" ) #{answer.content}
-	
-											button(id=`submitUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer') Submit Update
-	
-										//- buttons  are not in form above with textarea because they will not submit the texarea, but the 	testarea 	will be showned once the Edit Answer button is clicked. And testarea will be hidden 	once Cancel Update is clicked
-										button(id=`cancelUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn cancel-answer' style='display:none') Cancel Update
-	
-	
-										button(id=`updateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn ') Edit Answer
-									div
-										form(action=`/answers/delete/${answer.id}`,method='get')
-											Button(class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn') Delete
+											textarea(class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` name="answerContent" required) #{answer.content}
+
+										div.answer-buttons-container
+											button(id=`submitUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer' form=`updateAnswerContent_${answer.id}` style='display:none') Submit
+
+											//- buttons  are not in form above with textarea because they will not submit the texarea, but the 	testarea 	will be showned once the Edit Answer button is clicked. And testarea will be hidden 	once Cancel Update is clicked
+											button(id=`cancelUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn cancel-answer' style='display:none') Cancel
+
+											button(id=`updateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn ') Edit
+											form(action=`/answers/delete/${answer.id}`,method='get')
+												Button(class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn') Delete
 				//- each answer in answers
 				//- 	div(class="logged-in-container answer-container")
 				//- 		div(class="question-stats-container answer-username-container" id='newQuestionContainer')
