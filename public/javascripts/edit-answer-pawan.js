@@ -1,20 +1,25 @@
 
 const clickEditButton = async(event)=>{
     //once edit button is clicked, the textarea to edit question and submit update button will be displayed. And the edit button will be hidden.
-    const updateQuestionContent = document.querySelector("#updateQuestionContent");
-    updateQuestionContent.style.display = 'block';
+    const updateAnswerContent = document.querySelector("#updateAnswerContent");
+    updateAnswerContent.style.display = 'block';
 
-    updateQuestionButton.style.display = 'none';
+    updateAnswerButton.style.display = 'none';
 
-    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
-    submitUpdateQuestionButton.style.display = 'block';
+    const deleteAnswerButton = document.querySelector("#deleteAnswerButton");
 
-    const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-    cancelUpdateQuestionButton.style.display = 'block';
+    deleteAnswerButton.style.display = 'none';
 
-    const questionContent = document.querySelector("#questionContent");
-    // questionContent.style.display = 'none';
+    const submitUpdateAnswerButton = document.querySelector("#submitUpdateAnswerButton");
+    submitUpdateAnswerButton.style.display = 'block';
 
+    const cancelUpdateAnswerButton = document.querySelector("#cancelUpdateAnswerButton");
+    cancelUpdateAnswerButton.style.display = 'block';
+
+    const answerContent = document.querySelector("#answerContent");
+    answerContent.style.display = 'hidden';
+    answerContent.style.background = 'transparent';
+    answerContent.style.color = 'transparent';
 }
 
 const submitUpdate = async(event)=>{
@@ -25,7 +30,7 @@ const submitUpdate = async(event)=>{
     const body = { content };
 
     try {
-        const res = await fetch(`/api/questions/${questionId}`, {
+        const res = await fetch(`/questions/${questionId}`, {
             method: "PUT",
             body: JSON.stringify(body),
             headers: {"Content-Type": "application/json"},
@@ -126,31 +131,36 @@ const submitUpdate = async(event)=>{
 
 const cancelUpdate = async (event) => {
 
-    const questionContent = document.querySelector("#questionContent");
-    questionContent.style.display = 'block';
+    const answerContent = document.querySelector("#answerContent");
+    answerContent.style.background = '#FFEDDA';
+    answerContent.style.color = '#3DB2FF';
 
-    const updateQuestionContent = document.querySelector("#updateQuestionContent");
-    updateQuestionContent.style.display = 'none';
+    const updateAnswerContent = document.querySelector("#updateAnswerContent");
+    updateAnswerContent.style.display = 'none';
 
-    const updateQuestionButton = document.querySelector("#updateQuestionButton");
-    updateQuestionButton.style.display = 'block';
+    const updateAnswerButton = document.querySelector("#updateAnswerButton");
+    updateAnswerButton.style.display = 'flex';
 
-    const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-    cancelUpdateQuestionButton.style.display = 'none';
+    const deleteAnswerButton = document.querySelector("#deleteAnswerButton");
+    deleteAnswerButton.style.display = 'flex';
 
-    const submitUpdateQuestionButton = document.querySelector("#submitUpdateQuestionButton");
-    submitUpdateQuestionButton.style.display = 'none';
+    const cancelUpdateAnswerButton = document.querySelector("#cancelUpdateAnswerButton");
+    cancelUpdateAnswerButton.style.display = 'none';
 
-    const errorUpdateQuestion = document.querySelector("#errorUpdateQuestion");
-    errorUpdateQuestion.style.display = 'none';
+    const submitUpdateAnswerButton = document.querySelector("#submitUpdateAnswerButton");
+    submitUpdateAnswerButton.style.display = 'none';
+
+    const errorUpdateAnswer = document.querySelector("#errorUpdateAnswer");
+    errorUpdateAnswer.style.display = 'none';
+
 }
 
 
 document.addEventListener("DOMContentLoaded", async(event) => {
     // click update button
-    const updateQuestionButton = document.querySelector("#updateQuestionButton");
-    if (updateQuestionButton){
-        updateQuestionButton.addEventListener("click", clickEditButton)
+    const updateAnswerButton = document.querySelector("#updateAnswerButton");
+    if (updateAnswerButton){
+        updateAnswerButton.addEventListener("click", clickEditButton)
 
     }
 
@@ -164,9 +174,9 @@ document.addEventListener("DOMContentLoaded", async(event) => {
 
 
     // cancel update
-    const cancelUpdateQuestionButton = document.querySelector("#cancelUpdateQuestionButton");
-    if (cancelUpdateQuestionButton ){
-        cancelUpdateQuestionButton.addEventListener("click", cancelUpdate)
+    const cancelUpdateAnswerButton = document.querySelector("#cancelUpdateAnswerButton");
+    if (cancelUpdateAnswerButton ){
+        cancelUpdateAnswerButton.addEventListener("click", cancelUpdate)
 
     }
 

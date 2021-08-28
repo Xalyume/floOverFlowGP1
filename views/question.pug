@@ -3,136 +3,197 @@ extends layout.pug
 include utils.pug
 
 append head
-	//- add page specific styles by appending to the head
 	link(rel="stylesheet" href="/stylesheets/index.css")
 	link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
-	//- add page specific js
 	script(src="/javascripts/edit-question.js" type="module" defer)
 	script(src="/javascripts/edit-answer.js" type="module" defer)
 	script(src="/javascripts/new-answer.js" type="module" defer)
-	//-script(src="/javascripts/vote-question.js" type="module" defer)
 
 block content
-	div
-		a(href=`/questions`) All Quesitons
 
 	div(class='questionContainer')
+		div(class='main-links all-btn back-btn')
+			a(href='/questions' class='btn log-in-submit btn2') Go to Questions
+
 		if question
-			div asked at #{question.createdAt.toLocaleDateString()}
-			div by #{question.User.username}
-			div()
-				form(action=`/questions/${question.id}/votes` method='post')
-					//-div #{qUpVote|0}
-					input(type='hidden' name='qUpVote' value=1)
-					button(style=`color:${qUpVoteColor}`)
-						i(class="material-icons") thumb_up
-			div #{qVotes|0}
-			div()
-				form(action=`/questions/${question.id}/votes` method='post')
-					//-div #{qDownVote|0}
-					input(type='hidden' name='qDownVote' value=0)
-					button(style=`color:${qDownVoteColor}`)
-						i(class="material-icons" ) thumb_down
+			div(class="logged-in-container")
+				div(class="question-stats-container")
+					div(class='test-2')
+						p(class='vote-count-1') #{qVotes|0}
 
-			//-need questionContent as Id for dynamic editing,Do not change. Otherwise, need to update in js file
-			div(class='question' id='questionContent') #{question.content}
-			//- only user who posted this question can see the link of delete the quesiton, and edit question by checking session's res.locals.user id === question's associated user id
+					div(class="question-stats-votes logged-in-votes")
+						form(action=`/questions/${question.id}/votes` method='post')
+							input(type='hidden' name='qUpVote' value=1)
 
+							button(class='arrow-up-container hide-btn')
+								div(class='arrow-up')
+
+						div(class='up-votes') upVote
+
+						div(class='down-votes') downVote
+
+						form(action=`/questions/${question.id}/votes` method='post')
+							input(type='hidden' name='qDownVote' value=0)
+
+							button(class='arrow-up-container hide-btn')
+								div(class='arrow-down')
+
+				div(class='question-summary-container')
+					div(class="question-summary edit-question-question")
+						div(class="question single-question")
+							p(id='questionContent' class="question single-question") #{question.content}
+
+							div(class='edit-form' id='test')
+
+								p(id='errorUpdateQuestion' class='edit-errors')
+
+								form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
+									input( style='display:none' name='questionId' value=question.id)
+
+									textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
+
+				div(class="question-summary-footer")
+					div(class="question-summary-user")
+						div(class="question-summary-info")
+							<span class='asked-by'>asked by: <span class='time'>#{question.User.username}</span></span>
+								div(class='edit-btns')
+									button(type='submit' form='updateQuestionContent' id='submitUpdateQuestionButton' class='log-in-submit new-question-btn edit-submit-btn edit-cancel-btn' style='display:none;') Submit Update
+
+									button(id='cancelUpdateQuestionButton' class='log-in-submit new-question-btn edit-cancel-btn' style='display:none;') Cancel Update
 			if locals.authenticated
 				if locals.user.id === question.User.id
+					div(class='single-question-btns')
+						a(href=`/questions/delete/${question.id}` class='btn log-in-submit delete-btn') Delete Question
 
-					div
-						//-div for Error: null content of question, that will be manipulated in js file appended to this pug file
-						p(id='errorUpdateQuestion' style={color: 'red'})
+						button(id='updateQuestionButton' class='btn log-in-submit edit-btn') Edit Question
 
-						//-need updateQuestionContent,updateQuestionButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-						form(action=`/questions/${question.id}` method='post'
-						id='updateQuestionContent' style='display:none')
-							input( style='display:none' name='questionId' value=question.id)
-							textarea(id='textareaUpdateQuestion' name="questionContent" ) #{question.content}
-							button Submit Update
+			div(class='answer-title')
+				span(id='numberOfAnswers' class='answer-title') <span class='time answer-time'> #{answers.length|0}</span> flo-Answer(s)
 
-						//- buttons not in form because they will not submit the texarea, but the testarea 	will be showned once the Edit Question button is clicked. And testarea will be hidden 	once Cancel Update is clicked
-						button(id='cancelUpdateQuestionButton' style='display:none') Cancel Update
-						button(id='updateQuestionButton' ) Edit Question
+			div(class='log-in-form question-post answers-container answersContainer' id='answersContainer')
+				div(id='newQuestionContainer' class='answers-new-container')
+					each answer in answers
+						div(class='test-container')
+							div(class='when') answered at
+								span(class='when2') #{answer.createdAt.toLocaleDateString()}
+								div(class='when2')
+									span(class='when') by:
+										span(class='when2') #{answer.User.username}
+							div(class='votes-answer')
+								form(action=`/answers/${answer.id}/votes` method='post')
+									input(type='hidden' name='aUpVote' value=1)
+									button(class='arrow-up-container hide-btn')
+										div(class='arrow-up')
+								div(class='vote-count-answer') #{answer.votes|0}
+								form(action=`/answers/${answer.id}/votes` method='post')
+									input(type='hidden' name='aDownVote' value=0)
+									button(class='arrow-up-container hide-btn')
+										div(class='arrow-down')
+	
+	
+							div(class='answer content-answer content-answer-2' id=`answerContent_${answer.id}`) #{answer.content}
+	
+							if locals.authenticated
+								if locals.user.id === answer.userId
+									div(class='answer-edit-form')
+										//-div for Error: null content of answer, that will be manipulated in js file appended to this pug file
+										p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
+	
+										//-need updateAnswerContent,updateAnswerButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
+										form(action=`/answers/${answer.id}` method='post'
+										id=`updateAnswerContent_${answer.id}` style='display:none')
+											input( style='display:none' name='answerId' value=answer.id)
+											textarea(class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` 	name="answerContent" ) #{answer.content}
+	
+											button(id=`submitUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer') Submit Update
+	
+										//- buttons  are not in form above with textarea because they will not submit the texarea, but the 	testarea 	will be showned once the Edit Answer button is clicked. And testarea will be hidden 	once Cancel Update is clicked
+										button(id=`cancelUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn cancel-answer' style='display:none') Cancel Update
+	
+	
+										button(id=`updateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn ') Edit Answer
+									div
+										form(action=`/answers/delete/${answer.id}`,method='get')
+											Button(class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn') Delete
+				//- each answer in answers
+				//- 	div(class="logged-in-container answer-container")
+				//- 		div(class="question-stats-container answer-username-container" id='newQuestionContainer')
+				//- 			div(class="question-stats-container answer-stats-container")
+				//- 				div(class='test-2')
+				//- 					p(class='vote-count-1 answer-vote-count') #{answer.votes|0}
 
-					div
-						form(action=`/questions/delete/${question.id}`,method='get')
-							Button Delete
+				//- 				div(class="question-stats-votes answer-stats-votes logged-in-votes")
+				//- 					form(action=`/answers/${answer.id}/votes` method='post')
+				//- 						input(type='hidden' name='aUpVote' value=1)
 
-			p -----------------------------------------------------------------------------
-			div() 
-				a(id='numberOfAnswers') #{answers.length|0} 
-				a Answers:
-			
-			//-need the div id 'answersContainer' for DOM manipulate
-			div(class='answersContainer' id='answersContainer')
-				//- newQuestionContainer div for appending newly created answer
-				div(id='newQuestionContainer') 
-				
-				each answer in answers
-					div answered at #{answer.createdAt.toLocaleDateString()}
-					div by #{answer.User.username}
-					div()
-						form(action=`/answers/${answer.id}/votes` method='post')
-							input(type='hidden' name='aUpVote' value=1)
-							button(style=`color:${answer.aUpVoteColor}`)
-								i(class="material-icons") thumb_up
-					div #{answer.votes|0}
+				//- 						button(class='arrow-up-container hide-btn')
+				//- 							div(class='arrow-up')
 
-					div()
-						form(action=`/answers/${answer.id}/votes` method='post')
-							input(type='hidden' name='aDownVote' value=0)
-							button(style=`color:${answer.aDownVoteColor}`)
-								i(class="material-icons" ) thumb_down
+				//- 					div(class='up-votes') upVote
+
+				//- 					div(class='down-votes') downVote
+
+				//- 					form(action=`/answers/${answer.id}/votes` method='post')
+				//- 						input(type='hidden' name='aDownVote' value=0)
+
+				//- 						button(class='arrow-up-container hide-btn')
+				//- 							div(class='arrow-down')
+
+				//- 			div(class='up-votes answer-username answer-info')
+				//- 				<span class='asked-by'>answered at: #{answer.createdAt.toLocaleDateString()}
+
+				//- 				<span class='time'>by #{answer.User.username}</span></span>
+
+				//- 		div(class='question-summary-container')
+				//- 			div(class="question-summary edit-question-question")
+				//- 				div(id=`answerContent_${answer.id}` class="question answer single-question") #{answer.content}
+				//- 					div(class='edit-form')
+				//- 						p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
+
+				//- 						form(action=`/answers/${answer.id}` method='post' id=`updateAnswerContent_${answer.id}` style='display:none')
+				//- 							input( style='display:none' name='answerId' value=answer.id)
+
+				//- 							textarea(name="answerContent" id=`textareaUpdateAnswer_${answer.id}` class='edit-input edit-text-area answer-text-area') #{answer.content}
+
+				//- 		div(class="question-summary-footer")
+				//- 			div(class='edit-btns answer-edit-btns after-cancel')
+				//- 				button(type='submit' form='updateAnswerContent' id=`submitUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-submit after-cancel' style='display:none') Submit Update
+
+				//- 				button(id=`cancelUpdateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit-cancel after-cancel' style='display:none') Cancel Update
+
+				//- 			div(class="question-summary-user")
+				//- 				if locals.authenticated
+				//- 					if locals.user.id === answer.userId
+				//- 						div(class='single-question-btns answer-btns')
+				//- 							a(href=`/answers/delete/${answer.id}` id='deleteAnswerButton' class='btn log-in-submit delete-btn answer-delete') Delete Answer
+
+				//- 							button(id=`updateAnswerButton_${answer.id}` class='btn log-in-submit delete-btn answer-delete answer-edit') Edit Answer
+
+				//- 	div(class='single-question-btns bottom-answer')
 
 
-					div(class='answer' id=`answerContent_${answer.id}`) #{answer.content}
+			p(id=`errorNewAnswer` class='errors answer-errors')
 
-					if locals.authenticated
-						if locals.user.id === answer.userId
-							div
-								//-div for Error: null content of answer, that will be manipulated in js file appended to this pug file
-								p(id=`errorUpdateAnswer_${answer.id}` style={color:'red'})
-						
-								//-need updateAnswerContent,updateAnswerButton as Id for dynamic editing; Do not change. Otherwise, need to update in js file
-								form(action=`/answers/${answer.id}` method='post'
-								id=`updateAnswerContent_${answer.id}` style='display:none')
-									input( style='display:none' name='answerId' value=answer.id)
-									textarea(id=`textareaUpdateAnswer_{answer.id}` 	name="answerContent" ) #{answer.content}
-
-									button(id=`submitUpdateAnswerButton_${answer.id}`) Submit Update
-
-								//- buttons  are not in form above with textarea because they will not submit the texarea, but the 	testarea 	will be showned once the Edit Answer button is clicked. And testarea will be hidden 	once Cancel Update is clicked
-								button(id=`cancelUpdateAnswerButton_${answer.id}` style='display:none') Cancel Update
-
-								
-								button(id=`updateAnswerButton_${answer.id}`) Edit Answer
-							div
-								form(action=`/answers/delete/${answer.id}`,method='get')
-									Button Delete
-									
-			p ------------------------Post your Answer------------------------
-
-			p(id=`errorNewAnswer` style={color:'red'})
-			form(action='/answers' method='post' id='newAnswer')
+			form(action='/answers' method='post' id='newAnswer' class='log-in-form question-post')
 				input( style='display:none' name='questionId' value=question.id)
-				textarea(name="answerContent")
+
+				textarea(class='log-in-input answer-input' type="textarea" id="content" name="answerContent" placeholder="Leave a flo-Answer..")
+
 				if locals.authenticated
-					button Submit your answer
-					button(type='reset' id='cancelNewAnswer') Cancel
+					div(class='new-question-footer answer-submission-btns')
+						button(type='submit' class='btn log-in-submit new-question-btn answer-submit-btn') Submit
+
+						button(type='reset' id='cancelNewAnswer' class='btn log-in-submit new-question-btn delete-btn') Cancel
+
+					div(class='test-4')
+						div(class='test-4')
+
 				else
-					div 
-						span Please
-						a(href='/login') Log in 
-						span to post your answer.
+					div(class='please-log-in')
+						<span class='subtitle-1'> Please <a href='/login' class=' subtitle-1 time log-link'>Log in</a> to post your flo-answer</span>
 
-					
-
-
-
+					div(class='test-4')
+						div(class='test-4')
 
 		else
-			div This question does not exist.
-
-			
+			div This question does not exist
