@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                 <div class='votes-answer'>
                     <form action=/answers/${answer.id}/votes method="post">
                         <input type="hidden" name="aUpVote" value="1">
-                        <button style=color:${answer.aUpVoteColor} class='arrow-up-container hide-btn'>
+                        <button class='arrow-up-container hide-btn'>
                             <div class='arrow-up'></div>
                         </button>
                     </form>
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
                 <form action=/answers/${answer.id}/votes method="post">
                     <input type="hidden" name="aDownVote" value="0">
-                    <button style= color:${answer.aDownVoteColor} class='arrow-up-container hide-btn'>
+                    <button class='arrow-up-container hide-btn'>
                         <div class='arrow-down'></i>
                     </button>
                 </form>

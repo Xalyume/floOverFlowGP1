@@ -114,7 +114,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
                 if(voteRecord.vote){
                     qUpVoteColor ='#ff2442;';
                 }else{
-                    qDownVoteColor ='#3db2ff';
+                    qDownVoteColor ='#ffb830';
                 }
             }
     
@@ -151,7 +151,7 @@ router.get("/:id(\\d+)",  asyncHandler(async (req, res, next) => {
                     a.aUpVoteColor = '#ff2442';
 
                 }else{
-                    a.aDownVoteColor = '#3db2ff';
+                    a.aDownVoteColor = '#ffb830';
                 }
          }
         }
