@@ -101,8 +101,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
               numberOfAnswers.innerHTML = parseInt(numberOfAnswers.innerHTML,10)+1
              // clear textarea
               const newAnswerForm = document.querySelector("#content");
-              console.log('Hiii',newAnswerForm)
-              newAnswerForm.innerHTML = '';
+              console.log('Hiii',newAnswerForm.innerHTML)
+              newAnswerForm.value = 'hhh';
               
 
           }
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       catch(err){
          /// When sometimes will hit this, but all data saved, page on browser good, console.log(err) to see it in browser dev console
          /// another way to check err is to looking for the newly created/saved data in db at API back end/json; console.log a lot in api route
-          console.log(err)
+          //console.log(err)
 
               alert(
                   "Something went wrong. Please check your internet connection and try again!"
