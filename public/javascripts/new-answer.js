@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                     <p id = errorUpdateAnswer_${answer.id} style = 'color:red'></p>
                     <form action = /answers/${answer.id} method = 'post' id = updateAnswerContent_${answer.id} style = 'display:none')>
                         <input style = 'display:none' name = 'answerId' value = ${answer.id}>
-                        <textarea rows='4' cols='50' id = textareaUpdateAnswer_{answer.id} name = "answerContent" class='log-in-input answer-input move-text-area' required> ${answer.content}</textarea>
+                        <textarea rows='8' cols='120' id = textareaUpdateAnswer_{answer.id} name = "answerContent" class='log-in-input answer-input move-text-area' required> ${answer.content}</textarea>
 
 
                         

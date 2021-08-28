@@ -50,7 +50,7 @@ block content
 								form(action=`/questions/${question.id}` method='post' id='updateQuestionContent' style='display:none;')
 									input( style='display:none' name='questionId' value=question.id)
 
-									textarea(name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
+									textarea( name="questionContent" id='textareaUpdateQuestion' class='edit-input') #{question.content}
 
 				div(class="question-summary-footer")
 					div(class="question-summary-user")
@@ -103,7 +103,7 @@ block content
 										form(action=`/answers/${answer.id}` method='post'
 										id=`updateAnswerContent_${answer.id}` style='display:none')
 											input( style='display:none' name='answerId' value=answer.id)
-											textarea(class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` name="answerContent" required) #{answer.content}
+											textarea(rows='8' cols='120' class='move-text-area log-in-input answer-input' id=`textareaUpdateAnswer_{answer.id}` name="answerContent" required) #{answer.content}
 
 										div.answer-buttons-container
 											button(id=`submitUpdateAnswerButton_${answer.id}` class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer' form=`updateAnswerContent_${answer.id}` style='display:none') Submit
