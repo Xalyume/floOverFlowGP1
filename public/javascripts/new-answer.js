@@ -47,13 +47,14 @@ document.addEventListener("DOMContentLoaded", async (event) => {
               // dynamically add the newly posted answer to the answer section
               const newQuestionContainer = document.querySelector("#secondaryQuestionContainer")
               newQuestionContainer.innerHTML = `
+              <div class ='test-container'>
                 <div class='when'> answered at
                     <span class='when2'> ${new Date(answer.createdAt).toLocaleDateString()}</span>
                     <div class='when2'>
                         <span class='when'> by YOU</span>
                     </div>
                 </div>
-
+               
                 <div class='votes-answer'>
                     <form action=/answers/${answer.id}/votes method="post">
                         <input type="hidden" name="aUpVote" value="1">
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                             <div class='arrow-up'></div>
                         </button>
                     </form>
-                </div>
+                
 
                 <div class='vote-count-answer'> ${answer.votes | 0}</div
 
@@ -72,26 +73,43 @@ document.addEventListener("DOMContentLoaded", async (event) => {
                     </button>
                 </form>
 
+                </div>
+
                 <div class='answer content-answer content-answer-2' id=answerContent_${answer.id}>${answer.content}</div>
 
                 <div class='answer-edit-form'>
                     <p id = errorUpdateAnswer_${answer.id} style = 'color:red'></p>
                     <form action = /answers/${answer.id} method = 'post' id = updateAnswerContent_${answer.id} style = 'display:none')>
                         <input style = 'display:none' name = 'answerId' value = ${answer.id}>
-                        <textarea id = textareaUpdateAnswer_{answer.id} name = "answerContent" class='log-in-input answer-input move-text-area'> ${answer.content}</textarea>
+                        <textarea rows='4' cols='50' id = textareaUpdateAnswer_{answer.id} name = "answerContent" class='log-in-input answer-input move-text-area' required> ${answer.content}</textarea>
 
-                        <button id = submitUpdateAnswerButton_${answer.id} class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer'>Submit Update</button>
+
+                        
                     </form>
 
-                    <button id = cancelUpdateAnswerButton_${answer.id} style = 'display:none' class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn cancel-answer')>Cancel Update</button>
-                    <button id = updateAnswerButton_${answer.id} class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn '>Edit Answer</button>
+                    
+                    
                 </div>
 
-                <div> 
+                <div class ='answer-buttons-container'>
+
+        
+
+                    <button id = submitUpdateAnswerButton_${answer.id} class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn submit-answer' form= updateAnswerContent_${answer.id} style='display:none'>Submit</button>
+
+                    <button id = cancelUpdateAnswerButton_${answer.id} style = 'display:none' class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn cancel-answer'>Cancel</button>
+
+                    
+
+                <div class = 'deleteAndEdit'> 
+                    <button id = updateAnswerButton_${answer.id} class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn '>Edit</button>
                     <form action = /answers/delete/${answer.id} method = 'get'>
                         <Button class='edit-answer-btn log-in-submit new-question-btn answer-submit-btn del-btn'> Delete </Button>
                     </form>
                 </div>
+
+                </div>
+            </div>
 
 
 

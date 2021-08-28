@@ -1456,3 +1456,16 @@ h2.results-title{
   align-items: center;
 }
 
+.newAnswer{
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+.deleteAndEdit{
+  display: flex;
+  flex-direction: column;
+
+}
+
