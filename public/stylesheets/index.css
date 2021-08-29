@@ -83,12 +83,14 @@ body {
 }
 
 .main-page {
-  margin-left: 1.5em;
+  /* margin-left: 1.5em;
   font-size: 1.75em;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.75);
   text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.2),
-    0px -5px 35px rgba(255, 255, 255, 0.3);
+    0px -5px 35px rgba(255, 255, 255, 0.3); */
+  width: auto;
+  height: auto;
 }
 
 /* .btn {
@@ -209,7 +211,7 @@ body {
 }
 
 .h1 {
-  font-size: 5em;
+  font-size: 4em;
   font-style: italic;
   color: rgba(0, 0, 0, 0.75);
   margin-top: 0.5em;
@@ -217,19 +219,19 @@ body {
 }
 
 .subtitle-1 {
-  font-size: 1.75em;
+  font-size: 1.5em;
   color: #3db2ff;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
 
 .subtitle-2 {
-  font-size: 1.75em;
+  font-size: 1.25em;
   color: rgba(0, 0, 0, 0.75);
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
 
 .flo-overflow {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   color: #ff2442;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
@@ -348,7 +350,7 @@ input[type="submit"]:active {
 #logo {
   margin: 0 auto;
   width: 100%;
-  font-size: 2.5em;
+  font-size: 1.75em;
   font-weight: bolder;
   text-align: center;
   color: #3db2ff;
@@ -532,7 +534,7 @@ input[type="submit"]:active {
 .question-summary-user {
   display: flex;
   align-items: center;
- 
+
 }
 
 .question-summary-user .question-summary-info {
@@ -649,7 +651,7 @@ textarea {
 }
 
 .username {
-  font-size: 1.25em;
+  font-size: 1em;
   color: #ff2442;
   text-shadow: 2px 8px 6px #ffedda, 0px -5px 35px #ffedda;
 }
@@ -1494,3 +1496,13 @@ h2.results-title{
   margin:0px 7px;
   display:'none';
 } */
+
+.logo {
+  background-image: url('../logo.png');
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 75px;
+  margin-left: 10px;
+}
